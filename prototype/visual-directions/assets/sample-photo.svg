@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Abstract concert portrait placeholder</title>
+  <desc id="desc">A dark figure beneath blue and rose stage lights, used only as a prototype photo.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101b43"/>
+      <stop offset="0.5" stop-color="#314f91"/>
+      <stop offset="1" stop-color="#c66c7d"/>
+    </linearGradient>
+    <radialGradient id="lightA" cx="0.2" cy="0.08" r="0.72">
+      <stop offset="0" stop-color="#dce8ff" stop-opacity="0.95"/>
+      <stop offset="0.35" stop-color="#7ea8ff" stop-opacity="0.36"/>
+      <stop offset="1" stop-color="#7ea8ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lightB" cx="0.82" cy="0.12" r="0.66">
+      <stop offset="0" stop-color="#ffd7df" stop-opacity="0.9"/>
+      <stop offset="0.42" stop-color="#ef8ea5" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#ef8ea5" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="28"/></filter>
+  </defs>
+  <rect width="1200" height="900" fill="url(#sky)"/>
+  <rect width="1200" height="900" fill="url(#lightA)"/>
+  <rect width="1200" height="900" fill="url(#lightB)"/>
+  <g opacity="0.34" filter="url(#blur)">
+    <circle cx="160" cy="180" r="82" fill="#f7fbff"/>
+    <circle cx="965" cy="130" r="66" fill="#ffe8ec"/>
+    <circle cx="1030" cy="480" r="92" fill="#8eaaff"/>
+  </g>
+  <path d="M0 720 C190 660 365 700 520 670 C730 630 940 685 1200 618 L1200 900 L0 900Z" fill="#101628" opacity="0.55"/>
+  <g transform="translate(615 490)">
+    <ellipse cx="0" cy="48" rx="116" ry="148" fill="#111522"/>
+    <circle cx="0" cy="-90" r="74" fill="#171a28"/>
+    <path d="M-70 -114 C-45 -191 57 -194 82 -103 C57 -132 24 -144 -8 -139 C-28 -135 -50 -126 -70 -114Z" fill="#0b0e18"/>
+    <path d="M-81 37 C-178 103 -207 210 -208 347 L210 347 C207 204 180 102 81 37 C46 70 -45 70 -81 37Z" fill="#121723"/>
+    <path d="M-58 -73 C-22 -34 34 -33 61 -76" fill="none" stroke="#db9e9d" stroke-opacity="0.36" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g fill="#f8fbff" opacity="0.64">
+    <circle cx="90" cy="566" r="3"/><circle cx="154" cy="600" r="2"/><circle cx="244" cy="536" r="3"/>
+    <circle cx="902" cy="555" r="2"/><circle cx="986" cy="596" r="3"/><circle cx="1080" cy="532" r="2"/>
+  </g>
+</svg>

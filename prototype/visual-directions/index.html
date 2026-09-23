@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <title>2027 Calendar Designer — 界面原型</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&amp;family=Instrument+Serif&amp;family=Patrick+Hand&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <aside class="prototype-bar" aria-label="Prototype controls">
+      <div class="prototype-title">
+        <strong>Full UI prototype</strong>
+        <span>Direction A approved · review controls, not product UI</span>
+      </div>
+      <button class="prototype-toggle" type="button" data-toggle-prototype aria-expanded="true">Hide controls</button>
+      <div class="prototype-controls">
+        <div class="control-group" aria-label="Prototype screen">
+          <span class="control-label">Screen</span>
+          <button class="prototype-chip" type="button" data-scene-button="entry" aria-pressed="false">S01 Entry</button>
+          <button class="prototype-chip" type="button" data-scene-button="assign" aria-pressed="false">S02 Assign</button>
+          <button class="prototype-chip is-active" type="button" data-scene-button="editor" aria-pressed="true">S03 Editor</button>
+          <button class="prototype-chip" type="button" data-scene-button="review" aria-pressed="false">S04 Review</button>
+        </div>
+        <div class="control-group state-controls entry-state-controls" aria-label="Entry state" hidden>
+          <span class="control-label">State</span>
+          <button class="prototype-chip is-active" type="button" data-state-button="first" aria-pressed="true">First-time</button>
+          <button class="prototype-chip" type="button" data-state-button="returning" aria-pressed="false">Returning</button>
+        </div>
+        <div class="control-group state-controls assign-state-controls" aria-label="Assignment state" hidden>
+          <span class="control-label">State</span>
+          <button class="prototype-chip is-active" type="button" data-state-button="partial" aria-pressed="true">Partial + warnings</button>
+          <button class="prototype-chip" type="button" data-state-button="empty" aria-pressed="false">All missing</button>
+          <button class="prototype-chip" type="button" data-state-button="full" aria-pressed="false">Full</button>
+        </div>
+        <div class="control-group state-controls editor-state-controls" aria-label="Editor state">
+          <span class="control-label">State</span>
+          <button class="prototype-chip is-active" type="button" data-state-button="ready" aria-pressed="true">Ready</button>
+          <button class="prototype-chip" type="button" data-state-button="missing" aria-pressed="false">Missing</button>
+        </div>
+        <div class="control-group state-controls review-state-controls" aria-label="Review state" hidden>
+          <span class="control-label">State</span>
+          <button class="prototype-chip is-active" type="button" data-state-button="incomplete" aria-pressed="true">Incomplete</button>
+          <button class="prototype-chip" type="button" data-state-button="complete" aria-pressed="false">Complete</button>
+        </div>
+        <div class="control-group surface-controls" aria-label="Transient surface review">
+          <label class="control-label" for="surfacePicker">Surface</label>
+          <select id="surfacePicker" class="prototype-select">
+            <option value="context-ready">T01 · Ready month actions</option>
+            <option value="context-missing">T01 · Missing month actions</option>
+            <option value="context-unassigned">T01 · Unassigned photo actions</option>
+            <option value="destination">T01 · Destination chooser</option>
+            <option value="delete">T02 · Delete confirmation</option>
+            <option value="new">T03 · Start new confirmation</option>
+            <option value="save">T04 · Save problem banner</option>
+            <option value="conflict">T04 · Newer-tab conflict</option>
+            <option value="png-progress">T05 · PNG progress</option>
+            <option value="png-result">T05 · PNG result</option>
+            <option value="zip-progress">T05 · ZIP progress</option>
+            <option value="zip-success">T05 · ZIP success</option>
+            <option value="zip-failure">T05 · ZIP failure</option>
+          </select>
+          <button class="prototype-chip" id="openSurface" type="button">Open</button>
+        </div>
+      </div>
+    </aside>
+
+    <main id="prototype" class="prototype" data-scene="editor">
+      <section class="scene entry-scene" data-scene="entry" aria-labelledby="entryHeading" hidden>
+        <header class="entry-header">
+          <a class="brand" href="#" data-go-scene="entry" aria-label="2027 Calendar Designer 首页">
+            <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            <span>2027 Calendar Designer</span>
+          </a>
+        </header>
+        <div class="entry-layout first-entry">
+          <section class="entry-panel">
+            <p class="year-line">2027 calendar</p>
+            <h1 id="entryHeading">Make the year yours.</h1>
+            <p class="entry-lede">Turn your photos into a consistent month-by-month calendar set, without designing twelve pages from scratch.</p>
+            <div class="selection-brief"><div class="selection-count" aria-hidden="true"><strong>12</strong><span>months</span></div><div><h2>Choose up to 12 photos</h2><p>Fewer is fine. They begin in picker order, and you can rearrange them next.</p></div></div>
+            <button class="button button-primary entry-cta" type="button" data-go-scene="assign">Choose Photos</button>
+            <button class="button button-quiet" type="button" data-go-scene="assign">Add one month at a time instead</button>
+            <p class="local-note"><span aria-hidden="true">●</span> Saved only in this browser on this device. No cloud backup.</p>
+          </section>
+        </div>
+        <div class="entry-layout returning-entry" hidden>
+          <section class="entry-panel returning-panel">
+            <p class="year-line">Welcome back</p>
+            <h1>Your 2027 calendar is waiting.</h1>
+            <div class="resume-proof" aria-label="Saved project status"><div class="resume-year">2027</div><div class="resume-copy"><strong>9 of 12 months ready</strong><span>Missing April, August, November</span><span>Last saved today at 14:32</span></div><div class="progress-ring" aria-label="9 of 12 months ready"><span>9/12</span></div></div>
+            <button class="button button-primary entry-cta" type="button" data-go-scene="editor">Resume Calendar</button>
+            <button class="button button-danger-quiet" type="button" data-open-dialog="newProjectDialog">Start New Calendar</button>
+            <p class="local-note"><span aria-hidden="true">●</span> This calendar is stored only in this browser.</p>
+          </section>
+        </div>
+      </section>
+
+      <div class="project-shell" data-project-shell>
+        <header class="app-header">
+          <a class="brand compact-brand" href="#" data-go-scene="entry" aria-label="2027 Calendar Designer 首页"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span>2027 Calendar Designer</span></a>
+          <nav class="project-nav" aria-label="Project areas"><button type="button" data-nav-scene="assign">Assign Photos</button><button type="button" data-nav-scene="editor">Edit Months</button><button type="button" data-nav-scene="review">Review &amp; Export</button></nav>
+          <div class="save-status"><span class="save-dot" aria-hidden="true"></span>Saved on this device</div>
+          <button class="icon-button mobile-menu" type="button" data-open-dialog="projectMenuDialog" aria-label="Open project menu">⋯</button>
+        </header>
+        <section id="saveBanner" class="save-banner" aria-live="polite" hidden><div><strong>Recent changes may not be saved.</strong><span>Your last saved calendar is still protected. Keep this page open while resolving the problem.</span><span class="save-detail" hidden>Browser storage could not be reached. Retrying will not replace the last valid saved copy.</span></div><div class="banner-actions"><button class="button button-error-outline" type="button" data-retry-save>Retry</button><button class="button button-quiet" type="button" data-toggle-save-detail>Details</button></div></section>
+      </div>
+
+      <section class="scene assign-scene" data-scene="assign" aria-labelledby="assignHeading" hidden>
+        <div class="page-wrap assign-page">
+          <header class="page-heading split-heading"><div><p class="section-kicker">2027 calendar</p><h1 id="assignHeading">Assign Photos</h1><p>Check the month order. Changing a photo centers its crop; that month’s background color stays.</p></div><div class="heading-meta"><strong id="assignCount">9 of 12 months ready</strong><button id="assignAddPhotos" class="button button-secondary" type="button">Add Photos</button></div></header>
+          <div id="assignGrid" class="month-card-grid assign-grid" aria-label="January through December photo assignments"></div>
+          <section id="unassignedSection" class="unassigned-section" aria-labelledby="unassignedHeading"><header><div><h2 id="unassignedHeading">Unassigned Photos <span>2</span></h2><p>Selected for this calendar only</p></div></header><div id="unassignedGrid" class="unassigned-grid"></div></section>
+        </div>
+        <footer class="task-footer"><button class="button button-quiet" type="button" data-go-scene="review">Review &amp; Export</button><button id="assignContinueButton" class="button button-primary" type="button" data-go-scene="editor">Continue to Edit Months</button></footer>
+      </section>
+
+      <section class="scene editor-scene" data-scene="editor" aria-labelledby="editorTitle">
+        <div class="mobile-month-context"><button class="month-selector" type="button" data-open-dialog="monthDialog"><span>January 2027</span><span aria-hidden="true">⌄</span></button><button class="button button-quiet compact-action" type="button" data-go-scene="review">Review</button><span class="mobile-status status-ready"><span aria-hidden="true">✓</span> Ready</span><span class="mobile-status status-missing" hidden><span aria-hidden="true">＋</span> Missing Photo</span></div>
+        <nav class="month-strip" aria-label="Choose month"><button class="edge-month" type="button" aria-label="Previous month">‹ <span>Previous</span></button><div id="desktopMonthList" class="month-list"></div><button class="edge-month" type="button" aria-label="Next month"><span>Next</span> ›</button></nav>
+        <div class="page-wrap editor-page">
+          <header class="page-heading editor-heading"><div><p class="section-kicker">Month editor</p><h1 id="editorTitle">January 2027</h1><p class="editor-subtitle ready-copy"><span class="status-mark" aria-hidden="true">✓</span> Ready</p><p class="editor-subtitle missing-copy" hidden><span class="status-mark" aria-hidden="true">＋</span> Missing Photo</p></div></header>
+          <div class="editor-layout">
+            <section class="proof-workspace" aria-label="Calendar preview workspace">
+              <article class="calendar-proof" aria-label="2027 年 1 月日历预览">
+                <div class="photo-frame ready-photo"><img src="assets/sample-photo.svg" alt="Prototype concert portrait" /><span class="crop-instruction">Drag to reposition</span></div>
+                <div class="photo-frame missing-photo" hidden><div class="missing-photo-inner"><span class="missing-photo-icon" aria-hidden="true">＋</span><strong>Missing Photo</strong><button class="button button-primary button-small" type="button">Add Photo</button></div></div>
+                <div class="calendar-body" lang="en"><header class="calendar-title-row"><h2>January</h2><span>2027</span></header><div class="weekdays" aria-hidden="true"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div><div class="calendar-days" aria-label="January 2027, Sunday-first calendar"><span></span><span></span><span></span><span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+              </article>
+            </section>
+            <aside class="editor-controls" aria-label="Month controls">
+              <div class="desktop-control-body ready-controls">
+                <section class="control-section"><div class="section-heading"><h2>Photo</h2><span>Drag the preview to reposition</span></div><label class="range-field" for="zoomRange"><span>Zoom</span><output id="zoomValue">100%</output></label><input id="zoomRange" class="zoom-input" type="range" min="100" max="150" value="100" /><div class="button-row"><button class="button button-secondary" type="button" data-reset-zoom>Reset Crop</button><button class="button button-quiet" type="button">Replace Photo</button></div></section>
+                <section class="control-section"><div class="section-heading"><h2>Background</h2><span>Any solid color</span></div><div class="color-control"><label class="color-picker-label"><span>Color</span><input id="backgroundColor" class="color-picker" type="color" value="#d8c8c0" /></label><label class="hex-field"><span>HEX</span><input id="backgroundHex" type="text" value="#D8C8C0" maxlength="7" inputmode="text" /></label></div><div class="rgb-fields" aria-label="RGB background color"><label><span>R</span><input id="backgroundR" type="number" min="0" max="255" value="216" /></label><label><span>G</span><input id="backgroundG" type="number" min="0" max="255" value="200" /></label><label><span>B</span><input id="backgroundB" type="number" min="0" max="255" value="192" /></label></div><div class="quick-colors" role="group" aria-label="Quick color suggestions"><span>Quick colors</span><button class="color-swatch is-selected" type="button" data-color="#FFFFFF" style="--swatch:#FFFFFF" aria-label="白色"></button><button class="color-swatch" type="button" data-color="#CBD6DC" style="--swatch:#CBD6DC" aria-label="Cool mist"></button><button class="color-swatch" type="button" data-color="#D9D6B8" style="--swatch:#D9D6B8" aria-label="Soft olive"></button><button class="color-swatch" type="button" data-color="#232A3B" style="--swatch:#232A3B" aria-label="Night"></button></div><p class="control-help">Calendar text switches between black and white automatically for contrast.</p></section>
+              </div>
+              <div class="desktop-control-body missing-controls" hidden><section class="control-section missing-control-section"><span class="missing-control-icon" aria-hidden="true">＋</span><h2>January needs a photo</h2><p>Add one to make this month Ready and enable its PNG.</p><button class="button button-primary full-button" type="button">Add Photo</button></section><section class="control-section"><div class="section-heading"><h2>Background</h2><span>Still editable</span></div><div class="color-control"><label class="color-picker-label"><span>Color</span><input id="missingBackgroundColor" class="color-picker" type="color" value="#d8c8c0" /></label><label class="hex-field"><span>HEX</span><input id="missingBackgroundHex" type="text" value="#D8C8C0" maxlength="7" /></label></div><div class="rgb-fields" aria-label="RGB background color"><label><span>R</span><input id="missingBackgroundR" type="number" min="0" max="255" value="216" /></label><label><span>G</span><input id="missingBackgroundG" type="number" min="0" max="255" value="200" /></label><label><span>B</span><input id="missingBackgroundB" type="number" min="0" max="255" value="192" /></label></div><p class="control-help">Any solid color remains available before a photo is added.</p></section></div>
+              <section class="control-section type-entry" aria-labelledby="desktopTypeTitle">
+                <div class="section-heading"><h2 id="desktopTypeTitle">日历文字</h2></div>
+                <div class="type-control-group">
+                  <h3>字体风格</h3>
+                  <div class="font-presets" role="group" aria-label="日历字体风格">
+                    <button type="button" data-font-preset="editorial" class="is-active" aria-pressed="true"><span class="font-sample" lang="en">January</span><span>经典</span></button>
+                    <button type="button" data-font-preset="clean" aria-pressed="false"><span class="font-sample" lang="en">January</span><span>简约</span></button>
+                    <button type="button" data-font-preset="handwritten" aria-pressed="false"><span class="font-sample" lang="en">January</span><span>手写</span></button>
+                  </div>
+                </div>
+                <div class="type-control-group">
+                  <h3>文字大小</h3>
+                  <div class="segmented-control size-control" role="group" aria-label="日历文字大小">
+                    <button type="button" data-font-scale="small" aria-pressed="false">小</button>
+                    <button type="button" data-font-scale="standard" class="is-active" aria-pressed="true">标准</button>
+                    <button type="button" data-font-scale="large" aria-pressed="false">大</button>
+                  </div>
+                </div>
+                <div class="type-control-group">
+                  <h3>文字颜色</h3>
+                  <div class="segmented-control" role="group" aria-label="日历文字颜色模式"><button type="button" data-text-mode="auto" class="is-active" aria-pressed="true">自动</button><button type="button" data-text-mode="custom" aria-pressed="false">自定义</button></div>
+                  <p class="control-help auto-text-help">根据背景色自动切换深浅文字，保持清晰可读。</p>
+                  <div class="color-control custom-text-fields" hidden><label class="color-picker-label"><span>取色</span><input class="color-picker text-color-picker" type="color" value="#1e211f" /></label><label class="hex-field"><span>HEX</span><input class="text-color-hex" type="text" value="#1E211F" maxlength="7" /></label></div>
+                  <p class="contrast-warning text-contrast-warning" role="status" hidden>文字和背景色太接近，可能看不清。你仍可使用此颜色。</p>
+                </div>
+              </section>
+              <div class="desktop-control-body ready-export"><section class="control-section export-section"><div class="section-heading"><h2>Export</h2><span>1200 × 1800 px</span></div><button class="button button-secondary full-button" type="button" data-export="png-progress">Download January PNG</button></section></div>
+              <div class="desktop-control-body missing-export" hidden><section class="control-section"><div class="section-heading"><h2>Export</h2></div><button class="button full-button" type="button" disabled>Download PNG</button><p class="disabled-reason">Add a photo to download this month.</p></section></div>
+              <div class="mobile-action-grid ready-mobile-actions"><button class="action-tile" type="button" data-open-dialog="cropDialog"><span class="action-icon" aria-hidden="true">⌖</span><span>Photo &amp; Crop</span></button><button class="action-tile" type="button" data-open-dialog="backgroundDialog"><span class="action-icon swatch-icon" aria-hidden="true"></span><span>Background</span></button><button class="action-tile" type="button" data-open-dialog="typeDialog"><span class="action-icon" aria-hidden="true">Aa</span><span>日历文字</span></button><button class="action-tile" type="button"><span class="action-icon" aria-hidden="true">↺</span><span>Replace Photo</span></button><button class="action-tile" type="button" data-export="png-progress"><span class="action-icon" aria-hidden="true">↓</span><span>Download PNG</span></button></div>
+              <div class="mobile-action-grid missing-mobile-actions" hidden><button class="action-tile action-primary" type="button"><span class="action-icon" aria-hidden="true">＋</span><span>Add Photo</span></button><button class="action-tile" type="button" data-open-dialog="backgroundDialog"><span class="action-icon swatch-icon" aria-hidden="true"></span><span>Background</span></button><button class="action-tile" type="button" data-open-dialog="typeDialog"><span class="action-icon" aria-hidden="true">Aa</span><span>日历文字</span></button><button class="action-tile" type="button" data-go-scene="assign"><span class="action-icon" aria-hidden="true">▦</span><span>Assign Photos</span></button><button class="action-tile" type="button" disabled><span class="action-icon" aria-hidden="true">↓</span><span>PNG unavailable</span></button></div><p class="mobile-save-copy">Saved on this device</p>
+            </aside>
+          </div>
+        </div>
+        <nav class="mobile-sequential-nav" aria-label="Sequential month navigation"><button type="button">‹ <span>Previous</span></button><button type="button"><span>Next</span> ›</button></nav>
+      </section>
+
+      <section class="scene review-scene" data-scene="review" aria-labelledby="reviewHeading" hidden>
+        <div class="page-wrap review-page"><header class="page-heading split-heading review-heading"><div><p class="section-kicker">Calendar set</p><h1 id="reviewHeading">Review &amp; Export</h1><p id="reviewSummary">Your ready months can download now. Add photos to finish the complete set.</p></div><div class="heading-meta"><strong id="reviewCount">9 of 12 months ready</strong><button class="button button-secondary" type="button" data-go-scene="assign">Assign Photos</button></div></header><div id="missingLinks" class="missing-links"><span>Missing</span><button type="button" data-go-editor-state="missing">April</button><button type="button" data-go-editor-state="missing">August</button><button type="button" data-go-editor-state="missing">November</button></div><div id="reviewGrid" class="month-card-grid review-grid" aria-label="January through December calendar set"></div><section id="zipPanel" class="zip-panel" aria-labelledby="zipHeading"><div><p class="section-kicker">All 12 months</p><h2 id="zipHeading">Complete the set to download one ZIP</h2><p id="zipCopy">Add photos to April, August, and November. Ready-month PNG downloads remain available.</p></div><div class="zip-action"><button id="zipButton" class="button" type="button" disabled>ZIP unavailable</button><button id="addMissingButton" class="button button-primary" type="button" data-go-scene="assign">Add Missing Photos</button></div></section></div>
+      </section>
+    </main>
+
+    <section id="pngSurface" class="png-surface" aria-live="polite" hidden><button class="icon-button png-close" type="button" data-close-png aria-label="Close export status">×</button><div class="png-progress-state"><strong>Preparing January PNG…</strong><progress max="100" value="58">58%</progress><span>Your calendar stays open while the file is prepared.</span></div><div class="png-result-state" hidden><strong>January PNG is ready.</strong><span>Your browser has started the file handoff. Your calendar is unchanged.</span><button class="button button-secondary" type="button" data-close-png>Close</button></div></section>
+
+    <dialog id="monthDialog" class="prototype-dialog sheet-dialog" aria-labelledby="monthDialogTitle"><form method="dialog" class="dialog-content"><div class="dialog-header"><div><span class="dialog-kicker">2027</span><h2 id="monthDialogTitle">Choose a month</h2></div><button class="icon-button" value="cancel" aria-label="Close month switcher">×</button></div><div id="monthSwitcherGrid" class="month-grid"></div><button class="button button-secondary full-button dialog-done" value="cancel">Done</button></form></dialog>
+    <dialog id="cropDialog" class="prototype-dialog sheet-dialog compact-sheet" aria-labelledby="cropDialogTitle"><form method="dialog" class="dialog-content"><div class="dialog-header"><div><h2 id="cropDialogTitle">Photo &amp; Crop</h2><p>Drag the preview to reposition. Pinch or use Zoom.</p></div><button class="icon-button" value="cancel" aria-label="Close photo and crop controls">×</button></div><label class="range-field" for="mobileZoom"><span>Zoom</span><output id="mobileZoomValue">100%</output></label><input id="mobileZoom" class="zoom-input" type="range" min="100" max="150" value="100" /><button class="button button-secondary full-button" type="button" data-reset-zoom>Reset Crop</button><button class="button button-primary full-button dialog-done" value="cancel">Done</button></form></dialog>
+    <dialog id="backgroundDialog" class="prototype-dialog sheet-dialog compact-sheet" aria-labelledby="backgroundDialogTitle"><form method="dialog" class="dialog-content"><div class="dialog-header"><div><h2 id="backgroundDialogTitle">Background</h2><p>Choose any solid color for January.</p></div><button class="icon-button" value="cancel" aria-label="Close background controls">×</button></div><div class="sheet-color-control"><label class="large-picker-label"><span class="sheet-color-preview" aria-hidden="true"></span><span><strong>Current solid color</strong><small>Tap to choose any color</small></span><input id="sheetBackgroundColor" type="color" value="#d8c8c0" aria-label="Choose calendar background color" /></label><label class="hex-field"><span>HEX</span><input id="sheetBackgroundHex" type="text" value="#D8C8C0" maxlength="7" /></label></div><div class="rgb-fields sheet-rgb" aria-label="RGB background color"><label><span>R</span><input id="sheetBackgroundR" type="number" min="0" max="255" value="216" /></label><label><span>G</span><input id="sheetBackgroundG" type="number" min="0" max="255" value="200" /></label><label><span>B</span><input id="sheetBackgroundB" type="number" min="0" max="255" value="192" /></label></div><div class="quick-colors" role="group" aria-label="Quick color suggestions"><span>Quick colors</span><button class="color-swatch is-selected" type="button" data-color="#FFFFFF" style="--swatch:#FFFFFF" aria-label="白色"></button><button class="color-swatch" type="button" data-color="#CBD6DC" style="--swatch:#CBD6DC" aria-label="Cool mist"></button><button class="color-swatch" type="button" data-color="#D9D6B8" style="--swatch:#D9D6B8" aria-label="Soft olive"></button><button class="color-swatch" type="button" data-color="#232A3B" style="--swatch:#232A3B" aria-label="Night"></button></div><p class="control-help">Only the calendar output changes. The app workspace stays neutral, and calendar text switches automatically for contrast.</p><button class="button button-primary full-button dialog-done" value="cancel">Done</button></form></dialog>
+
+    <dialog id="typeDialog" class="prototype-dialog sheet-dialog compact-sheet" aria-labelledby="typeDialogTitle">
+      <div class="dialog-content">
+        <div class="dialog-header"><div><h2 id="typeDialogTitle">日历文字</h2><p>这些设置只影响导出的日历，不会改变网站界面。</p></div><button class="icon-button" type="button" data-close-dialog aria-label="关闭日历文字设置">×</button></div>
+        <section class="type-control-group">
+          <h3>字体风格</h3>
+          <div class="font-presets" role="group" aria-label="日历字体风格">
+            <button type="button" data-font-preset="editorial" class="is-active" aria-pressed="true"><span class="font-sample" lang="en">January</span><span>经典</span></button>
+            <button type="button" data-font-preset="clean" aria-pressed="false"><span class="font-sample" lang="en">January</span><span>简约</span></button>
+            <button type="button" data-font-preset="handwritten" aria-pressed="false"><span class="font-sample" lang="en">January</span><span>手写</span></button>
+          </div>
+        </section>
+        <section class="type-control-group">
+          <h3>文字大小</h3>
+          <div class="segmented-control size-control" role="group" aria-label="日历文字大小">
+            <button type="button" data-font-scale="small" aria-pressed="false">小</button>
+            <button type="button" data-font-scale="standard" class="is-active" aria-pressed="true">标准</button>
+            <button type="button" data-font-scale="large" aria-pressed="false">大</button>
+          </div>
+        </section>
+        <section class="type-control-group">
+          <h3>文字颜色</h3>
+          <div class="segmented-control" role="group" aria-label="日历文字颜色模式"><button type="button" data-text-mode="auto" class="is-active" aria-pressed="true">自动</button><button type="button" data-text-mode="custom" aria-pressed="false">自定义</button></div>
+          <p class="control-help auto-text-help">根据背景色自动切换深浅文字，保持清晰可读。</p>
+          <div class="color-control custom-text-fields" hidden><label class="color-picker-label"><span>取色</span><input class="color-picker text-color-picker" type="color" value="#1e211f" /></label><label class="hex-field"><span>HEX</span><input class="text-color-hex" type="text" value="#1E211F" maxlength="7" /></label></div>
+          <p class="contrast-warning text-contrast-warning" role="status" hidden>文字和背景色太接近，可能看不清。你仍可使用此颜色。</p>
+        </section>
+        <button class="button button-primary full-button dialog-done" type="button" data-close-dialog>完成</button>
+      </div>
+    </dialog>
+    <dialog id="contextDialog" class="prototype-dialog action-dialog" aria-labelledby="contextDialogTitle"><div class="dialog-content"><div class="dialog-header"><div><span id="contextKicker" class="dialog-kicker">January · Ready</span><h2 id="contextDialogTitle">Photo actions</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Close photo actions">×</button></div><div id="contextActions" class="action-list"></div><button class="button button-quiet full-button dialog-done" type="button" data-close-dialog>Cancel</button></div></dialog>
+    <dialog id="destinationDialog" class="prototype-dialog destination-dialog" aria-labelledby="destinationDialogTitle"><div class="dialog-content"><div class="dialog-header"><div><span class="dialog-kicker">Photo assignment</span><h2 id="destinationDialogTitle">Move photo</h2><p id="destinationHelp">Choose an empty month. The photo starts centered; month colors stay.</p></div><button class="icon-button" type="button" data-close-dialog aria-label="Close destination chooser">×</button></div><div id="destinationList" class="destination-list"></div><button class="button button-secondary full-button dialog-done" type="button" data-close-dialog>Cancel</button></div></dialog>
+    <dialog id="commitDialog" class="prototype-dialog" aria-labelledby="commitDialogTitle"><div class="dialog-content"><div class="dialog-header"><div><h2 id="commitDialogTitle">Replace April’s photo?</h2><p>April’s current photo moves to Unassigned Photos. The new photo starts centered, and April keeps its background color.</p></div><button class="icon-button" type="button" data-close-dialog aria-label="Close replacement confirmation">×</button></div><div class="dialog-actions"><button class="button button-secondary" type="button" data-close-dialog>Cancel</button><button class="button button-primary" type="button" data-close-dialog>Replace Photo</button></div></div></dialog>
+    <dialog id="deleteDialog" class="prototype-dialog" aria-labelledby="deleteDialogTitle"><div class="dialog-content"><div class="dialog-header"><div><h2 id="deleteDialogTitle">Remove this photo from the calendar?</h2><p>It will be removed from this calendar project. The original photo on your device will not be deleted.</p></div><button class="icon-button" type="button" data-close-dialog aria-label="Close delete confirmation">×</button></div><div class="dialog-actions"><button class="button button-secondary" type="button" data-close-dialog>Keep Photo</button><button class="button button-danger" type="button" data-close-dialog>Remove Photo</button></div></div></dialog>
+    <dialog id="newProjectDialog" class="prototype-dialog" aria-labelledby="newProjectTitle"><form method="dialog" class="dialog-content"><div class="dialog-header"><div><h2 id="newProjectTitle">Replace your current calendar?</h2><p>Calendar Design Studio stores one calendar in this browser. Starting new removes the current 2027 calendar. There is no cloud backup or project history.</p></div><button class="icon-button" value="cancel" aria-label="Close confirmation">×</button></div><div class="dialog-actions"><button class="button button-secondary" value="cancel">Keep Current Calendar</button><button class="button button-danger" value="confirm">Replace and Start New</button></div></form></dialog>
+    <dialog id="conflictDialog" class="prototype-dialog" aria-labelledby="conflictDialogTitle"><div class="dialog-content"><div class="dialog-header"><div><h2 id="conflictDialogTitle">A newer version is open in another tab</h2><p>This tab has stopped saving so it will not overwrite newer changes. Refresh to load the latest saved calendar.</p></div></div><button class="button button-primary full-button" type="button" data-close-dialog>Refresh Calendar</button></div></dialog>
+    <dialog id="zipDialog" class="prototype-dialog export-dialog" aria-labelledby="zipDialogTitle"><div class="dialog-content"><div class="dialog-header"><div><span class="dialog-kicker">2027 calendar</span><h2 id="zipDialogTitle">Preparing 12-Month ZIP</h2><p id="zipDialogIntro">Your project stays saved and editable after export.</p></div><button class="icon-button zip-optional-close" type="button" data-close-dialog aria-label="Close export status">×</button></div><div class="zip-progress-state"><div class="progress-copy"><strong>Month 4 of 12</strong><span>Preparing April</span></div><progress max="12" value="4">4 of 12 months</progress><p>Do not start another export yet.</p><button class="button button-secondary" type="button" data-close-dialog>Cancel</button></div><div class="zip-success-state" hidden><div class="result-mark success" aria-hidden="true">✓</div><h3>Your 2027 Calendar ZIP is ready</h3><p>Your browser has started the file handoff. All 12 PNGs are ordered from 01 through 12.</p><button class="button button-primary full-button" type="button" data-close-dialog>Return to Review</button></div><div class="zip-failure-state" hidden><div class="result-mark failure" aria-hidden="true">!</div><h3>The ZIP could not be prepared</h3><p>Your calendar is unchanged. Try again, or return to Review and download ready months individually.</p><div class="dialog-actions"><button class="button button-secondary" type="button" data-close-dialog>Return to Review</button><button class="button button-primary" type="button" data-export="zip-progress">Try Again</button></div></div></div></dialog>
+    <dialog id="projectMenuDialog" class="prototype-dialog sheet-dialog compact-sheet" aria-labelledby="projectMenuTitle"><div class="dialog-content"><div class="dialog-header"><div><span class="dialog-kicker">2027 calendar</span><h2 id="projectMenuTitle">Project</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Close project menu">×</button></div><nav class="action-list" aria-label="Project areas"><button type="button" data-go-scene="assign">Assign Photos</button><button type="button" data-go-scene="editor">Edit Months</button><button type="button" data-go-scene="review">Review &amp; Export</button><button class="danger-list-action" type="button" data-open-dialog="newProjectDialog">Start New Calendar</button></nav></div></dialog>
+    <script src="app.js"></script>
+    <script src="localize.js"></script>
+  </body>
+</html>

@@ -1,0 +1,827 @@
+{
+  "runAt": "2026-09-23T07:42:17.190Z",
+  "results": [
+    {
+      "browser": "Chrome",
+      "version": "153.0.8010.52",
+      "errors": [],
+      "photo": {
+        "preview": [
+          400,
+          600
+        ],
+        "crop": {
+          "source": [
+            1920,
+            1200
+          ],
+          "viewport": [
+            300,
+            261
+          ],
+          "outputPhotoRegion": {
+            "x": 0,
+            "y": 0,
+            "w": 1200,
+            "h": 1044
+          },
+          "zoom": 1,
+          "offsetOutputPx": [
+            0,
+            0
+          ],
+          "movableOutputPx": [
+            470.4,
+            0
+          ],
+          "covered": true
+        }
+      },
+      "afterZoom": {
+        "zoom": 1.5,
+        "log": {
+          "source": [
+            1920,
+            1200
+          ],
+          "viewport": [
+            300,
+            261
+          ],
+          "outputPhotoRegion": {
+            "x": 0,
+            "y": 0,
+            "w": 1200,
+            "h": 1044
+          },
+          "zoom": 1.5,
+          "offsetOutputPx": [
+            0,
+            0
+          ],
+          "movableOutputPx": [
+            1305.6,
+            522
+          ],
+          "covered": true
+        }
+      },
+      "cropDrag": {
+        "before": {
+          "dx": 0,
+          "dy": 0
+        },
+        "after": {
+          "dx": 138.1578947368421,
+          "dy": -98.68421052631578,
+          "covered": true
+        }
+      },
+      "previewDrag": {
+        "before": {
+          "dx": 138.1578947368421,
+          "dy": -98.68421052631578
+        },
+        "after": {
+          "dx": 254.1799941843559,
+          "dy": -181.55713870311138,
+          "covered": true
+        }
+      },
+      "pointerTrace": [
+        {
+          "id": "crop",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 0,
+          "dx": 0,
+          "dy": 0,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointerdown",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 0,
+          "dy": 0,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 23.02635594418174,
+          "dy": -16.44744873046875,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 46.05259142423931,
+          "dy": -32.89477699681332,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 69.07894736842105,
+          "dy": -49.34210526315789,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 92.10530331260279,
+          "dy": -65.78955399362664,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 115.13153879266035,
+          "dy": -82.23688225997121,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 138.1578947368421,
+          "dy": -98.68421052631578,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointerup",
+          "pointerId": 1,
+          "buttons": 0,
+          "dx": 138.1578947368421,
+          "dy": -98.68421052631578,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 0,
+          "dx": 138.1578947368421,
+          "dy": -98.68421052631578,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointerdown",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 138.1578947368421,
+          "dy": -98.68421052631578,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 157.49494503250855,
+          "dy": -112.49638208298877,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 176.83189416493258,
+          "dy": -126.30855363966177,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 196.16894446059902,
+          "dy": -140.12067461471358,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 215.50599475626547,
+          "dy": -153.93284617138656,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 234.8429438886895,
+          "dy": -167.74501772805957,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 254.1799941843559,
+          "dy": -181.55713870311138,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointerup",
+          "pointerId": 1,
+          "buttons": 0,
+          "dx": 254.1799941843559,
+          "dy": -181.55713870311138,
+          "zoom": 1.5
+        }
+      ],
+      "fonts": {
+        "sans": {
+          "selected": "sans",
+          "family": "\"Instrument Sans\",Arial,sans-serif",
+          "target": "Instrument Sans",
+          "loaded": true,
+          "fallback": false,
+          "error": null,
+          "faces": [
+            {
+              "family": "Instrument Sans",
+              "status": "loaded"
+            }
+          ],
+          "requestCount": 1,
+          "documentFontsStatus": "loaded",
+          "documentFontsCheck": true,
+          "cssFontFamily": "\"Instrument Sans\", Arial, sans-serif",
+          "canvasFont": "92px \"Instrument Sans\", Arial, sans-serif",
+          "canvasJanuaryWidth": 330.65,
+          "previewTextHash": 248735680,
+          "previewMonth": "January",
+          "textRegionHash": 399153536
+        },
+        "serif": {
+          "selected": "serif",
+          "family": "\"Instrument Serif\",Georgia,serif",
+          "target": "Instrument Serif",
+          "loaded": true,
+          "fallback": false,
+          "error": null,
+          "faces": [
+            {
+              "family": "Instrument Serif",
+              "status": "loaded"
+            }
+          ],
+          "requestCount": 1,
+          "documentFontsStatus": "loaded",
+          "documentFontsCheck": true,
+          "cssFontFamily": "\"Instrument Serif\", Georgia, serif",
+          "canvasFont": "92px \"Instrument Serif\", Georgia, serif",
+          "canvasJanuaryWidth": 245.82,
+          "previewTextHash": 166748195,
+          "previewMonth": "January",
+          "textRegionHash": 549316323
+        },
+        "hand": {
+          "selected": "hand",
+          "family": "\"Patrick Hand\",\"Comic Sans MS\",cursive",
+          "target": "Patrick Hand",
+          "loaded": true,
+          "fallback": false,
+          "error": null,
+          "faces": [
+            {
+              "family": "Patrick Hand",
+              "status": "loaded"
+            }
+          ],
+          "requestCount": 1,
+          "documentFontsStatus": "loaded",
+          "documentFontsCheck": true,
+          "cssFontFamily": "\"Patrick Hand\", \"Comic Sans MS\", cursive",
+          "canvasFont": "92px \"Patrick Hand\", \"Comic Sans MS\", cursive",
+          "canvasJanuaryWidth": 258.89,
+          "previewTextHash": 554235392,
+          "previewMonth": "January",
+          "textRegionHash": 1811541056
+        }
+      },
+      "png": {
+        "bytes": 2784607,
+        "width": 1200,
+        "height": 1800,
+        "pixels": {
+          "photoLeft": [
+            59,
+            119,
+            139,
+            255
+          ],
+          "photoMiddle": [
+            50,
+            143,
+            173,
+            255
+          ],
+          "calendarLeft": [
+            35,
+            42,
+            59,
+            255
+          ]
+        }
+      },
+      "autoPngHandoff": {
+        "name": "01-January-2027.png",
+        "log": {
+          "stage": "download click dispatched; device save unverified",
+          "kind": "png",
+          "source": "after async generation",
+          "name": "01-January-2027.png",
+          "bytes": 2784607,
+          "mime": "image/png",
+          "userActivationAtClick": false,
+          "time": "2026-09-23T07:41:58.249Z",
+          "visibility": "visible"
+        }
+      },
+      "directPngHandoff": {
+        "name": "01-January-2027.png",
+        "log": {
+          "stage": "direct visible link clicked; device save unverified",
+          "kind": "png",
+          "name": "01-January-2027.png",
+          "bytes": 2784607,
+          "userActivationAtClick": true,
+          "time": "2026-09-23T07:41:58.289Z"
+        }
+      },
+      "batch": {
+        "pngCount": 12,
+        "names": [
+          "01-January-2027.png",
+          "02-February-2027.png",
+          "03-March-2027.png",
+          "04-April-2027.png",
+          "05-May-2027.png",
+          "06-June-2027.png",
+          "07-July-2027.png",
+          "08-August-2027.png",
+          "09-September-2027.png",
+          "10-October-2027.png",
+          "11-November-2027.png",
+          "12-December-2027.png"
+        ],
+        "zipBytes": 33406046,
+        "firstPngSignature": [
+          137,
+          80,
+          78,
+          71,
+          13,
+          10,
+          26,
+          10
+        ],
+        "lastPngSignature": [
+          137,
+          80,
+          78,
+          71,
+          13,
+          10,
+          26,
+          10
+        ]
+      }
+    },
+    {
+      "browser": "Edge",
+      "version": "153.0.4234.48",
+      "errors": [],
+      "photo": {
+        "preview": [
+          400,
+          600
+        ],
+        "crop": {
+          "source": [
+            1920,
+            1200
+          ],
+          "viewport": [
+            300,
+            261
+          ],
+          "outputPhotoRegion": {
+            "x": 0,
+            "y": 0,
+            "w": 1200,
+            "h": 1044
+          },
+          "zoom": 1,
+          "offsetOutputPx": [
+            0,
+            0
+          ],
+          "movableOutputPx": [
+            470.4,
+            0
+          ],
+          "covered": true
+        }
+      },
+      "afterZoom": {
+        "zoom": 1.5,
+        "log": {
+          "source": [
+            1920,
+            1200
+          ],
+          "viewport": [
+            300,
+            261
+          ],
+          "outputPhotoRegion": {
+            "x": 0,
+            "y": 0,
+            "w": 1200,
+            "h": 1044
+          },
+          "zoom": 1.5,
+          "offsetOutputPx": [
+            0,
+            0
+          ],
+          "movableOutputPx": [
+            1305.6,
+            522
+          ],
+          "covered": true
+        }
+      },
+      "cropDrag": {
+        "before": {
+          "dx": 0,
+          "dy": 0
+        },
+        "after": {
+          "dx": 138.1578947368421,
+          "dy": -98.68421052631578,
+          "covered": true
+        }
+      },
+      "previewDrag": {
+        "before": {
+          "dx": 138.1578947368421,
+          "dy": -98.68421052631578
+        },
+        "after": {
+          "dx": 254.1799941843559,
+          "dy": -181.55713870311138,
+          "covered": true
+        }
+      },
+      "pointerTrace": [
+        {
+          "id": "crop",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 0,
+          "dx": 0,
+          "dy": 0,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointerdown",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 0,
+          "dy": 0,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 23.02635594418174,
+          "dy": -16.44744873046875,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 46.05259142423931,
+          "dy": -32.89477699681332,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 69.07894736842105,
+          "dy": -49.34210526315789,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 92.10530331260279,
+          "dy": -65.78955399362664,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 115.13153879266035,
+          "dy": -82.23688225997121,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 138.1578947368421,
+          "dy": -98.68421052631578,
+          "zoom": 1.5
+        },
+        {
+          "id": "crop",
+          "kind": "pointerup",
+          "pointerId": 1,
+          "buttons": 0,
+          "dx": 138.1578947368421,
+          "dy": -98.68421052631578,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 0,
+          "dx": 138.1578947368421,
+          "dy": -98.68421052631578,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointerdown",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 138.1578947368421,
+          "dy": -98.68421052631578,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 157.49494503250855,
+          "dy": -112.49638208298877,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 176.83189416493258,
+          "dy": -126.30855363966177,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 196.16894446059902,
+          "dy": -140.12067461471358,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 215.50599475626547,
+          "dy": -153.93284617138656,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 234.8429438886895,
+          "dy": -167.74501772805957,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointermove",
+          "pointerId": 1,
+          "buttons": 1,
+          "dx": 254.1799941843559,
+          "dy": -181.55713870311138,
+          "zoom": 1.5
+        },
+        {
+          "id": "preview",
+          "kind": "pointerup",
+          "pointerId": 1,
+          "buttons": 0,
+          "dx": 254.1799941843559,
+          "dy": -181.55713870311138,
+          "zoom": 1.5
+        }
+      ],
+      "fonts": {
+        "sans": {
+          "selected": "sans",
+          "family": "\"Instrument Sans\",Arial,sans-serif",
+          "target": "Instrument Sans",
+          "loaded": true,
+          "fallback": false,
+          "error": null,
+          "faces": [
+            {
+              "family": "Instrument Sans",
+              "status": "loaded"
+            }
+          ],
+          "requestCount": 1,
+          "documentFontsStatus": "loaded",
+          "documentFontsCheck": true,
+          "cssFontFamily": "\"Instrument Sans\", Arial, sans-serif",
+          "canvasFont": "92px \"Instrument Sans\", Arial, sans-serif",
+          "canvasJanuaryWidth": 330.65,
+          "previewTextHash": 248735680,
+          "previewMonth": "January",
+          "textRegionHash": 399153536
+        },
+        "serif": {
+          "selected": "serif",
+          "family": "\"Instrument Serif\",Georgia,serif",
+          "target": "Instrument Serif",
+          "loaded": true,
+          "fallback": false,
+          "error": null,
+          "faces": [
+            {
+              "family": "Instrument Serif",
+              "status": "loaded"
+            }
+          ],
+          "requestCount": 1,
+          "documentFontsStatus": "loaded",
+          "documentFontsCheck": true,
+          "cssFontFamily": "\"Instrument Serif\", Georgia, serif",
+          "canvasFont": "92px \"Instrument Serif\", Georgia, serif",
+          "canvasJanuaryWidth": 245.82,
+          "previewTextHash": 166748195,
+          "previewMonth": "January",
+          "textRegionHash": 549316323
+        },
+        "hand": {
+          "selected": "hand",
+          "family": "\"Patrick Hand\",\"Comic Sans MS\",cursive",
+          "target": "Patrick Hand",
+          "loaded": true,
+          "fallback": false,
+          "error": null,
+          "faces": [
+            {
+              "family": "Patrick Hand",
+              "status": "loaded"
+            }
+          ],
+          "requestCount": 1,
+          "documentFontsStatus": "loaded",
+          "documentFontsCheck": true,
+          "cssFontFamily": "\"Patrick Hand\", \"Comic Sans MS\", cursive",
+          "canvasFont": "92px \"Patrick Hand\", \"Comic Sans MS\", cursive",
+          "canvasJanuaryWidth": 258.89,
+          "previewTextHash": 554235392,
+          "previewMonth": "January",
+          "textRegionHash": 1811541056
+        }
+      },
+      "png": {
+        "bytes": 2784607,
+        "width": 1200,
+        "height": 1800,
+        "pixels": {
+          "photoLeft": [
+            59,
+            119,
+            139,
+            255
+          ],
+          "photoMiddle": [
+            50,
+            143,
+            173,
+            255
+          ],
+          "calendarLeft": [
+            35,
+            42,
+            59,
+            255
+          ]
+        }
+      },
+      "autoPngHandoff": {
+        "name": "01-January-2027.png",
+        "log": {
+          "stage": "download click dispatched; device save unverified",
+          "kind": "png",
+          "source": "after async generation",
+          "name": "01-January-2027.png",
+          "bytes": 2784607,
+          "mime": "image/png",
+          "userActivationAtClick": false,
+          "time": "2026-09-23T07:42:15.177Z",
+          "visibility": "visible"
+        }
+      },
+      "directPngHandoff": {
+        "name": "01-January-2027.png",
+        "log": {
+          "stage": "direct visible link clicked; device save unverified",
+          "kind": "png",
+          "name": "01-January-2027.png",
+          "bytes": 2784607,
+          "userActivationAtClick": true,
+          "time": "2026-09-23T07:42:15.250Z"
+        }
+      },
+      "batch": {
+        "pngCount": 12,
+        "names": [
+          "01-January-2027.png",
+          "02-February-2027.png",
+          "03-March-2027.png",
+          "04-April-2027.png",
+          "05-May-2027.png",
+          "06-June-2027.png",
+          "07-July-2027.png",
+          "08-August-2027.png",
+          "09-September-2027.png",
+          "10-October-2027.png",
+          "11-November-2027.png",
+          "12-December-2027.png"
+        ],
+        "zipBytes": 33406046,
+        "firstPngSignature": [
+          137,
+          80,
+          78,
+          71,
+          13,
+          10,
+          26,
+          10
+        ],
+        "lastPngSignature": [
+          137,
+          80,
+          78,
+          71,
+          13,
+          10,
+          26,
+          10
+        ]
+      }
+    }
+  ]
+}

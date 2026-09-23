@@ -1,0 +1,36 @@
+[
+  {
+    "browser": "Chrome",
+    "font": {
+      "family": "\"Instrument Serif\",Georgia,serif",
+      "loaded": false,
+      "fallback": true,
+      "error": "NetworkError: A network error occurred.",
+      "faces": [
+        {
+          "family": "Instrument Serif",
+          "status": "error"
+        }
+      ]
+    },
+    "bytes": 93591,
+    "error": null
+  },
+  {
+    "browser": "Edge",
+    "font": {
+      "family": "\"Instrument Serif\",Georgia,serif",
+      "loaded": false,
+      "fallback": true,
+      "error": "NetworkError: A network error occurred.",
+      "faces": [
+        {
+          "family": "Instrument Serif",
+          "status": "error"
+        }
+      ]
+    },
+    "bytes": 93591,
+    "error": null
+  }
+]

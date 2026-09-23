@@ -1,0 +1,1743 @@
+{
+  "runAt": "2026-09-23T02:53:29.819Z",
+  "results": [
+    {
+      "environment": {
+        "browser": "Chrome",
+        "version": "153.0.8010.52",
+        "platform": "win32",
+        "headless": true,
+        "realBrowser": true
+      },
+      "sourcePhotos": [
+        {
+          "name": "LenovoWallPaper.jpg",
+          "bytes": 3117906
+        },
+        {
+          "name": "img14.jpg",
+          "bytes": 1602752
+        },
+        {
+          "name": "img20.jpg",
+          "bytes": 826734
+        },
+        {
+          "name": "img21.jpg",
+          "bytes": 833851
+        },
+        {
+          "name": "img22.jpg",
+          "bytes": 760748
+        },
+        {
+          "name": "img23.jpg",
+          "bytes": 907112
+        },
+        {
+          "name": "img24.jpg",
+          "bytes": 1150704
+        },
+        {
+          "name": "img25.jpg",
+          "bytes": 1019877
+        },
+        {
+          "name": "img26.jpg",
+          "bytes": 985873
+        },
+        {
+          "name": "img27.jpg",
+          "bytes": 1060216
+        },
+        {
+          "name": "img28.jpg",
+          "bytes": 1111289
+        },
+        {
+          "name": "img29.jpg",
+          "bytes": 1221892
+        }
+      ],
+      "tests": {
+        "fileList": {
+          "count": 12,
+          "readableCount": 12,
+          "returnedOrder": [
+            "LenovoWallPaper.jpg",
+            "img14.jpg",
+            "img20.jpg",
+            "img21.jpg",
+            "img22.jpg",
+            "img23.jpg",
+            "img24.jpg",
+            "img25.jpg",
+            "img26.jpg",
+            "img27.jpg",
+            "img28.jpg",
+            "img29.jpg"
+          ],
+          "files": [
+            {
+              "name": "LenovoWallPaper.jpg",
+              "type": "image/jpeg",
+              "size": 3117906,
+              "lastModified": 1484541040000,
+              "bitmap": [
+                1920,
+                1200
+              ],
+              "bitmapMs": 42.7,
+              "img": [
+                1920,
+                1200
+              ],
+              "imgMs": 86.9
+            },
+            {
+              "name": "img14.jpg",
+              "type": "image/jpeg",
+              "size": 1602752,
+              "lastModified": 1711956154497,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 35.2,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 67.6
+            },
+            {
+              "name": "img20.jpg",
+              "type": "image/jpeg",
+              "size": 826734,
+              "lastModified": 1711956154513,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 31.8,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 58.6
+            },
+            {
+              "name": "img21.jpg",
+              "type": "image/jpeg",
+              "size": 833851,
+              "lastModified": 1711956160028,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 29.9,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 56.7
+            },
+            {
+              "name": "img22.jpg",
+              "type": "image/jpeg",
+              "size": 760748,
+              "lastModified": 1711956162434,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 31.5,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 59.6
+            },
+            {
+              "name": "img23.jpg",
+              "type": "image/jpeg",
+              "size": 907112,
+              "lastModified": 1711956163653,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 30.5,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 58
+            },
+            {
+              "name": "img24.jpg",
+              "type": "image/jpeg",
+              "size": 1150704,
+              "lastModified": 1711956154497,
+              "bitmap": [
+                3840,
+                2401
+              ],
+              "bitmapMs": 31.5,
+              "img": [
+                3840,
+                2401
+              ],
+              "imgMs": 58.7
+            },
+            {
+              "name": "img25.jpg",
+              "type": "image/jpeg",
+              "size": 1019877,
+              "lastModified": 1711956160028,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 30.3,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 57.6
+            },
+            {
+              "name": "img26.jpg",
+              "type": "image/jpeg",
+              "size": 985873,
+              "lastModified": 1711956162434,
+              "bitmap": [
+                3841,
+                2400
+              ],
+              "bitmapMs": 29.5,
+              "img": [
+                3841,
+                2400
+              ],
+              "imgMs": 56.5
+            },
+            {
+              "name": "img27.jpg",
+              "type": "image/jpeg",
+              "size": 1060216,
+              "lastModified": 1711956163653,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 32,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 59.8
+            },
+            {
+              "name": "img28.jpg",
+              "type": "image/jpeg",
+              "size": 1111289,
+              "lastModified": 1711956154497,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 33,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 62.9
+            },
+            {
+              "name": "img29.jpg",
+              "type": "image/jpeg",
+              "size": 1221892,
+              "lastModified": 1711956160028,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 32.3,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 61.6
+            }
+          ],
+          "notice": "File metadata contains no guaranteed original EXIF orientation field; decoded dimensions are browser-normalized."
+        },
+        "heic": {
+          "name": "libheif-example.heic",
+          "type": "image/heic",
+          "size": 718114,
+          "lastModified": 1790132011476,
+          "bitmapError": "InvalidStateError: The source image could not be decoded.",
+          "imgError": "EncodingError: The source image cannot be decoded."
+        },
+        "orientation": {
+          "name": "orientation6.jpg",
+          "type": "image/jpeg",
+          "size": 3117942,
+          "lastModified": 1790132011507,
+          "bitmap": [
+            1200,
+            1920
+          ],
+          "bitmapMs": 41.6,
+          "img": [
+            1200,
+            1920
+          ],
+          "imgMs": 97.6
+        },
+        "formats": {
+          "png": {
+            "name": "sample.png",
+            "type": "image/png",
+            "size": 5694587,
+            "lastModified": 1790132011760,
+            "bitmap": [
+              1920,
+              1200
+            ],
+            "bitmapMs": 34.4,
+            "img": [
+              1920,
+              1200
+            ],
+            "imgMs": 68.5
+          },
+          "webp": {
+            "name": "sample.webp",
+            "type": "image/webp",
+            "size": 701160,
+            "lastModified": 1790132012046,
+            "bitmap": [
+              1920,
+              1200
+            ],
+            "bitmapMs": 39.9,
+            "img": [
+              1920,
+              1200
+            ],
+            "imgMs": 82.3
+          },
+          "jpg": {
+            "name": "sample.jpg",
+            "type": "image/jpeg",
+            "size": 708131,
+            "lastModified": 1790132012151,
+            "bitmap": [
+              1920,
+              1200
+            ],
+            "bitmapMs": 9.8,
+            "img": [
+              1920,
+              1200
+            ],
+            "imgMs": 17.5
+          }
+        },
+        "cropMath": [
+          {
+            "source": [
+              400,
+              600
+            ],
+            "covered": true,
+            "geometry": {
+              "scale": 1.3125,
+              "w": 525,
+              "h": 787.5,
+              "x": 0,
+              "y": -337.5
+            }
+          },
+          {
+            "source": [
+              600,
+              400
+            ],
+            "covered": true,
+            "geometry": {
+              "scale": 1.96875,
+              "w": 1181.25,
+              "h": 787.5,
+              "x": 0,
+              "y": -337.5
+            }
+          },
+          {
+            "source": [
+              500,
+              500
+            ],
+            "covered": true,
+            "geometry": {
+              "scale": 1.575,
+              "w": 787.5,
+              "h": 787.5,
+              "x": 0,
+              "y": -337.5
+            }
+          },
+          {
+            "source": [
+              4000,
+              300
+            ],
+            "covered": true,
+            "geometry": {
+              "scale": 2.625,
+              "w": 10500,
+              "h": 787.5,
+              "x": -4101,
+              "y": -337.5
+            }
+          },
+          {
+            "source": [
+              300,
+              4000
+            ],
+            "covered": true,
+            "geometry": {
+              "scale": 1.75,
+              "w": 525,
+              "h": 7000,
+              "x": 0,
+              "y": -4274
+            }
+          }
+        ],
+        "pointerDrag": {
+          "dx": 55,
+          "dy": -35,
+          "covered": true
+        },
+        "calendar": {
+          "cells": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "rowCount": 42
+        },
+        "fonts": {
+          "sans": {
+            "family": "\"Instrument Sans\",Arial,sans-serif",
+            "loaded": true,
+            "fallback": false,
+            "error": null,
+            "faces": [
+              {
+                "family": "Instrument Sans",
+                "status": "loaded"
+              }
+            ]
+          },
+          "serif": {
+            "family": "\"Instrument Serif\",Georgia,serif",
+            "loaded": true,
+            "fallback": false,
+            "error": null,
+            "faces": [
+              {
+                "family": "Instrument Serif",
+                "status": "loaded"
+              }
+            ]
+          },
+          "hand": {
+            "family": "\"Patrick Hand\",\"Comic Sans MS\",cursive",
+            "loaded": true,
+            "fallback": false,
+            "error": null,
+            "faces": [
+              {
+                "family": "Patrick Hand",
+                "status": "loaded"
+              }
+            ]
+          }
+        },
+        "contrast": [
+          {
+            "bg": "#ffffff",
+            "ink": "#1e211f",
+            "ratio": 16.24717678932653
+          },
+          {
+            "bg": "#777777",
+            "ink": "#ffffff",
+            "ratio": 4.478089453577214
+          },
+          {
+            "bg": "#232a3b",
+            "ink": "#ffffff",
+            "ratio": 14.326607552399047
+          },
+          {
+            "bg": "#e00055",
+            "ink": "#ffffff",
+            "ratio": 4.883000823977827
+          },
+          {
+            "bg": "#00a0ff",
+            "ink": "#1e211f",
+            "ratio": 5.781149594657141
+          }
+        ],
+        "customContrast": {
+          "ink": "#232a3b",
+          "warning": "Text token #232a3b · contrast 1.00:1 · LOW CONTRAST (warning only)"
+        },
+        "canvasPng": {
+          "signature": "89504e470d0a1a0a",
+          "width": 1200,
+          "height": 1800,
+          "bytes": 2433798
+        },
+        "svgPng": {
+          "signature": "89504e470d0a1a0a",
+          "width": 1200,
+          "height": 1800,
+          "bytes": 2435272
+        },
+        "pngPixels": {
+          "canvas": {
+            "photo": [
+              79,
+              146,
+              152,
+              255
+            ],
+            "background": [
+              35,
+              42,
+              59,
+              255
+            ],
+            "heading": [
+              35,
+              42,
+              59,
+              255
+            ]
+          },
+          "svg": {
+            "photo": [
+              79,
+              146,
+              152,
+              255
+            ],
+            "background": [
+              35,
+              42,
+              59,
+              255
+            ],
+            "heading": [
+              35,
+              42,
+              59,
+              255
+            ]
+          }
+        },
+        "repeatedExport": [
+          {
+            "run": 1,
+            "bytes": 2433798,
+            "ms": 60.9,
+            "usedJSHeapSize": 2347572
+          },
+          {
+            "run": 2,
+            "bytes": 2433798,
+            "ms": 54,
+            "usedJSHeapSize": 2353996
+          },
+          {
+            "run": 3,
+            "bytes": 2433798,
+            "ms": 45.6,
+            "usedJSHeapSize": 2353996
+          }
+        ],
+        "previewExport": {
+          "sampledChannels": 36000,
+          "meanAbsoluteChannelDifference": 1.07
+        },
+        "zipCancel": {
+          "status": "failed",
+          "error": "Error: Cancelled before month 3",
+          "generated": 2,
+          "samples": [
+            {
+              "month": 1,
+              "ms": 55.6,
+              "bytes": 2433798,
+              "memory": 6854027
+            },
+            {
+              "month": 2,
+              "ms": 110.8,
+              "bytes": 2432176,
+              "memory": 9309168
+            }
+          ]
+        },
+        "zipInjectedFailure": {
+          "status": "failed",
+          "error": "Error: Injected month 4 failure",
+          "generated": 3,
+          "samples": [
+            {
+              "month": 1,
+              "ms": 55,
+              "bytes": 2433798,
+              "memory": 11867290
+            },
+            {
+              "month": 2,
+              "ms": 110.5,
+              "bytes": 2432176,
+              "memory": 7274174
+            },
+            {
+              "month": 3,
+              "ms": 163.9,
+              "bytes": 2432680,
+              "memory": 9717296
+            }
+          ]
+        },
+        "zip": {
+          "bytes": 29197207,
+          "localEntries": 12,
+          "log": {
+            "status": "complete",
+            "ms": 7707.8,
+            "zipBytes": 29197207,
+            "samples": [
+              {
+                "month": 1,
+                "ms": 6755.5,
+                "bytes": 2433798,
+                "memory": 12220981
+              },
+              {
+                "month": 2,
+                "ms": 6807.8,
+                "bytes": 2432176,
+                "memory": 7278323
+              },
+              {
+                "month": 3,
+                "ms": 6858.6,
+                "bytes": 2432680,
+                "memory": 9720215
+              },
+              {
+                "month": 4,
+                "ms": 6909.4,
+                "bytes": 2430126,
+                "memory": 12157038
+              },
+              {
+                "month": 5,
+                "ms": 6958.8,
+                "bytes": 2432201,
+                "memory": 12157038
+              },
+              {
+                "month": 6,
+                "ms": 7007.9,
+                "bytes": 2428469,
+                "memory": 17029919
+              },
+              {
+                "month": 7,
+                "ms": 7057.6,
+                "bytes": 2429249,
+                "memory": 17029919
+              },
+              {
+                "month": 8,
+                "ms": 7108.8,
+                "bytes": 2434445,
+                "memory": 21866963
+              },
+              {
+                "month": 9,
+                "ms": 7162.1,
+                "bytes": 2437029,
+                "memory": 24313541
+              },
+              {
+                "month": 10,
+                "ms": 7211.5,
+                "bytes": 2435027,
+                "memory": 24313541
+              },
+              {
+                "month": 11,
+                "ms": 7262.8,
+                "bytes": 2435416,
+                "memory": 29175087
+              },
+              {
+                "month": 12,
+                "ms": 7312.9,
+                "bytes": 2435221,
+                "memory": 31620168
+              }
+            ],
+            "storage": {
+              "quota": 6442450944,
+              "usage": 0,
+              "usageDetails": {}
+            }
+          }
+        },
+        "storage": {
+          "revision": 1,
+          "files": 12,
+          "bytes": 14598954,
+          "quota": {
+            "quota": 6457147392,
+            "usage": 14696448,
+            "usageDetails": {
+              "indexedDB": 14696448
+            }
+          }
+        },
+        "storageReload": {
+          "revision": 1,
+          "files": [
+            {
+              "name": "LenovoWallPaper.jpg",
+              "size": 3117906,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img14.jpg",
+              "size": 1602752,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img20.jpg",
+              "size": 826734,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img21.jpg",
+              "size": 833851,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img22.jpg",
+              "size": 760748,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img23.jpg",
+              "size": 907112,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img24.jpg",
+              "size": 1150704,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img25.jpg",
+              "size": 1019877,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img26.jpg",
+              "size": 985873,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img27.jpg",
+              "size": 1060216,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img28.jpg",
+              "size": 1111289,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img29.jpg",
+              "size": 1221892,
+              "type": "image/jpeg"
+            }
+          ],
+          "assignments": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "crop": {
+            "zoom": 1,
+            "dx": 55,
+            "dy": -35
+          },
+          "colors": {
+            "bg": "#232a3b",
+            "mode": "auto",
+            "custom": "#232a3b"
+          },
+          "typography": "serif",
+          "quota": {
+            "quota": 6457147392,
+            "usage": 14696448,
+            "usageDetails": {
+              "indexedDB": 14696448
+            }
+          }
+        },
+        "multiTab": {
+          "error": "Error: stale revision 1; saved 2",
+          "conflict": true
+        },
+        "resources": [
+          {
+            "name": "instrumentsans-InstrumentSans%5Bwdth,wght%5D.ttf",
+            "transferSize": 194636,
+            "decodedBodySize": 194336
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "environment": {
+        "browser": "Edge",
+        "version": "153.0.4234.48",
+        "platform": "win32",
+        "headless": true,
+        "realBrowser": true
+      },
+      "sourcePhotos": [
+        {
+          "name": "LenovoWallPaper.jpg",
+          "bytes": 3117906
+        },
+        {
+          "name": "img14.jpg",
+          "bytes": 1602752
+        },
+        {
+          "name": "img20.jpg",
+          "bytes": 826734
+        },
+        {
+          "name": "img21.jpg",
+          "bytes": 833851
+        },
+        {
+          "name": "img22.jpg",
+          "bytes": 760748
+        },
+        {
+          "name": "img23.jpg",
+          "bytes": 907112
+        },
+        {
+          "name": "img24.jpg",
+          "bytes": 1150704
+        },
+        {
+          "name": "img25.jpg",
+          "bytes": 1019877
+        },
+        {
+          "name": "img26.jpg",
+          "bytes": 985873
+        },
+        {
+          "name": "img27.jpg",
+          "bytes": 1060216
+        },
+        {
+          "name": "img28.jpg",
+          "bytes": 1111289
+        },
+        {
+          "name": "img29.jpg",
+          "bytes": 1221892
+        }
+      ],
+      "tests": {
+        "fileList": {
+          "count": 12,
+          "readableCount": 12,
+          "returnedOrder": [
+            "LenovoWallPaper.jpg",
+            "img14.jpg",
+            "img20.jpg",
+            "img21.jpg",
+            "img22.jpg",
+            "img23.jpg",
+            "img24.jpg",
+            "img25.jpg",
+            "img26.jpg",
+            "img27.jpg",
+            "img28.jpg",
+            "img29.jpg"
+          ],
+          "files": [
+            {
+              "name": "LenovoWallPaper.jpg",
+              "type": "image/jpeg",
+              "size": 3117906,
+              "lastModified": 1484541040000,
+              "bitmap": [
+                1920,
+                1200
+              ],
+              "bitmapMs": 35.9,
+              "img": [
+                1920,
+                1200
+              ],
+              "imgMs": 68.5
+            },
+            {
+              "name": "img14.jpg",
+              "type": "image/jpeg",
+              "size": 1602752,
+              "lastModified": 1711956154497,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 34,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 66.1
+            },
+            {
+              "name": "img20.jpg",
+              "type": "image/jpeg",
+              "size": 826734,
+              "lastModified": 1711956154513,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 30.9,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 58.5
+            },
+            {
+              "name": "img21.jpg",
+              "type": "image/jpeg",
+              "size": 833851,
+              "lastModified": 1711956160028,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 31.2,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 59.3
+            },
+            {
+              "name": "img22.jpg",
+              "type": "image/jpeg",
+              "size": 760748,
+              "lastModified": 1711956162434,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 29.1,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 56.5
+            },
+            {
+              "name": "img23.jpg",
+              "type": "image/jpeg",
+              "size": 907112,
+              "lastModified": 1711956163653,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 30.8,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 59.9
+            },
+            {
+              "name": "img24.jpg",
+              "type": "image/jpeg",
+              "size": 1150704,
+              "lastModified": 1711956154497,
+              "bitmap": [
+                3840,
+                2401
+              ],
+              "bitmapMs": 30.7,
+              "img": [
+                3840,
+                2401
+              ],
+              "imgMs": 59.7
+            },
+            {
+              "name": "img25.jpg",
+              "type": "image/jpeg",
+              "size": 1019877,
+              "lastModified": 1711956160028,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 31.8,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 59.9
+            },
+            {
+              "name": "img26.jpg",
+              "type": "image/jpeg",
+              "size": 985873,
+              "lastModified": 1711956162434,
+              "bitmap": [
+                3841,
+                2400
+              ],
+              "bitmapMs": 31.9,
+              "img": [
+                3841,
+                2400
+              ],
+              "imgMs": 59.3
+            },
+            {
+              "name": "img27.jpg",
+              "type": "image/jpeg",
+              "size": 1060216,
+              "lastModified": 1711956163653,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 31.5,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 60.2
+            },
+            {
+              "name": "img28.jpg",
+              "type": "image/jpeg",
+              "size": 1111289,
+              "lastModified": 1711956154497,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 32.3,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 64.3
+            },
+            {
+              "name": "img29.jpg",
+              "type": "image/jpeg",
+              "size": 1221892,
+              "lastModified": 1711956160028,
+              "bitmap": [
+                3840,
+                2400
+              ],
+              "bitmapMs": 32.2,
+              "img": [
+                3840,
+                2400
+              ],
+              "imgMs": 63.7
+            }
+          ],
+          "notice": "File metadata contains no guaranteed original EXIF orientation field; decoded dimensions are browser-normalized."
+        },
+        "heic": {
+          "name": "libheif-example.heic",
+          "type": "image/heic",
+          "size": 718114,
+          "lastModified": 1790132033390,
+          "bitmapError": "InvalidStateError: The source image could not be decoded.",
+          "imgError": "EncodingError: The source image cannot be decoded."
+        },
+        "orientation": {
+          "name": "orientation6.jpg",
+          "type": "image/jpeg",
+          "size": 3117942,
+          "lastModified": 1790132033420,
+          "bitmap": [
+            1200,
+            1920
+          ],
+          "bitmapMs": 29.5,
+          "img": [
+            1200,
+            1920
+          ],
+          "imgMs": 72.8
+        },
+        "formats": {
+          "png": {
+            "name": "sample.png",
+            "type": "image/png",
+            "size": 5694587,
+            "lastModified": 1790132033643,
+            "bitmap": [
+              1920,
+              1200
+            ],
+            "bitmapMs": 35,
+            "img": [
+              1920,
+              1200
+            ],
+            "imgMs": 69.3
+          },
+          "webp": {
+            "name": "sample.webp",
+            "type": "image/webp",
+            "size": 701160,
+            "lastModified": 1790132033927,
+            "bitmap": [
+              1920,
+              1200
+            ],
+            "bitmapMs": 40.1,
+            "img": [
+              1920,
+              1200
+            ],
+            "imgMs": 82.9
+          },
+          "jpg": {
+            "name": "sample.jpg",
+            "type": "image/jpeg",
+            "size": 708131,
+            "lastModified": 1790132034032,
+            "bitmap": [
+              1920,
+              1200
+            ],
+            "bitmapMs": 10.3,
+            "img": [
+              1920,
+              1200
+            ],
+            "imgMs": 18.8
+          }
+        },
+        "cropMath": [
+          {
+            "source": [
+              400,
+              600
+            ],
+            "covered": true,
+            "geometry": {
+              "scale": 1.3125,
+              "w": 525,
+              "h": 787.5,
+              "x": 0,
+              "y": -337.5
+            }
+          },
+          {
+            "source": [
+              600,
+              400
+            ],
+            "covered": true,
+            "geometry": {
+              "scale": 1.96875,
+              "w": 1181.25,
+              "h": 787.5,
+              "x": 0,
+              "y": -337.5
+            }
+          },
+          {
+            "source": [
+              500,
+              500
+            ],
+            "covered": true,
+            "geometry": {
+              "scale": 1.575,
+              "w": 787.5,
+              "h": 787.5,
+              "x": 0,
+              "y": -337.5
+            }
+          },
+          {
+            "source": [
+              4000,
+              300
+            ],
+            "covered": true,
+            "geometry": {
+              "scale": 2.625,
+              "w": 10500,
+              "h": 787.5,
+              "x": -4101,
+              "y": -337.5
+            }
+          },
+          {
+            "source": [
+              300,
+              4000
+            ],
+            "covered": true,
+            "geometry": {
+              "scale": 1.75,
+              "w": 525,
+              "h": 7000,
+              "x": 0,
+              "y": -4274
+            }
+          }
+        ],
+        "pointerDrag": {
+          "dx": 55,
+          "dy": -35,
+          "covered": true
+        },
+        "calendar": {
+          "cells": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "rowCount": 42
+        },
+        "fonts": {
+          "sans": {
+            "family": "\"Instrument Sans\",Arial,sans-serif",
+            "loaded": true,
+            "fallback": false,
+            "error": null,
+            "faces": [
+              {
+                "family": "Instrument Sans",
+                "status": "loaded"
+              }
+            ]
+          },
+          "serif": {
+            "family": "\"Instrument Serif\",Georgia,serif",
+            "loaded": true,
+            "fallback": false,
+            "error": null,
+            "faces": [
+              {
+                "family": "Instrument Serif",
+                "status": "loaded"
+              }
+            ]
+          },
+          "hand": {
+            "family": "\"Patrick Hand\",\"Comic Sans MS\",cursive",
+            "loaded": true,
+            "fallback": false,
+            "error": null,
+            "faces": [
+              {
+                "family": "Patrick Hand",
+                "status": "loaded"
+              }
+            ]
+          }
+        },
+        "contrast": [
+          {
+            "bg": "#ffffff",
+            "ink": "#1e211f",
+            "ratio": 16.24717678932653
+          },
+          {
+            "bg": "#777777",
+            "ink": "#ffffff",
+            "ratio": 4.478089453577214
+          },
+          {
+            "bg": "#232a3b",
+            "ink": "#ffffff",
+            "ratio": 14.326607552399047
+          },
+          {
+            "bg": "#e00055",
+            "ink": "#ffffff",
+            "ratio": 4.883000823977827
+          },
+          {
+            "bg": "#00a0ff",
+            "ink": "#1e211f",
+            "ratio": 5.781149594657141
+          }
+        ],
+        "customContrast": {
+          "ink": "#232a3b",
+          "warning": "Text token #232a3b · contrast 1.00:1 · LOW CONTRAST (warning only)"
+        },
+        "canvasPng": {
+          "signature": "89504e470d0a1a0a",
+          "width": 1200,
+          "height": 1800,
+          "bytes": 2433798
+        },
+        "svgPng": {
+          "signature": "89504e470d0a1a0a",
+          "width": 1200,
+          "height": 1800,
+          "bytes": 2435272
+        },
+        "pngPixels": {
+          "canvas": {
+            "photo": [
+              79,
+              146,
+              152,
+              255
+            ],
+            "background": [
+              35,
+              42,
+              59,
+              255
+            ],
+            "heading": [
+              35,
+              42,
+              59,
+              255
+            ]
+          },
+          "svg": {
+            "photo": [
+              79,
+              146,
+              152,
+              255
+            ],
+            "background": [
+              35,
+              42,
+              59,
+              255
+            ],
+            "heading": [
+              35,
+              42,
+              59,
+              255
+            ]
+          }
+        },
+        "repeatedExport": [
+          {
+            "run": 1,
+            "bytes": 2433798,
+            "ms": 50.9,
+            "usedJSHeapSize": 2348512
+          },
+          {
+            "run": 2,
+            "bytes": 2433798,
+            "ms": 47.7,
+            "usedJSHeapSize": 2348512
+          },
+          {
+            "run": 3,
+            "bytes": 2433798,
+            "ms": 46.6,
+            "usedJSHeapSize": 2359944
+          }
+        ],
+        "previewExport": {
+          "sampledChannels": 36000,
+          "meanAbsoluteChannelDifference": 1.07
+        },
+        "zipCancel": {
+          "status": "failed",
+          "error": "Error: Cancelled before month 2",
+          "generated": 1,
+          "samples": [
+            {
+              "month": 1,
+              "ms": 57.9,
+              "bytes": 2433798,
+              "memory": 6863183
+            }
+          ]
+        },
+        "zipInjectedFailure": {
+          "status": "failed",
+          "error": "Error: Injected month 4 failure",
+          "generated": 3,
+          "samples": [
+            {
+              "month": 1,
+              "ms": 58.1,
+              "bytes": 2433798,
+              "memory": 9421636
+            },
+            {
+              "month": 2,
+              "ms": 112.7,
+              "bytes": 2432176,
+              "memory": 11869352
+            },
+            {
+              "month": 3,
+              "ms": 170.4,
+              "bytes": 2432680,
+              "memory": 9711734
+            }
+          ]
+        },
+        "zip": {
+          "bytes": 29197207,
+          "localEntries": 12,
+          "log": {
+            "status": "complete",
+            "ms": 7712.9,
+            "zipBytes": 29197207,
+            "samples": [
+              {
+                "month": 1,
+                "ms": 6757.8,
+                "bytes": 2433798,
+                "memory": 12218081
+              },
+              {
+                "month": 2,
+                "ms": 6808.7,
+                "bytes": 2432176,
+                "memory": 14656817
+              },
+              {
+                "month": 3,
+                "ms": 6860.3,
+                "bytes": 2432680,
+                "memory": 17095317
+              },
+              {
+                "month": 4,
+                "ms": 6916.4,
+                "bytes": 2430126,
+                "memory": 19531356
+              },
+              {
+                "month": 5,
+                "ms": 6968.9,
+                "bytes": 2432201,
+                "memory": 14576990
+              },
+              {
+                "month": 6,
+                "ms": 7019.1,
+                "bytes": 2428469,
+                "memory": 17015027
+              },
+              {
+                "month": 7,
+                "ms": 7067.7,
+                "bytes": 2429249,
+                "memory": 17015027
+              },
+              {
+                "month": 8,
+                "ms": 7117.9,
+                "bytes": 2434445,
+                "memory": 21892035
+              },
+              {
+                "month": 9,
+                "ms": 7166.5,
+                "bytes": 2437029,
+                "memory": 21892035
+              },
+              {
+                "month": 10,
+                "ms": 7217,
+                "bytes": 2435027,
+                "memory": 26777003
+              },
+              {
+                "month": 11,
+                "ms": 7267.8,
+                "bytes": 2435416,
+                "memory": 29178103
+              },
+              {
+                "month": 12,
+                "ms": 7317.5,
+                "bytes": 2435221,
+                "memory": 29178103
+              }
+            ],
+            "storage": {
+              "quota": 6442450944,
+              "usage": 0,
+              "usageDetails": {}
+            }
+          }
+        },
+        "storage": {
+          "revision": 1,
+          "files": 12,
+          "bytes": 14598954,
+          "quota": {
+            "quota": 6457147392,
+            "usage": 14696448,
+            "usageDetails": {
+              "indexedDB": 14696448
+            }
+          }
+        },
+        "storageReload": {
+          "revision": 1,
+          "files": [
+            {
+              "name": "LenovoWallPaper.jpg",
+              "size": 3117906,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img14.jpg",
+              "size": 1602752,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img20.jpg",
+              "size": 826734,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img21.jpg",
+              "size": 833851,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img22.jpg",
+              "size": 760748,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img23.jpg",
+              "size": 907112,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img24.jpg",
+              "size": 1150704,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img25.jpg",
+              "size": 1019877,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img26.jpg",
+              "size": 985873,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img27.jpg",
+              "size": 1060216,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img28.jpg",
+              "size": 1111289,
+              "type": "image/jpeg"
+            },
+            {
+              "name": "img29.jpg",
+              "size": 1221892,
+              "type": "image/jpeg"
+            }
+          ],
+          "assignments": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "crop": {
+            "zoom": 1,
+            "dx": 55,
+            "dy": -35
+          },
+          "colors": {
+            "bg": "#232a3b",
+            "mode": "auto",
+            "custom": "#232a3b"
+          },
+          "typography": "serif",
+          "quota": {
+            "quota": 6457147392,
+            "usage": 14696448,
+            "usageDetails": {
+              "indexedDB": 14696448
+            }
+          }
+        },
+        "multiTab": {
+          "error": "Error: stale revision 1; saved 2",
+          "conflict": true
+        },
+        "resources": [
+          {
+            "name": "instrumentsans-InstrumentSans%5Bwdth,wght%5D.ttf",
+            "transferSize": 194636,
+            "decodedBodySize": 194336
+          }
+        ]
+      },
+      "errors": []
+    }
+  ]
+}

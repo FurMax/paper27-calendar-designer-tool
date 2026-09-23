@@ -1,0 +1,170 @@
+[
+  {
+    "browser": "Chrome",
+    "valid": {
+      "revision": 1,
+      "files": 1,
+      "bytes": 3117906,
+      "quota": {
+        "quota": 6445641728,
+        "usage": 3190784,
+        "usageDetails": {
+          "indexedDB": 3190784
+        }
+      }
+    },
+    "quotaBefore": {
+      "usage": 3190784,
+      "quota": 1965788935,
+      "overrideActive": false,
+      "usageBreakdown": [
+        {
+          "storageType": "file_systems",
+          "usage": 0
+        },
+        {
+          "storageType": "indexeddb",
+          "usage": 3190784
+        },
+        {
+          "storageType": "cache_storage",
+          "usage": 0
+        },
+        {
+          "storageType": "service_workers",
+          "usage": 0
+        }
+      ]
+    },
+    "quotaOverridden": {
+      "usage": 3190784,
+      "quota": 3290784,
+      "overrideActive": true,
+      "usageBreakdown": [
+        {
+          "storageType": "file_systems",
+          "usage": 0
+        },
+        {
+          "storageType": "indexeddb",
+          "usage": 3190784
+        },
+        {
+          "storageType": "cache_storage",
+          "usage": 0
+        },
+        {
+          "storageType": "service_workers",
+          "usage": 0
+        }
+      ]
+    },
+    "attemptedFiles": 9,
+    "failed": {
+      "unexpected": {
+        "revision": 2,
+        "files": 9,
+        "bytes": 9147867,
+        "quota": {
+          "quota": 6451691520,
+          "usage": 9240576,
+          "usageDetails": {
+            "indexedDB": 9240576
+          }
+        }
+      }
+    },
+    "recoveredRevision": 2,
+    "recoveredFiles": 9,
+    "rollback": {
+      "error": "DataCloneError: Failed to execute 'put' on 'IDBObjectStore': ()=>{} could not be cloned.",
+      "revisionBefore": 2,
+      "revisionAfter": 2,
+      "filesAfter": 9
+    }
+  },
+  {
+    "browser": "Edge",
+    "valid": {
+      "revision": 1,
+      "files": 1,
+      "bytes": 3117906,
+      "quota": {
+        "quota": 6445641728,
+        "usage": 3190784,
+        "usageDetails": {
+          "indexedDB": 3190784
+        }
+      }
+    },
+    "quotaBefore": {
+      "usage": 3190784,
+      "quota": 1974911944,
+      "overrideActive": false,
+      "usageBreakdown": [
+        {
+          "storageType": "file_systems",
+          "usage": 0
+        },
+        {
+          "storageType": "indexeddb",
+          "usage": 3190784
+        },
+        {
+          "storageType": "cache_storage",
+          "usage": 0
+        },
+        {
+          "storageType": "service_workers",
+          "usage": 0
+        }
+      ]
+    },
+    "quotaOverridden": {
+      "usage": 3190784,
+      "quota": 3290784,
+      "overrideActive": true,
+      "usageBreakdown": [
+        {
+          "storageType": "file_systems",
+          "usage": 0
+        },
+        {
+          "storageType": "indexeddb",
+          "usage": 3190784
+        },
+        {
+          "storageType": "cache_storage",
+          "usage": 0
+        },
+        {
+          "storageType": "service_workers",
+          "usage": 0
+        }
+      ]
+    },
+    "attemptedFiles": 9,
+    "failed": {
+      "unexpected": {
+        "revision": 2,
+        "files": 9,
+        "bytes": 9147867,
+        "quota": {
+          "quota": 6451691520,
+          "usage": 9240576,
+          "usageDetails": {
+            "indexedDB": 9240576
+          }
+        }
+      }
+    },
+    "recoveredRevision": 2,
+    "recoveredFiles": 9,
+    "rollback": {
+      "error": "DataCloneError: Failed to execute 'put' on 'IDBObjectStore': ()=>{} could not be cloned.",
+      "revisionBefore": 2,
+      "revisionAfter": 2,
+      "filesAfter": 9
+    }
+  }
+]
