@@ -27,3 +27,5 @@
 .feedback--error{background:#fff1ed;color:#9d302b;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.feedback--error .button{min-height:34px;font-size:12px}.recovery-page{min-height:60dvh;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}.recovery-page p{color:#66706b}.confirm-actions{display:flex;gap:8px}.confirm-actions .button{flex:1}.sheet-confirm[role=alertdialog] .button{width:100%}
 
 .feedback--error .button{position:static;padding:6px 10px;color:#9d302b;font-size:12px}
+
+.single-export-status{margin-top:12px;padding:10px;border:1px solid #d5dbd7;border-radius:8px;background:#fff}.single-export-status p{margin:0 0 8px}.single-export-status .button{margin-top:5px}.single-export-status .button--primary{background:#3457d5;color:#fff;border-color:#3457d5}@media(max-width:600px){.single-export-status{position:fixed;z-index:6;left:16px;right:16px;bottom:calc(60px + env(safe-area-inset-bottom));box-shadow:0 10px 35px #18201d22;padding:14px}.single-export-status .button{width:100%}}
