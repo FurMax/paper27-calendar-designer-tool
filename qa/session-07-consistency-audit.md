@@ -25,3 +25,5 @@
 - Trusted HTTPS twelve-file `navigator.share` delivery and destination; the separate Product Owner **OPEN QUESTION** about one-action direct iPhone Photos saving under the browser-only constraint.
 
 These are deferred validation and product decisions, not implied passes from Chrome emulation, a Share capability check, a ZIP prompt or the M3/M4 scoped iPhone smoke confirmations.
+
+**Product Owner follow-up:** The iPhone Safari implementation review reported steps 1–5 working, including ZIP download, but did not verify extraction or all twelve files on the phone. Palette and text-color feedback is tracked in `design/ui-ux-change-request-session-07.md`; the existing text-color control received only a copy/discoverability refinement. This does not convert Session 08 device QA or the OPEN QUESTION mobile handoff into PASS.
