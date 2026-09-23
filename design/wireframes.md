@@ -479,7 +479,7 @@ The sheet is dismissed by Cancel or the standard close affordance. No action dep
 
 ## 6. S03 — Month Editor
 
-**Session 05 Product Owner clarification:** the portrait 2:3 ratio belongs to the whole 1200 × 1800 proof. The upper Photo Region spans its full width and the image covers that region edge to edge; the lower Calendar Region is separate. The centered 800 × 1200 photo box used by the disposable technical spike is not this wireframe. Pointer/mouse or single-finger drag repositions the covered image, pinch and explicit zoom change scale, and Reset returns to centered fill without gutters or exposed blank area.
+**Session 05 Product Owner clarification:** the portrait 2:3 ratio belongs to the editable 1200 × 1800 trim proof. The later approved print export places that trim inside a 106 × 156 mm file with approximately 3 mm bleed on each edge. The upper Photo Region spans its full width and the image covers that region edge to edge; the lower Calendar Region is separate. The centered 800 × 1200 photo box used by the disposable technical spike is not this wireframe. Pointer/mouse or single-finger drag repositions the covered image, pinch and explicit zoom change scale, and Reset returns to centered fill without gutters or exposed blank area.
 
 ### 6.1 Desktop — Ready month, recommended layout
 
@@ -508,7 +508,7 @@ The sheet is dismissed by Cancel or the standard close affordance. No action dep
 |                  +-------------------------+                  |                                |
 |                                                               | EXPORT                         |
 |             Preview is portrait 2:3 and remains dominant.     | [ Download January PNG ]      |
-|                                                               | 1200 × 1800 px                |
+|                                                               | 100 × 150 mm trim preview     |
 +---------------------------------------------------------------+--------------------------------+
 ```
 

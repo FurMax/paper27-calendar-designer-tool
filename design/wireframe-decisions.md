@@ -293,7 +293,7 @@ This session intentionally does not decide:
 
 ## 10. Controlled V1 Change During Session 04
 
-Product UI copy is Simplified Chinese; the Calendar Proof and exported pages remain English. The approved S03 month navigation and screen geometry stay intact. A compact Calendar Text section is directly visible in the desktop right properties panel; phone uses its bottom sheet. Both Ready and Missing Photo expose Auto/Custom unified text color, a non-blocking contrast warning, three curated English-output typography presets with live `January` samples, and project-wide Small/Standard/Large scale presets. Background remains an arbitrary solid color with picker, HEX, RGB, and optional Quick Colors. These settings do not add an open-ended style panel or change crop gestures. Final font names and output rendering are Technical Validation handoffs.
+Product UI copy is Simplified Chinese; the Calendar Proof and exported pages remain English. The approved S03 month navigation and screen geometry stay intact. A compact Calendar Text section is directly visible in the desktop right properties panel; phone uses its bottom sheet. Both Ready and Missing Photo expose Auto/Custom unified text color, a non-blocking contrast warning, three curated English-output typography presets with live `January` samples, and project-wide Small/Standard/Large scale presets. Background remains an arbitrary solid color with the existing system picker, HEX, RGB, named Quick Colors, and a separate explicit photo-pixel sampler. The three size cards display 80% / 100% / 120%. These settings do not add an open-ended style panel or change crop gestures. Final font names and output rendering are Technical Validation handoffs.
 
 ## 11. Wireframe Gate Status
 

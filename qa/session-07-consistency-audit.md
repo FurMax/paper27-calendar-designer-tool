@@ -27,3 +27,7 @@
 These are deferred validation and product decisions, not implied passes from Chrome emulation, a Share capability check, a ZIP prompt or the M3/M4 scoped iPhone smoke confirmations.
 
 **Product Owner follow-up:** The iPhone Safari implementation review reported steps 1–5 working, including ZIP download, but did not verify extraction or all twelve files on the phone. Palette and text-color feedback is tracked in `design/ui-ux-change-request-session-07.md`; the existing text-color control received only a copy/discoverability refinement. This does not convert Session 08 device QA or the OPEN QUESTION mobile handoff into PASS.
+
+## Approved revision addendum — 2026-09-23
+
+The Product Owner subsequently approved and the implementation added the default 1252×1843 print PNG with 100×150 mm trim, approximately 3 mm bleed and 300 PPI metadata, plus optional 1200×1800 digital output. The grouped palette, cropped-photo pixel sampler and 80%/100%/120% type scales are also implemented. The original M1–M8 table above is a historical milestone audit; these are controlled amendments after M8. qa/session-07-approved-revisions.md records new bounded tests and remaining real-device/provider checks. The Product Owner also confirmed iPhone ZIP extraction, though inspection of all twelve PNGs there is unrecorded. Mobile primary multi-file handoff, one-action direct Photos and formal Session 08 release QA remain open.

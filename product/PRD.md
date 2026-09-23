@@ -75,7 +75,7 @@ The following are fixed across all 12 months in V1:
 - One curated Calendar typography preset and one Small/Standard/Large typography scale shared across the set, with fixed calendar structure and no per-month typography override
 - The visual rule that important dates use red when the P1 feature is added
 
-Year, week start, output size, structure, and date layout have no user-facing controls. The limited project-wide typography and scale presets do not change structural proportions; no single month may override them.
+Year, week start, layout structure, and date placement have no user-facing controls. Export offers only the approved print/digital output variants. The limited project-wide typography and scale presets do not change structural proportions; no single month may override them.
 
 ### V1 Calendar Font Presets — Controlled V1 Change, 2026-09-23
 
@@ -124,7 +124,7 @@ V1 does not include year selection or year changes. Support for 2028, 2029, and 
 
 - Upper photo area containing exactly one primary photo per month
 - Lower normal monthly calendar/date area
-- The complete output is 1200 × 1800 px portrait 2:3; the Photo Region itself is not prescribed a 2:3 ratio
+- The editable trim composition is 1200 × 1800 px portrait 2:3; the Photo Region itself is not prescribed a 2:3 ratio. Print export maps it to a 100 × 150 mm trim inside a 106 × 156 mm bleed canvas.
 - The fixed upper Photo Region spans the entire output width; its image uses cover scaling/crop/reposition with no gutters, letterboxing, extra background border, or exposed blank space
 - The lower Calendar Region is a separate stacked region with the selected solid background color and the existing English calendar content
 - Overall background color coordinated with the photo
@@ -232,9 +232,9 @@ No technical implementation decisions are made in this document during Product D
 
 ## 7. Export and Output
 
-The requested final artifact is a set of 12 separate downloadable **1200 × 1800 px PNG** images, with one image/card for each month. The primary V1 canvas is a portrait 2:3 postcard-style format, conceptually corresponding to 10 × 15 cm. The year is not condensed into one image. Bookmark output is post-V1.
+The requested final artifact is a set of 12 separate downloadable monthly PNG images, with one image/card for each month. The default print variant is **1252 × 1843 px at 300 PPI** (approximately **106 × 156 mm**, including approximately 3 mm bleed on every edge around a **100 × 150 mm trim**). The optional digital variant remains **1200 × 1800 px**. The year is not condensed into one image. Bookmark output is post-V1.
 
-V1 ends at image download/save. It does not include physical printing, print ordering, vendor compatibility, bleed, CMYK, or DPI/physical-size guarantees.
+V1 ends at image download/save. It supplies a bleed PNG and PPI metadata, but does not operate a printing service, place print orders, convert to CMYK/PDF, or guarantee acceptance by every print vendor.
 
 ### Confirmed Output and Download Behavior
 
@@ -311,7 +311,7 @@ Detailed acceptance criteria are maintained in `product/acceptance-criteria.md`.
 - AI image generation or AI automatic calendar design
 - Large template catalog
 - Multiple-project management
-- Printing, print ordering, or print-specification workflows
+- Physical printing service, print ordering, or vendor-specific prepress workflows
 
 ## 12. Approved Post-V1 Priorities
 

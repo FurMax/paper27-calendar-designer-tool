@@ -575,3 +575,9 @@ Session 03 may use an inline state, dialog, bottom sheet, overlay, or focused st
 | iPhone full workflow | Mobile notes across S01–S04 and T01–T05 |
 | Save failure and tab conflict | T04 |
 | New project replacement | T03 |
+
+## Session 07 approved control amendment
+
+S03 Background contains the existing system picker, named Quick Colors, HEX/RGB and an explicit **从照片取色** action. This action opens a nested photo sampling sheet/dialog with a touch target, live HEX/swatch, Cancel and **使用此颜色**; it does not change crop gestures. It remains part of the S03 editing controls, so the four-screen / five-numbered-transient IA count remains intact.
+
+S03 typography displays 80% / 100% / 120% scale cards. S03 single export and S04 full-set export display default print and optional digital variant choices. Print copy names the 100 × 150 mm trim, approximately 3 mm bleed per edge, 106 × 156 mm file, 1252 × 1843 px and 300 PPI. T05 remains transient.

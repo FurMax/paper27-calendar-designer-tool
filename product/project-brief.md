@@ -52,7 +52,7 @@ Each monthly image uses a constrained top-and-bottom composition:
 - Lower area: a normal monthly calendar/date section
 - Whole card: a coordinated overall background color treatment
 
-The **whole 1200 × 1800 px output** is portrait 2:3. Its upper Photo Region and lower Calendar Region are independent, stacked regions. The Photo Region spans the complete output width, edge to edge. Its assigned photo uses cover scaling plus crop/reposition to fill that fixed region: no side gutters, background border, letterboxing, smaller centered image, or exposed blank area. The lower Calendar Region uses the month's selected solid background color and retains the English calendar output. The Photo Region itself is not required to be 2:3.
+The **editable 1200 × 1800 px trim composition** is portrait 2:3. The default print PNG additionally includes bleed outside a 100 × 150 mm physical trim. Its upper Photo Region and lower Calendar Region are independent, stacked regions. The Photo Region spans the complete output width, edge to edge. Its assigned photo uses cover scaling plus crop/reposition to fill that fixed region: no side gutters, background border, letterboxing, smaller centered image, or exposed blank area. The lower Calendar Region uses the month's selected solid background color and retains the English calendar output. The Photo Region itself is not required to be 2:3.
 
 The date section is not required to provide large writable cells in V1.
 
@@ -126,7 +126,7 @@ The printed day cells may be used for handwriting the owner's daily plans. Ordin
 - AI image generation or AI automatic calendar design
 - Large template catalog
 - Multiple-project management
-- Printing, print ordering, or print-specification workflows
+- Physical printing service, print ordering, or vendor-specific prepress workflows
 
 ## Candidate Use Cases
 
@@ -144,9 +144,9 @@ The printed day cells may be used for handwriting the owner's daily plans. Ordin
 
 The expected product output is a set of **12 separate downloadable PNG images, one per calendar month**. It is not one image containing the entire year.
 
-The confirmed primary V1 canvas is a **portrait 2:3 postcard-style format**, conceptually corresponding to 10 × 15 cm.
+The confirmed trimmed V1 composition is a **portrait 2:3, 100 × 150 mm postcard-style format**.
 
-Each V1 monthly image is a portrait **1200 × 1800 px PNG**. Each month can be downloaded individually. A distinct **Generate Full Set / 生成整套 12 张** action generates January–December as 12 separate PNG images. ZIP is a batch delivery package containing those files, not the definition of the product output. Desktop sequential generation followed by one ZIP download is a validated candidate. The mobile delivery method remains an **OPEN TECHNICAL QUESTION**: test multi-file Share/Save on real iPhone Safari over trusted HTTPS; retain ZIP or per-month save as fallbacks without automatically starting 12 browser downloads. A cover is not part of V1. The product does not need to support downstream printing, print-vendor workflows, bleed, CMYK, or physical-size/DPI guarantees. Bookmark-size output is post-V1.
+Each V1 month offers a default **1252 × 1843 px, 300 PPI print PNG** representing approximately **106 × 156 mm** with approximately 3 mm bleed around a **100 × 150 mm trim**, plus an optional **1200 × 1800 px digital PNG**. Each month can be downloaded individually. A distinct **Generate Full Set / 生成整套 12 张** action generates January–December as 12 separate PNG images of the selected variant. ZIP packages those files; it is not the output definition. The mobile delivery method remains an **OPEN TECHNICAL QUESTION**: test multi-file Share/Save on real iPhone Safari over trusted HTTPS; retain ZIP or per-month save as fallbacks without automatically starting 12 browser downloads. A cover is not part of V1. Physical printing services, vendor-specific prepress, CMYK and universal printer acceptance remain outside V1. Bookmark-size output is post-V1.
 
 ## OPEN QUESTIONS
 

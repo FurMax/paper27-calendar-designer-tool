@@ -263,7 +263,7 @@ flowchart TD
 1. From a ready Month Editor or a ready month in Review & Export, the user selects **Download PNG**.
 2. A transient export progress/result surface shows that the month image is being prepared; this flow does not require a separate page.
 3. Navigation away may require cancelling the in-progress generation, but the project remains saved and editable.
-4. On success, the browser’s supported file handoff begins for one 1200 × 1800 px PNG.
+4. On success, the browser’s supported file handoff begins for one PNG of the selected print or digital variant.
 5. A success state identifies the month downloaded.
 6. On failure, the user sees **Try Again** and can return to editing without losing work.
 7. A missing month cannot start this flow; the interface directs the user to Add Photo.

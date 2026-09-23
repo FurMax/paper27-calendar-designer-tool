@@ -65,7 +65,7 @@ Semantic colors remain separate from the accent:
 - **Calendar Output Language:** English month names and Sunday-first `S M T W T F S`; year `2027` and dates remain Arabic numerals. The Calendar Proof and future PNGs share this rule.
 - **Product UI font:** a clear Simplified-Chinese system stack (`Noto Sans SC` / `PingFang SC` / `Microsoft YaHei` with fallbacks). The UI never adopts the chosen Calendar Font.
 - **Calendar typography:** one of three curated, project-wide systems—经典 / 简约 / 手写 in Product UI—with a live English `January` sample for each. Each preset may assign different fonts, weights, and spacing to month title, year/weekday, and date roles; it is not a requirement that every role use one font file. Instrument Serif, Instrument Sans, and Patrick Hand are temporary prototype candidates, not frozen final font choices.
-- **Calendar text size:** project-wide 小 / 标准 / 大 scale presets, default 标准. The three bounded scales preserve the fixed Calendar layout; there is no free px slider.
+- **Calendar text size:** project-wide 小 / 标准 / 大 scale presets at 80% / 100% / 120%, default 标准. The three bounded scales preserve the fixed Calendar layout; there is no free px slider.
 - Page headings are expressive but remain smaller and quieter than the proof or Calendar Set.
 - All functional labels use sentence case; decorative all-caps labels are not part of the system.
 
@@ -138,7 +138,7 @@ These are prototype visual values, not production component-architecture decisio
 
 ### Calendar proof
 
-- Portrait 2:3 paper proof at 1200 × 1800 px output.
+- Portrait 2:3 paper proof uses the 1200 × 1800 trim composition; print export maps it to 100 × 150 mm within a 106 × 156 mm bleed PNG at 300 PPI.
 - One fixed upper Photo Region and one fixed lower Calendar Region. The Photo Region spans the full proof width; its photo covers that region edge to edge with no gutters, added border, letterboxing, centered smaller image, or uncovered crop. The Photo Region itself is not 2:3 by requirement. The lower region carries the chosen solid color and English calendar content.
 - Correct Sunday-first, six-row January 2027 sample data is visible in S03.
 - Missing Photo replaces only the photo region; month identity, calendar, background, and navigation remain intact.
@@ -190,7 +190,7 @@ V1 output remains one arbitrary solid background color per month. There are no g
 - The Calendar Proof remains wider and visually stronger than the bounded control column.
 - Phone top sticky context contains only Month + Year direct selector, state, and Review.
 - Phone bottom sticky navigation contains only Previous and Next.
-- Desktop Properties Panel directly exposes 照片, 背景色, 日历文字, and 导出 in that order. 日历文字 shows three live English font samples, 小 / 标准 / 大, and 自动 / 自定义 text color. The top product navigation is not repeated as body-level 分配照片 / 预览与导出 actions, and the redundant “1月预览” caption has been removed above the proof; `1200 × 1800 px` stays quiet in 导出.
+- Desktop Properties Panel directly exposes 照片, 背景色, 日历文字, and 导出 in that order. 日历文字 shows three live English font samples, 小 / 标准 / 大, and 自动 / 自定义 text color. The top product navigation is not repeated as body-level 分配照片 / 预览与导出 actions, and the redundant “1月预览” caption has been removed above the proof; 106 × 156 mm print and 1200 × 1800 px digital choices are clear in 导出.
 - Phone opens task-specific 照片与裁切, 背景色, and 日历文字 sheets. Background retains arbitrary picker, HEX, RGB, and Quick Colors; 日历文字 provides the same three controls without crowding the preview.
 - Single-month PNG remains a quiet Secondary.
 
@@ -287,3 +287,7 @@ There is no remaining blocking **OPEN QUESTION** or **UX CONFLICT** known to the
 The Product Owner approved Session 04 — **Approved / Complete** — and passed the **UI Freeze / Visual Gate** on **2026-09-23**. The current V1 UI baseline is frozen. Small Chinese copy, spacing/alignment, accessibility, contrast, browser-specific layout, and implementation-fidelity corrections may continue when they preserve the approved baseline. Any change to Product Scope, IA, User Flow, Screen Structure, Interaction Semantics, Feature Hierarchy, or Visual System must first be documented as a **UI / UX CHANGE REQUEST**, not silently introduced during implementation.
 
 This closeout does not begin Technical Validation or Technical Architecture; the next stage starts in a new Codex session under Product Owner direction.
+
+## Session 07 approved visual amendment
+
+The Product Owner approved clearer frozen-UI changes on 2026-09-23. Background controls now group a large current-color swatch/HEX, four named Quick Colors and precise system-picker/HEX/RGB inputs. A distinct **从照片取色** action uses the selected photo inside a touch-friendly sheet, leaving the desktop native picker intact. Text-size cards show visibly spaced 80% / 100% / 120% previews. Export controls name the default print and optional digital PNG sizes; the proof depicts the 100 × 150 mm trim and states that print bleed is added outside the preview. These amendments supersede earlier quiet 1200 × 1800-only export metadata, without changing the Direction A typography families, calendar layout, or four core screens.

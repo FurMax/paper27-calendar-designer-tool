@@ -15,7 +15,7 @@ export const TYPOGRAPHY_PRESETS: Record<TypographyPresetId, TypographyPreset> = 
   minimal: { id: 'minimal', label: '简约', monthFamily: 'Instrument Sans', detailFamily: 'Instrument Sans', monthWeight: 600, detailWeight: 400, letterSpacing: '-0.025em' },
   handwritten: { id: 'handwritten', label: '手写', monthFamily: 'Patrick Hand', detailFamily: 'Patrick Hand', monthWeight: 400, detailWeight: 400, letterSpacing: '0.01em' },
 };
-export const SCALE_MULTIPLIERS: Record<TextScale, number> = { small: 0.88, standard: 1, large: 1.12 };
+export const SCALE_MULTIPLIERS: Record<TextScale, number> = { small: 0.8, standard: 1, large: 1.2 };
 export const SCALE_LABELS: Record<TextScale, string> = { small: '小', standard: '标准', large: '大' };
 
 export function expectedFontFamilies(presetId: TypographyPresetId): string[] {

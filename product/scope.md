@@ -8,11 +8,11 @@
 - User constraint: may have no computer and no visual-design skills
 - Core visual outcome: photo and overall calendar colors feel cohesive
 - Core output structure: 12 separate downloadable monthly PNG images
-- Primary V1 canvas: portrait 2:3 postcard-style format, conceptually 10 × 15 cm
-- Fixed V1 export dimensions: 1200 × 1800 px per PNG
+- V1 trimmed composition: portrait 2:3, physically 100 × 150 mm for the print variant
+- Default print PNG: 1252 × 1843 px at 300 PPI, representing approximately 106 × 156 mm including approximately 3 mm bleed on each edge around a 100 × 150 mm trim; optional digital PNG: 1200 × 1800 px
 - Product UI Language: Simplified Chinese; Calendar Output Language: English; no V1 language switcher
 - Single V1 calendar system: upper photo, lower normal monthly calendar/date area, and coordinated overall background color
-- Whole 1200 × 1800 output is 2:3; the fixed upper Photo Region covers the full output width edge to edge, with cover crop and no gutters, letterboxing, extra border, or exposed blank area; the lower Calendar Region is separate and uses the chosen solid background
+- The editable 1200 × 1800 trim composition is 2:3; its fixed upper Photo Region covers the full trim width edge to edge, with cover crop and no gutters, letterboxing, extra border, or exposed blank area; the lower Calendar Region is separate and uses the chosen solid background. Print export scales this composition into the 100 × 150 mm trim and extends artwork through bleed.
 - One fixed V1 layout with no template selector or adjustable photo-to-calendar proportion
 - Exactly one primary photo per month, with replacement, crop, and crop repositioning
 - Large writable Grid / Writable templates are post-V1
@@ -54,12 +54,12 @@
 - Crop and reposition each month's single image by pointer/mouse drag on desktop and single-finger drag on touch, with clamped offsets and no uncovered Photo Region
 - Zoom the photo within the fixed crop using an explicit control on both platforms or touch pinch gesture; Reset returns to centered fill
 - Reset crop/position/zoom to centered fill whenever a month's photo changes through replacement, swap, or reassignment, while preserving that month's manually chosen background color
-- Choose one arbitrary solid background color for each month, defaulting to white
+- Choose one arbitrary solid background color for each month, defaulting to white; retain desktop/system color input and HEX/RGB, and offer a separate touch-friendly action to sample a visible photo pixel for that month
 - Default to Auto Calendar text color, using contrasting black or white across month title, year, weekdays, and dates together
 - Let the user choose one Custom Calendar text color for those four roles per month, with a non-blocking warning for low contrast
-- Choose from three curated Calendar typography presets and Small / Standard / Large scale presets; each selection applies consistently across all 12 months, with Standard size as the default
+- Choose from three curated Calendar typography presets and Small / Standard / Large scale presets at 80% / 100% / 120%; each selection applies consistently across all 12 months, with Standard as the default
 - Keep the Simplified Chinese Product UI font independent from the English Calendar Font preset
-- Download/save any single month as PNG
+- Download/save any single month as a default print PNG or an optional 1200 × 1800 px digital PNG; the choice also applies to the twelve-file ZIP
 - **OPEN QUESTION — Session 05 mobile Photos handoff feasibility:** On 2026-09-23 the Product Owner specified one action that saves the PNG directly into the iPhone Photos library, without a second manual Save step. The Product Owner found a downloaded PNG in iCloud Drive → Downloads after trying both isolated Safari download entrances, confirming at least one real file download; which entrance produced it is unknown. Open PNG followed by Save to Photos also works as an observed manual route, but neither route directly saves into Photos. The existing browser-only V1 platform constraint remains approved, and compatibility with the newly stated one-action Photos requirement is unproven. Do not silently substitute a Share Sheet or Open→Save flow, or expand V1 to a native app without an explicit product decision.
 - Generate the full January–December set as 12 independent monthly PNGs through a distinct full-set action; ZIP is a delivery package, not the output definition
 - Deliver the complete set on desktop through a ZIP containing those 12 PNGs with `01` through `12` filename ordering; mobile full-set handoff remains an **OPEN TECHNICAL QUESTION** pending trusted-HTTPS iPhone/iPad testing of multi-file Share/Save and fallbacks
@@ -101,8 +101,8 @@ These non-goals are confirmed. Do not add them to V1 without reopening Product D
 - A broad Apply Style to All command that can overwrite month-level photos, crops, colors, or important dates
 - Font upload, unlimited font libraries, free px size sliders, advanced typography editing, or per-month typography overrides
 - Template selection, alternative layouts, repositioning the calendar region, or changing the photo-to-calendar proportion
-- Physical printing or print ordering
-- Print-vendor-specific output, bleed, CMYK, and physical-size/DPI guarantees
+- Physical printing service or print ordering
+- Vendor-specific acceptance, CMYK conversion, press proofing, and a universal print-quality guarantee
 - Print-ready PDF
 - Account-based storage, cloud backup, cross-device sync, and cross-browser restore
 - Multiple named projects, project lists, and local project management

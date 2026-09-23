@@ -1,12 +1,12 @@
 # Session 06 — Production Architecture
 
-**Status:** Approved with the Session 06 Technical Gate on 2026-09-23. Production implementation begins only in a separately directed Session 07.
+**Status:** Approved with the Session 06 Technical Gate on 2026-09-23. Session 07 implementation and the Product Owner-approved print/color/type amendments are recorded below; formal release QA remains in Session 08.
 
 ## 1. System boundary and evidence
 
 V1 is one responsive, client-only, local-first website for one 2027 project. There is no account, API server, cloud sync, database server, service worker requirement, or native application. Product UI is Simplified Chinese; the calendar proof and output use English month/weekday labels and Arabic numerals. The approved S01–S04/T01–T05 structure and Direction A visual system govern the UI; `prototype/` and `spikes/` are references, not production source.
 
-Choose **React + TypeScript + Vite** for the production app. The repository currently contains no production package or source files (`src/` is empty), so this is a Session 06 stack decision, not an inheritance from the prototype. React handles the four screens and transient surfaces; TypeScript makes project and renderer contracts explicit; Vite supplies a small browser build. Use React context plus a focused reducer for the one active project, local component state for open sheets/menus, and plain functions for domain rules. Add no state library, router package, domain framework, or repository abstraction unless implementation demonstrates a specific need. Use the browser History API for S01–S04 and the selected month; no server routing is required. URL navigation must never create/delete a project or become the source of saved content.
+Choose **React + TypeScript + Vite** for the production app. At Session 06 approval, the repository contained no production package or source files (`src/` is empty), so this is a Session 06 stack decision, not an inheritance from the prototype. React handles the four screens and transient surfaces; TypeScript makes project and renderer contracts explicit; Vite supplies a small browser build. Use React context plus a focused reducer for the one active project, local component state for open sheets/menus, and plain functions for domain rules. Add no state library, router package, domain framework, or repository abstraction unless implementation demonstrates a specific need. Use the browser History API for S01–S04 and the selected month; no server routing is required. URL navigation must never create/delete a project or become the source of saved content.
 
 The frozen UI is implemented as views over domain state. A single command boundary validates edits and creates the next immutable project snapshot. Persistence serializes that snapshot and assets; export reads a snapshot. React component state must not be persisted as the project model. `lastLocation` is limited stable resume context; open sheets, pickers, pointer positions, save progress, and export progress are transient.
 
@@ -19,7 +19,7 @@ The frozen UI is implemented as views over domain state. A single command bounda
 | Project state/assignment | One project, 12 slots, project photo items, Move/Swap/Replace/Remove/Reuse/Delete, Ready/Missing selectors | Pure commands enforce approved reset/preservation semantics |
 | Photo import | Picker result validation, whole over-limit rejection, decode-before-commit, oriented dimensions, low-resolution warning | Returns validated candidate assets/items; never mutates a month on failure |
 | Crop math/gesture adapter | Cover, drag, pinch, explicit zoom, Reset; normalized crop parameters | Pure math shared by preview and export; pointer events only in UI adapter |
-| Calendar render model | Fixed 1200×1800 geometry, date grid, resolved crop, colors, typography metrics | One source of visual constants; preview and Canvas consume it |
+| Calendar render model | Fixed 1200×1800 trim composition, date grid, resolved crop, colors, typography metrics; selected export variant | One source of visual constants; preview and Canvas consume it |
 | Preview | Browser proof and review thumbnails at responsive scale | Uses render model; has no independent layout math/date logic |
 | Canvas export renderer | Draw one full-bleed photo plus separate calendar region and English text to exact-size PNG | Reads immutable model/decoded photo; does not use DOM/SVG screenshot export |
 | Persistence | IndexedDB assets + project, revision-checked transactions, restore, save status | One small module; no generic repository layer or LocalStorage originals |
@@ -31,7 +31,7 @@ The approved Direction A proof uses a **58% / 42%** photo/calendar split. Formal
 
 ### ADR-01 — Dedicated Canvas export renderer
 
-**Decision:** Browser preview remains interactive DOM/CSS, while a dedicated Canvas 2D renderer produces PNGs. Both consume the same render model, crop math, date data, typography definitions, and color resolution. The output canvas is always 1200×1800. Load and verify the selected bundled font faces before drawing; a failed face produces an explicit fallback/error path and never silently claims preset fidelity.
+**Decision:** Browser preview remains interactive DOM/CSS, while a dedicated Canvas 2D renderer produces PNGs. Both consume the same render model, crop math, date data, typography definitions, and color resolution. The baseline composition is 1200×1800. The approved digital output keeps that size; the default print variant maps it into a 1181×1772 trim area within a 1252×1843 bleed canvas at 300 PPI. Load and verify the selected bundled font faces before drawing; a failed face produces an explicit fallback/error path and never silently claims preset fidelity.
 
 **Evidence:** Session 05 produced real 1200×1800 desktop PNGs with dedicated Canvas. The tested SVG-image path lost the selected Serif font. This does not prove Safari font or preview/export fidelity. [Validation](technical-validation.md) remains the measured scope.
 
@@ -66,3 +66,9 @@ Desktop Chrome/Edge spike results justify the proposed architecture, not release
 **OPEN QUESTION — final font and contrast details:** Final font files/names, licenses, WOFF2 size, Safari Canvas fidelity, exact low-resolution warning threshold, and Auto/Custom contrast threshold are not resolved by desktop spikes. Any change to the frozen visual system or interaction semantics follows the UI/UX change-request rule.
 
 Official API references used for the boundary: [Vite React/TypeScript template](https://vite.dev/guide/), [IndexedDB transactions and Blobs](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API), [Canvas font loading](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/font), [Web Share limits](https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API).
+
+## Session 07 approved amendments
+
+The Product Owner approved a 100×150 mm trim with approximately 3 mm bleed on each side: a 106×156 mm full file represented as 1252×1843 pixels at 300 PPI after integer rounding. The export-variant domain module owns both variant dimensions. The Canvas renderer preserves the shared 1200×1800 composition, scales it into the print trim, extends photo/background artwork through bleed, and keeps all calendar text inside trim. The PNG metadata module records physical resolution in the print PNG. The optional digital output stays 1200×1800. Selection is transient UI state, not a saved project field. Both single and twelve-page export default to print; ZIP remains packaging for twelve independent PNGs. Printer-specific color profile, safe area and provider preflight remain open.
+
+The Product Owner also approved 80%/100%/120% typography scales and an explicit photo color sampler. The sampler maps a touch/click point on the current cropped photo to the decoded source pixel, presents its HEX/swatch, and commits the per-month solid background only on confirmation. It does not change the persisted color model or the desktop native picker. Real iPhone Safari sampling and print-provider handoff remain Session 08 QA; Chrome touch emulation is scoped implementation evidence.

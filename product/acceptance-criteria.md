@@ -34,15 +34,16 @@ Checked items record confirmed product decisions. Unchecked items are testable V
 - [x] Photo-derived default color is not required to pass V1 if the later feasibility check finds it unreliable or disproportionately costly on supported browsers.
 - [ ] If photo-derived color is included, it handles photos with no clear dominant color or extreme light/dark values by returning a usable result or falling back to white.
 - [ ] Replacing a photo never silently overwrites a manually chosen background color.
+- [ ] On desktop and phone, “从照片取色” samples the chosen visible photo pixel after the current crop, previews its HEX value, and changes only the current month after explicit confirmation; Cancel leaves the prior color intact. The system color picker and arbitrary HEX/RGB remain available.
 - [x] Gradients, textures, background images, and multiple background-color regions are not V1 requirements.
-- [x] The primary V1 canvas is a portrait 2:3 postcard-style format, conceptually corresponding to 10 × 15 cm.
+- [x] The trimmed V1 composition is portrait 2:3 and the print variant targets a physical 100 × 150 mm trim.
 - [x] A completed calendar's core output consists of 12 separate monthly images, not a single full-year image.
 - [x] PNG is the default V1 download format.
-- [x] Every V1 monthly PNG is exactly 1200 × 1800 px in portrait orientation.
+- [x] Each month offers a default print PNG at 1252 × 1843 px with 300 PPI metadata (approximately 106 × 156 mm including approximately 3 mm bleed on every edge), plus an optional 1200 × 1800 px digital PNG.
 - [x] Bookmark-size output is post-V1 and does not block V1 acceptance.
 - [x] A calendar cover is not part of V1; the complete V1 set contains exactly 12 monthly images.
 - [x] V1 uses one Standard Photo Calendar system: upper photo, lower normal monthly calendar/date area, and coordinated overall background color.
-- [x] The **whole** 1200 × 1800 output is portrait 2:3; the Photo Region is an upper fixed region, not itself required to be 2:3.
+- [x] The editable 1200 × 1800 trim composition is portrait 2:3; its upper Photo Region is full-width but need not itself be 2:3. Print export places the composition inside the 100 × 150 mm trim.
 - [ ] The assigned photo covers the upper Photo Region edge to edge across the full output width, without side gutters, background border, letterboxing, a smaller centered image, or crop-exposed blank area. The lower region separately uses the chosen solid background and English calendar output.
 - [x] V1 uses one fixed layout with no template selector or adjustable photo-to-calendar proportion.
 - [x] Future P2 template expansion is recorded as a Technical Architecture constraint without adding any V1 template-selection feature.
@@ -127,7 +128,7 @@ Checked items record confirmed product decisions. Unchecked items are testable V
 ## Provisional Editing Model
 
 - [x] V1 permits a small curated set of approximately two or three project-wide Calendar Font presets and no per-month font override.
-- [x] V1 permits only Small / Standard / Large project-wide Calendar typography scale presets, defaulting to Standard; no free px slider or per-month size override.
+- [x] V1 permits only Small / Standard / Large project-wide Calendar typography scale presets at 80% / 100% / 120%, defaulting to Standard; no free px slider or per-month size override.
 - [ ] Each curated preset may define different font files, weights, and spacing for month, weekday, and date roles as a fixed system, while the user selects only the complete preset.
 - [x] V1 month-level content includes photo, crop/position, background color, and unified Calendar text-color mode/value; important dates begin in P1.
 - [x] V1 does not permit per-month overrides of font, structural proportions, or date layout.
@@ -143,8 +144,8 @@ Checked items record confirmed product decisions. Unchecked items are testable V
 
 ## Provisional Export
 
-- [x] PNG dimensions are fixed at 1200 × 1800 px and batch ordering is January through December.
-- [ ] The user can download any individual month as a PNG.
+- [x] The selected print or digital PNG dimensions are consistent in single and full-set export; batch ordering is January through December.
+- [ ] The user can download any individual month as the selected print or digital PNG. Print output has continuous photo/background artwork through bleed, keeps important content inside trim, and does not burn preview trim guides into the file.
 - [ ] **Session 05 unresolved iPhone acceptance:** A single user action saves that month's PNG directly into Photos without a second manual Save action, as requested by the Product Owner on 2026-09-23. At least one isolated iPhone Safari download succeeded to iCloud Drive → Downloads, but that is a file download rather than Photos import; Open→Save requires a second action. Feasibility under the approved browser-only V1 constraint is an **OPEN QUESTION** and must be resolved explicitly before treating the mobile Photos handoff as accepted.
 - [ ] On desktop, the user can download one ZIP containing all 12 monthly PNG files; ZIP is a package for the separate PNG outputs.
 - [ ] A distinct full-set action generates 12 independent January–December PNGs; a ZIP, when used, packages those files and is not the output definition.
@@ -156,7 +157,7 @@ Checked items record confirmed product decisions. Unchecked items are testable V
 - [ ] Export behavior on desktop, iOS Safari, and agreed Android browsers is defined.
 - [ ] The product gives a clear result or recovery path for interrupted or failed exports.
 - [ ] ZIP failure leaves the project intact and permits retry or individual month download.
-- [x] Printing, print ordering, bleed, CMYK, vendor compatibility, and physical-size/DPI guarantees are outside V1.
+- [x] The print PNG includes a 100 × 150 mm trim, approximately 3 mm bleed on every edge, and 300 PPI metadata. Physical printing service, print ordering, CMYK/PDF preparation, and universal vendor acceptance remain outside V1.
 
 ## Provisional iOS / Safari Support
 

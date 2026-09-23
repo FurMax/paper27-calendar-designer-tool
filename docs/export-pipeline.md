@@ -1,6 +1,6 @@
 # Session 06 — Preview, Crop, and Export Pipeline
 
-**Status:** Approved with the Session 06 Technical Gate on 2026-09-23. Output is twelve independent 1200×1800 PNGs; ZIP is packaging.
+**Status:** Approved with the Session 06 Technical Gate on 2026-09-23. The original 1200×1800 digital PNG remains optional. The Product Owner-approved default print output is twelve independent 1252×1843 PNGs with 100×150 mm trim and approximately 3 mm bleed; ZIP is packaging.
 
 ## 1. One render input
 
@@ -33,7 +33,7 @@ The DOM/CSS preview uses the output-coordinate geometry scaled uniformly to avai
 
 Preflight requires a Ready month, a readable asset, valid model, and font outcome. Bundle the three final font systems locally after license review; await exact needed `FontFace` loads, check status, and use a named fallback/error state if any face fails. Do not assume `document.fonts.ready` alone guarantees the selected face. A failed font must never silently render a different preset while reporting success.
 
-Draw on one 1200×1800 Canvas 2D surface:
+Draw the shared composition on one 1200×1800 Canvas 2D surface:
 
 1. Clear/output background as specified by the geometry; clip to the upper full-width Photo Region and draw the cover-scaled, clamped bitmap so pixels reach `x=0` and `x=1199` with no gutters or letterboxing.
 2. Fill the independent lower Calendar Region with the month's one solid background color.
@@ -65,6 +65,14 @@ On mobile, the **same twelve PNG Files** are the payload. A capability-specific 
 | Page interruption/mobile memory pressure | Last committed project remains restorable; transient export restarts rather than pretending to resume partially delivered files. |
 | Local save currently failed | T04 remains visible; export may use the visible in-memory snapshot with truthful unsaved-work status. |
 
-Release QA must compare actual output files against the preview and requirements: 1200×1800, full-width covered upper region, separate lower region, English dates, selected font/scale/color, crop after drag/pinch/zoom, twelve unique month labels/date grids, ZIP entry integrity, and actual platform handoff. The detailed matrix is in [Testing Strategy](testing-strategy.md).
+Release QA must compare actual output files against the preview and requirements: selected print 1252×1843 or digital 1200×1800 dimensions, print pHYs metadata and bleed/trim geometry, full-width covered upper region, separate lower region, English dates, selected font/scale/color, crop after drag/pinch/zoom, twelve unique month labels/date grids, ZIP entry integrity, and actual platform handoff. The detailed matrix is in [Testing Strategy](testing-strategy.md).
 
 **Session 07 M8 candidate probe:** `qa/m8-delivery-probe.html` is a dev-only technical worksheet that prepares the same twelve PNG files and offers a second-tap Web Share attempt only when secure-context `canShare({files})` reports support. It is not part of the production build or a chosen mobile primary handoff. A localhost Chrome capability result and the LAN HTTP failure to expose Share are recorded in `qa/session-07-m8.md`; trusted HTTPS iPhone/iPad results remain NOT TESTED.
+
+## Session 07 approved print and photo-sampling amendment
+
+The baseline geometry above remains the 1200×1800 composition used by Preview and the optional digital variant. For the default print variant, render that composition once and map it into a 1181×1772 trim rectangle at (35,35) inside the 1252×1843 output. At 300 PPI, this represents approximately 100×150 mm after trimming and a 106×156 mm full file; integer rounding makes the four bleed edges 35/36/35/36 pixels, approximately 3 mm. Fill bleed with actual photo pixels where the source crop allows, extend edge pixels at exhausted crop boundaries, and continue the solid calendar background. The exported image has no printed guide or crop marks. Add a valid PNG pHYs chunk of 11811 pixels/meter in both axes for nominal 300 PPI. Digital PNG bytes and naming remain available as a separate selection.
+
+The chosen variant applies to both one-month and full-set rendering. The latter still produces twelve separate selected-variant PNGs and packages those twelve files into one ZIP; it never starts twelve downloads. Export selection is transient and does not migrate or alter the saved project. The preview shows the trimmed composition and explains the extra bleed in the print output. Printer profile, safe area, CMYK/PDF and any vendor acceptance are still open, so no universal print-readiness claim is made.
+
+The approved photo sampler reads the exact decoded photo pixel under a point on the currently cropped Preview. It resolves the point through the shared crop transform to source image coordinates, previews HEX and a swatch, and applies the existing per-month solid background only after confirmation. Cancel and Escape leave the saved color unchanged. The native system color picker, HEX/RGB input and Quick Colors remain available.

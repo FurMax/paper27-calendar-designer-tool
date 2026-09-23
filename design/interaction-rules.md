@@ -221,7 +221,7 @@ The editor displays and edits one month. It does not become a multi-page free ca
 
 ### IR-27 — Crop and zoom
 
-- The **whole** Calendar Output is 1200 × 1800 px portrait 2:3. The upper Photo Region spans the full output width and sits above a separate Calendar Region; the Photo Region itself is not required to be 2:3.
+- The editable trim composition is 1200 × 1800 px portrait 2:3. Its upper Photo Region spans the full width above a separate Calendar Region; the Photo Region itself is not required to be 2:3. Print export adds bleed outside the 100 × 150 mm trim.
 - The photo uses cover scaling within the fixed Photo Region: no side gutters, added background border, letterboxing, smaller centered image, or exposed blank area.
 - The crop ratio and photo-area shape are fixed.
 - Repositioning clamps offsets at every zoom and cannot expose an empty area or change Photo Region geometry.
@@ -290,7 +290,7 @@ Review & Export is available for incomplete and complete projects. It always sho
 
 - Available for any Ready month.
 - Unavailable for Missing Photo.
-- Output is one 1200 × 1800 px portrait PNG.
+- Output is one PNG in the selected variant: default print 1252 × 1843 px at 300 PPI (approximately 106 × 156 mm with approximately 3 mm bleed around a 100 × 150 mm trim), or optional digital 1200 × 1800 px.
 - Failure preserves the project and offers retry.
 
 ### IR-37 — Full-set generation and delivery
@@ -421,3 +421,9 @@ Wireframes may choose spatial arrangements and component forms, but they must pr
 - Local-only resume and destructive New Project confirmation.
 
 The Session 02 gate has passed. Session 03 begins only in the separately authorized new Codex session, not during this closeout.
+
+## Session 07 Product Owner approval — color, scale and print
+
+The desktop system color picker remains available. A separate **从照片取色** action opens a photo sampling sheet/dialog inside S03; touch drag or click selects a pixel in the current crop, previews its HEX value, and only **使用此颜色** changes the current month's background. Cancel leaves the prior color intact. This nested S03 control does not add a new core screen or a new numbered cross-screen transient surface.
+
+Small / Standard / Large are 80% / 100% / 120%. Single and full-set export each offer default print and optional digital variants. The trim preview remains 2:3; the print file adds approximately 3 mm bleed outside a 100 × 150 mm trim and carries 300 PPI metadata. The selected variant applies to all files in that export action.
