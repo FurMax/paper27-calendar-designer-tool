@@ -23,8 +23,8 @@
 | M4 — Calendar style and typography | **Complete** | `qa/session-07-m4.md`: 37 unit checks, production build, desktop and 390/320px Chrome checks passed; Product Owner reported no problems in the required real iPhone Safari font smoke. Device/iOS details were not supplied. |
 | M5 — Local persistence | **Complete** | `qa/session-07-m5.md`: 40 unit checks, build, real IndexedDB save/restore, abort rollback, stale two-tab guard, failure/retry and Start New passed. |
 | M6 — Single PNG | **Complete** | `qa/session-07-m6.md`: real 1200×1800 PNG signature/dimensions, varied ratio/crop/font/color edge pixels, proof inspection, font failure/retry and actual desktop download passed. |
-| M7 — Full set and desktop ZIP | **In Progress** | Sequential twelve-PNG render and ZIP packaging underway. |
-| M8 — Mobile hardening | **Not Started** | — |
+| M7 — Full set and desktop ZIP | **Complete** | `qa/session-07-m7.md`: 12 distinct 1200×1800 PNGs in ordered ZIP, actual browser download/CRC, cancellation, retry and JS heap trend passed. |
+| M8 — Mobile hardening | **In Progress** | Targeted responsive/browser checks and deferred device-risk audit underway. |
 
 Milestones are the dependency sequence for the active Session 07; advance only through their required verification gates. M3 and M4 include early iPhone smoke checks so implementation errors surface before M8. M8 is implementation hardening and deferred technical validation; **formal Integration, full QA, release acceptance, and production deployment belong to later Session 08**. If resolution would change Product Scope, IA, User Flow, Screen Structure, Interaction Semantics, Feature Hierarchy, or the frozen Visual System, record a UI/UX change request and obtain the applicable approval before that change. The browser-only versus one-action direct-Photos conflict and iPhone multi-file save/share remain **OPEN QUESTION** items and do not block starting Session 07; neither can be closed by renaming a Files download or Share Sheet action.
 
