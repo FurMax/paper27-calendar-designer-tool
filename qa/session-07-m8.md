@@ -1,0 +1,23 @@
+# Session 07 — M8 mobile hardening and deferred device validation
+
+**Date:** 2026-09-23
+**Status:** Implementation hardening complete. Real-device and trusted-HTTPS outcomes remain NOT TESTED and are Session 08 QA requirements. This is not release acceptance.
+
+| Check | Status | Evidence and limit |
+|---|---|---|
+| 390px and 320px mobile layout | PASS in Chrome emulation | Review and Editor have no horizontal overflow. Month proof remains inside viewport; sticky Review action and Editor previous/next dock terminate at the simulated viewport bottom. Mobile style sheet is within viewport and scrollable. `tests/browser/m8-layout.mjs` and four `qa/m8-*-*.png` screenshots. Physical iPhone safe areas and Safari browser chrome are NOT TESTED. |
+| Touch crop | PASS in Chrome touch emulation | Single touch moved vertical crop offset from 0 to -0.387; two-touch pinch changed zoom 1→2.4; cover remained true; Reset returned zoom 1 and centered offsets; route stayed `/editor/1`. `tests/browser/m8-touch.mjs`. The Product Owner already reported no problem in M3's earlier real iPhone smoke, but this M8 emulation is not a new Safari/device pass. |
+| Twelve distinct large image storage | PASS on desktop Chrome only | Twelve separately generated, valid 2400×3200 JPEG assets totaled 75,516,420 bytes. IndexedDB committed revision 1 in 64 ms, reloaded all 12 Ready months with exactly the same bytes, and decoded first/last dimensions correctly. `navigator.storage.estimate()` reported 75,526,893 bytes used and 10,812,945,133-byte quota in that isolated desktop profile. `tests/browser/m8-storage.mjs`. These are synthetic images, not twelve representative original phone photos, and no real mobile quota was measured. |
+| Large full set and interruption | PASS on desktop Chrome with 390px viewport emulation | The twelve distinct stored JPEGs produced 42,449,032 PNG bytes, a 42,450,594-byte ZIP, 1,234 ms render and 1,352 ms through ZIP. Mid-batch page reload after January restored all 12 assets/Ready months and showed no false partial result. `tests/browser/m8-large-export.mjs`, `m8-interruption.mjs`. JS heap samples exclude native/GPU memory; mobile time/pressure/background behavior are NOT TESTED. |
+| Multi-file delivery candidate | PARTIAL technical probe | `qa/m8-delivery-probe.html` is dev-only and outside the production build. Localhost Chrome reported secure context and `canShare({files:12})=true` after preparing 12 actual PNG Files. LAN HTTP `192.168.31.102` reported `secureContext=false`, Share API unavailable; that different origin had no saved project. The probe requires a second user tap and never claims destination success. Actual `navigator.share` result, all-12 destination, iPhone/iPad behavior and direct Photos action are NOT TESTED. `tests/browser/m8-probe.mjs`. |
+| HEIC, Safari font/PNG fidelity, safe area/chrome, Android/iPad | NOT TESTED | No genuine HEIC/oriented phone original, trusted HTTPS iPhone/iPad URL, or controlled physical device access in this implementation run. Earlier M3/M4 Product Owner smoke results remain scoped to crop and preview font switching only. |
+
+**Implementation change:** `src/export/delivery.ts` catches a thrown `navigator.canShare` and reports unsupported capability instead of crashing. No product screen, frozen visual system or delivery hierarchy changed. ZIP remains an honest fallback package containing twelve independent PNGs; no primary mobile handoff was selected.
+
+## Session 08 QA handoff
+
+1. On named iPhone and iPad models/iOS/Safari versions, and Android/Chrome, run the full phone workflow with 12 **representative original** photos. Record format, total bytes, storage estimate/quota, reload, HEIC or converted JPEG MIME, orientation, picker order, and an actual failed-write recovery if naturally encountered.
+2. Recheck real touch drag/pinch/zoom/Reset, full-width cover, landscape rotation, safe-area insets and browser chrome; compare Safari preview to opened PNG for all three font presets and scales.
+3. Provision a **trusted HTTPS** origin before using `qa/m8-delivery-probe.html`. Generate all 12, record `canShare({files})`, tap Share, inspect the actual selected destination for all twelve filenames and valid images, test cancel/interruption, and compare with ZIP/individual fallback. Do not call a Share Sheet a completed Photos save.
+4. Resolve the **OPEN QUESTION** of one-action direct iPhone Photos saving with the Product Owner using device evidence and the browser-only constraint. If a scope/interaction/hierarchy change is needed, open the required UI/UX change request before implementation.
+5. Complete formal Integration, accessibility, browser matrix, release acceptance and any production deployment only in Session 08 after its gate.
