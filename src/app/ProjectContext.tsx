@@ -4,7 +4,8 @@ import { createEmptyProject, type PhotoAsset, type ProjectState } from '../domai
 import type { Location } from './navigation.ts';
 import type { MonthNumber } from '../domain/calendar.ts';
 import { updateMonthCrop } from '../domain/crop.ts';
-import type { CropState } from '../domain/project.ts';
+import type { CropState, HexColor, TextScale, TypographyPresetId } from '../domain/project.ts';
+import { canonicalHex } from '../domain/color.ts';
 
 type Action =
   | { type: 'start-empty'; id: string }
@@ -12,7 +13,10 @@ type Action =
   | { type: 'import'; assets: PhotoAsset[]; itemIds: string[]; target?: MonthNumber }
   | { type: 'command'; command: AssignmentCommand }
   | { type: 'location'; location: Location }
-  | { type: 'set-crop'; month: MonthNumber; crop: CropState };
+  | { type: 'set-crop'; month: MonthNumber; crop: CropState }
+  | { type: 'set-background'; month: MonthNumber; color: HexColor }
+  | { type: 'set-ink'; month: MonthNumber; mode: 'auto' | 'custom'; color?: HexColor }
+  | { type: 'set-typography'; presetId?: TypographyPresetId; scale?: TextScale };
 
 interface RuntimeState { projectState: ProjectState | null; affectedMonths: MonthNumber[] }
 
@@ -24,6 +28,15 @@ function reducer(runtime: RuntimeState, action: Action): RuntimeState {
   }
   if (!runtime.projectState) return runtime;
   if (action.type === 'set-crop') return { ...runtime, projectState: updateMonthCrop(runtime.projectState, action.month, action.crop) };
+  if (action.type === 'set-background' || action.type === 'set-ink') {
+    const color = action.type === 'set-background' ? canonicalHex(action.color) : action.mode === 'custom' ? canonicalHex(action.color ?? '') : null;
+    if ((action.type === 'set-background' || action.mode === 'custom') && !color) return runtime;
+    const slot = runtime.projectState.project.months[action.month];
+    const style = action.type === 'set-background' ? { ...slot.style, background: color! } :
+      { ...slot.style, text: action.mode === 'auto' ? { mode: 'auto' as const } : { mode: 'custom' as const, color: color! } };
+    return { ...runtime, projectState: { ...runtime.projectState, project: { ...runtime.projectState.project, months: { ...runtime.projectState.project.months, [action.month]: { ...slot, style } } } } };
+  }
+  if (action.type === 'set-typography') return { ...runtime, projectState: { ...runtime.projectState, project: { ...runtime.projectState.project, typography: { ...runtime.projectState.project.typography, ...(action.presetId ? { presetId: action.presetId } : {}), ...(action.scale ? { scale: action.scale } : {}) } } } };
   if (action.type === 'location') {
     if (action.location.screen === 'entry') return runtime;
     return { ...runtime, projectState: { ...runtime.projectState, project: { ...runtime.projectState.project,

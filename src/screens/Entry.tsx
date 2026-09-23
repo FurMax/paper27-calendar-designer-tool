@@ -5,7 +5,7 @@ export function Entry({ navigate, onStartEmpty, onImport, hasProject }: { naviga
   const picker = useRef<HTMLInputElement>(null);
   return <main className="entry-page">
     <div className="entry-copy">
-      <span className="eyebrow">Calendar Design Studio / 2027</span>
+      <span className="eyebrow">2027 Calendar Designer / 2027</span>
       <h1>2027 年日历</h1>
       <p className="lead">把喜欢的照片，放进 2027 的每个月。</p>
       <p className="muted">一次可选最多 12 张照片。接下来可以调整月份，也可以逐月添加。</p>

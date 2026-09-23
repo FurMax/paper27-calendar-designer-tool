@@ -1,6 +1,6 @@
 # Session 06 — Proposed Production Code Index
 
-**Status:** Approved planning map with the Session 06 Technical Gate on 2026-09-23. These source files do **not** exist yet; `prototype/` and `spikes/` remain non-production references. Create this tree only in a separately directed Session 07.
+**Status:** Session 06 approved planning map, now updated alongside active Session 07 implementation. The table retains proposed module responsibilities; the implemented files are listed below. `prototype/` and `spikes/` remain non-production references.
 
 | Proposed path | Responsibility | Milestone |
 |---|---|---|
@@ -29,6 +29,10 @@ M1 created `package.json`, `package-lock.json`, `vite.config.ts`, `tsconfig.json
 
 M2 added `src/domain/project.ts`, `src/domain/assignment.ts`, `src/app/ProjectContext.tsx`, `src/components/PhotoImage.tsx`, `src/features/photos/import.ts`, and `tests/unit/assignment.test.ts`. S01/S02/S03/S04 now read one in-memory project. The picker/decode foundation was connected during M2 so real photos could exercise S02; M3 still owns the complete import policy, crop math and gestures. `qa/session-07-m2.md` records browser evidence.
 
-M3 in progress: `src/domain/crop.ts` owns cover, normalized offsets, drag, anchored zoom and reset; `src/features/crop/CropSurface.tsx` adapts pointer gestures; `src/domain/renderModel.ts` now resolves the same crop for proof and later Canvas export. `src/features/photos/import.ts` attempts `createImageBitmap` then image-element decode before committing. `tests/unit/crop.test.ts` and `tests/unit/import.test.ts` cover boundaries. The desktop evidence and pending iPhone smoke are in `qa/session-07-m3.md`.
+M3 complete: `src/domain/crop.ts` owns cover, normalized offsets, drag, anchored zoom and reset; `src/features/crop/CropSurface.tsx` adapts pointer gestures; `src/domain/renderModel.ts` now resolves the same crop for proof and later Canvas export. `src/features/photos/import.ts` attempts `createImageBitmap` then image-element decode before committing. `tests/unit/crop.test.ts` and `tests/unit/import.test.ts` cover boundaries. Desktop evidence and the Product Owner-reported real iPhone smoke result are in `qa/session-07-m3.md`.
 
 The first iPhone LAN test exposed a secure-context dependency. `src/domain/id.ts` now centralizes UUID creation with a `getRandomValues` fallback; `tests/unit/id.test.ts` prevents a repeat. Import diagnostics in `src/features/photos/import.ts` distinguish decoder failure from ID failure. See `qa/session-07-m3.md`.
+
+M4 complete: `src/domain/color.ts` canonicalizes HEX/RGB and resolves Auto ink and the provisional Custom warning; `src/domain/typography.ts` defines three read-only curated systems and bounded scales; `src/components/StyleControls.tsx` provides desktop panel and phone sheet controls with explicit font load/fallback status. `src/assets/fonts/` contains the three candidate OFL faces and license notices. `src/domain/renderModel.ts` supplies the same resolved style to proof and later export. `tests/unit/style.test.ts` and `tests/browser/m4-check.mjs` cover the implementation. See `qa/session-07-m4.md`; The Product Owner reported no problems in the required real iPhone Safari font smoke.
+
+M4 also corrected production UI copy to the frozen Simplified Chinese boundary: month selectors/cards/panel labels use Chinese month labels, while Calendar Proof and live font samples remain English. The visible site name now matches `design/DESIGN.md`.

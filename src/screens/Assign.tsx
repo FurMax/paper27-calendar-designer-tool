@@ -1,6 +1,6 @@
 import { newId } from '../domain/id.ts';
 import { useRef, useState } from 'react';
-import { ALL_MONTHS, MONTH_NAMES, type MonthNumber } from '../domain/calendar.ts';
+import { ALL_MONTHS, type MonthNumber } from '../domain/calendar.ts';
 import { isMonthReady, readyCount, unassignedItems } from '../domain/project.ts';
 import type { AssignmentCommand } from '../domain/assignment.ts';
 import type { Location } from '../app/navigation.ts';
@@ -49,7 +49,7 @@ export function Assign({ navigate, onImport, origin }: { navigate: (location: Lo
   }
   const selectedMonth = selection?.kind === 'month' ? selection.month : undefined;
   const occupied = selectedMonth ? !!itemForMonth(selectedMonth) : false;
-  const title = selection?.kind === 'unassigned' ? '未分配照片' : selectedMonth ? `${MONTH_NAMES[selectedMonth - 1]} · ${occupied ? '已就绪' : '缺少照片'}` : '';
+  const title = selection?.kind === 'unassigned' ? '未分配照片' : selectedMonth ? `${selectedMonth} 月 · ${occupied ? '已就绪' : '缺少照片'}` : '';
   const actionLabel = mode === 'destination-move' ? '移动到空月份' : mode === 'destination-swap' ? '与另一月份交换' : mode === 'destination-reuse' ? '在另一月份使用' : mode === 'destination-assign' ? '分配到月份' : '';
   function allowedDestination(month: MonthNumber) {
     if (month === selectedMonth) return false;
@@ -65,7 +65,7 @@ export function Assign({ navigate, onImport, origin }: { navigate: (location: Lo
     <div className="month-grid">{ALL_MONTHS.map(month => {
       const item = itemForMonth(month);
       return <button key={month} className="month-card" type="button" onClick={() => select({ kind: 'month', month })}>
-        <span className="month-card__top"><strong>{MONTH_NAMES[month - 1]}</strong><small>{item ? '已就绪' : '缺少照片'}</small></span>
+        <span className="month-card__top"><strong>{month} 月</strong><small>{item ? '已就绪' : '缺少照片'}</small></span>
         <span className="month-card__placeholder">{item ? <PhotoImage blob={blobForItem(item.id)} /> : '＋'}</span>
         <span className="month-card__bottom">{item ? '照片操作' : '添加照片'} <span aria-hidden="true">↗</span></span>
       </button>;
@@ -77,7 +77,7 @@ export function Assign({ navigate, onImport, origin }: { navigate: (location: Lo
       {mode === 'actions' && selectedMonth && occupied && <div className="sheet-options"><button onClick={() => { close(); navigate({ screen: 'editor', month: selectedMonth }); }}>编辑这个月</button><button onClick={() => openPicker(selectedMonth)}>选择新照片替换</button>{count < 12 && <button onClick={() => setMode('destination-move')}>移动到空月份</button>}{count > 1 && <button onClick={() => setMode('destination-swap')}>与另一月份交换</button>}<button onClick={() => commit({ type: 'remove', source: selectedMonth }, [selectedMonth])}>从这个月移除</button><button onClick={() => setMode('destination-reuse')}>在另一月份使用同一照片</button></div>}
       {mode === 'actions' && selection.kind === 'unassigned' && <div className="sheet-options"><button onClick={() => setMode('destination-assign')}>分配到月份</button><button className="danger" onClick={() => setMode('confirm-delete')}>从项目中删除照片…</button></div>}
       {mode === 'choose-item' && selectedMonth && <div className="sheet-options">{unassigned.map(item => <button key={item.id} onClick={() => commit({ type: 'add', target: selectedMonth, itemId: item.id }, [selectedMonth])}>{state.assets[item.assetId].fileName}</button>)}</div>}
-      {mode.startsWith('destination') && <div className="destination-list">{ALL_MONTHS.map(month => <button key={month} disabled={!allowedDestination(month)} onClick={() => chooseDestination(month)}><span>{MONTH_NAMES[month - 1]}</span><small>{itemForMonth(month) ? '已就绪' : '缺少照片'}</small></button>)}</div>}
+      {mode.startsWith('destination') && <div className="destination-list">{ALL_MONTHS.map(month => <button key={month} disabled={!allowedDestination(month)} onClick={() => chooseDestination(month)}><span>{month} 月</span><small>{itemForMonth(month) ? '已就绪' : '缺少照片'}</small></button>)}</div>}
       {mode === 'confirm-swap' && selectedMonth && target && <div className="sheet-confirm"><p>交换 {selectedMonth} 月与 {target} 月的照片。两个月的裁切将恢复居中，背景色保留。</p><button className="button button--primary" onClick={() => commit({ type: 'swap', source: selectedMonth, target }, [selectedMonth, target])}>交换照片</button></div>}
       {mode === 'confirm-replace' && target && <div className="sheet-confirm"><p>{target} 月原有照片会进入未分配照片；新照片裁切恢复居中，背景色保留。</p><button className="button button--primary" onClick={() => { if (selection.kind === 'unassigned') commit({ type: 'replace', target, itemId: selection.itemId }, [target]); else commit({ type: 'reuse', source: selection.month, target, newItemId: newId(), createdAt: new Date().toISOString(), replace: true }, [target]); }}>替换照片</button></div>}
       {mode === 'confirm-delete' && selection.kind === 'unassigned' && <div className="sheet-confirm"><p>这张照片会从当前日历项目中移除。设备上的原始照片不会被删除。</p><button className="button danger" onClick={() => commit({ type: 'delete-unassigned', itemId: selection.itemId }, [])}>从项目中删除</button></div>}
