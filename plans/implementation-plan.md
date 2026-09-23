@@ -21,8 +21,8 @@
 | M2 — Project state and assignment | **Complete** | `qa/session-07-m2.md`; command tests and actual S02 browser flow passed. |
 | M3 — Import and crop | **Complete** | `qa/session-07-m3.md`: desktop checks passed; first iPhone import failure corrected; Product Owner reported repeat real iPhone smoke had no problems. Device and iOS details were not supplied. |
 | M4 — Calendar style and typography | **Complete** | `qa/session-07-m4.md`: 37 unit checks, production build, desktop and 390/320px Chrome checks passed; Product Owner reported no problems in the required real iPhone Safari font smoke. Device/iOS details were not supplied. |
-| M5 — Local persistence | **In Progress** | IndexedDB, autosave/restore and revision guard implementation underway. |
-| M6 — Single PNG | **Not Started** | — |
+| M5 — Local persistence | **Complete** | `qa/session-07-m5.md`: 40 unit checks, build, real IndexedDB save/restore, abort rollback, stale two-tab guard, failure/retry and Start New passed. |
+| M6 — Single PNG | **In Progress** | Dedicated Canvas renderer and one-month PNG handoff underway. |
 | M7 — Full set and desktop ZIP | **Not Started** | — |
 | M8 — Mobile hardening | **Not Started** | — |
 

@@ -23,3 +23,7 @@
 @media(max-width:350px){.calendar-proof__dates{padding:4% 7% 3%}.calendar-proof__grid{height:68%;grid-template-rows:repeat(6,minmax(0,1fr));line-height:1}}
 
 .properties-panel__head h2{font-family:inherit}
+
+.feedback--error{background:#fff1ed;color:#9d302b;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.feedback--error .button{min-height:34px;font-size:12px}.recovery-page{min-height:60dvh;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}.recovery-page p{color:#66706b}.confirm-actions{display:flex;gap:8px}.confirm-actions .button{flex:1}.sheet-confirm[role=alertdialog] .button{width:100%}
+
+.feedback--error .button{position:static;padding:6px 10px;color:#9d302b;font-size:12px}

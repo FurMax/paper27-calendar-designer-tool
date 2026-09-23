@@ -1,11 +1,11 @@
-import { createContext, useContext, useReducer, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useReducer, useRef, useState, type ReactNode } from 'react';
 import { addImportedAssets, applyAssignment, type AssignmentCommand, type CommandResult } from '../domain/assignment.ts';
-import { createEmptyProject, type PhotoAsset, type ProjectState } from '../domain/project.ts';
+import { createEmptyProject, type CalendarProject, type CropState, type HexColor, type PhotoAsset, type ProjectState, type TextScale, type TypographyPresetId } from '../domain/project.ts';
 import type { Location } from './navigation.ts';
 import type { MonthNumber } from '../domain/calendar.ts';
 import { updateMonthCrop } from '../domain/crop.ts';
-import type { CropState, HexColor, TextScale, TypographyPresetId } from '../domain/project.ts';
 import { canonicalHex } from '../domain/color.ts';
+import { commitProject, loadProject, replaceProject, StaleProjectError, type ExpectedRevision } from '../persistence/indexedDb.ts';
 
 type Action =
   | { type: 'start-empty'; id: string }
@@ -17,55 +17,175 @@ type Action =
   | { type: 'set-background'; month: MonthNumber; color: HexColor }
   | { type: 'set-ink'; month: MonthNumber; mode: 'auto' | 'custom'; color?: HexColor }
   | { type: 'set-typography'; presetId?: TypographyPresetId; scale?: TextScale };
-
-interface RuntimeState { projectState: ProjectState | null; affectedMonths: MonthNumber[] }
-
-function reducer(runtime: RuntimeState, action: Action): RuntimeState {
-  if (action.type === 'start-empty') return { projectState: createEmptyProject(action.id), affectedMonths: [] };
+type InternalAction = Action | { type: 'restore'; state: ProjectState | null } | { type: 'clear' } | { type: 'save-ack'; project: CalendarProject };
+interface RuntimeState { projectState: ProjectState | null; affectedMonths: MonthNumber[]; changeId: number }
+const INITIAL: RuntimeState = { projectState: null, affectedMonths: [], changeId: 0 };
+function changed(runtime: RuntimeState, projectState: ProjectState, affectedMonths = runtime.affectedMonths): RuntimeState {
+  return { projectState, affectedMonths, changeId: runtime.changeId + 1 };
+}
+function reducer(runtime: RuntimeState, action: InternalAction): RuntimeState {
+  if (action.type === 'restore') return { projectState: action.state, affectedMonths: [], changeId: 0 };
+  if (action.type === 'clear') return INITIAL;
+  if (action.type === 'save-ack') {
+    if (!runtime.projectState || runtime.projectState.project.id !== action.project.id) return runtime;
+    return { ...runtime, projectState: { ...runtime.projectState, project: { ...runtime.projectState.project, revision: action.project.revision, updatedAt: action.project.updatedAt } } };
+  }
+  if (action.type === 'start-empty') return changed(runtime, createEmptyProject(action.id), []);
   if (action.type === 'start-import') {
     const result = addImportedAssets(createEmptyProject(action.id), action.assets, action.itemIds);
-    return { projectState: result.state, affectedMonths: result.affectedMonths };
+    return changed(runtime, result.state, result.affectedMonths);
   }
   if (!runtime.projectState) return runtime;
-  if (action.type === 'set-crop') return { ...runtime, projectState: updateMonthCrop(runtime.projectState, action.month, action.crop) };
+  if (action.type === 'set-crop') return changed(runtime, updateMonthCrop(runtime.projectState, action.month, action.crop));
   if (action.type === 'set-background' || action.type === 'set-ink') {
     const color = action.type === 'set-background' ? canonicalHex(action.color) : action.mode === 'custom' ? canonicalHex(action.color ?? '') : null;
     if ((action.type === 'set-background' || action.mode === 'custom') && !color) return runtime;
     const slot = runtime.projectState.project.months[action.month];
     const style = action.type === 'set-background' ? { ...slot.style, background: color! } :
       { ...slot.style, text: action.mode === 'auto' ? { mode: 'auto' as const } : { mode: 'custom' as const, color: color! } };
-    return { ...runtime, projectState: { ...runtime.projectState, project: { ...runtime.projectState.project, months: { ...runtime.projectState.project.months, [action.month]: { ...slot, style } } } } };
+    return changed(runtime, { ...runtime.projectState, project: { ...runtime.projectState.project, months: { ...runtime.projectState.project.months, [action.month]: { ...slot, style } } } });
   }
-  if (action.type === 'set-typography') return { ...runtime, projectState: { ...runtime.projectState, project: { ...runtime.projectState.project, typography: { ...runtime.projectState.project.typography, ...(action.presetId ? { presetId: action.presetId } : {}), ...(action.scale ? { scale: action.scale } : {}) } } } };
+  if (action.type === 'set-typography') return changed(runtime, { ...runtime.projectState, project: { ...runtime.projectState.project, typography: { ...runtime.projectState.project.typography, ...(action.presetId ? { presetId: action.presetId } : {}), ...(action.scale ? { scale: action.scale } : {}) } } });
   if (action.type === 'location') {
     if (action.location.screen === 'entry') return runtime;
-    return { ...runtime, projectState: { ...runtime.projectState, project: { ...runtime.projectState.project,
-      lastLocation: action.location.screen === 'editor' ? { screen: 'editor', month: action.location.month } : { screen: action.location.screen } } } };
+    return changed(runtime, { ...runtime.projectState, project: { ...runtime.projectState.project,
+      lastLocation: action.location.screen === 'editor' ? { screen: 'editor', month: action.location.month } : { screen: action.location.screen } } });
   }
   let result: CommandResult;
   if (action.type === 'command') result = applyAssignment(runtime.projectState, action.command);
   else {
     const occupiedTarget = action.target && runtime.projectState.project.months[action.target].photoItemId;
     result = addImportedAssets(runtime.projectState, action.assets, action.itemIds, occupiedTarget ? null : action.target);
-    if (occupiedTarget && action.target) {
-      result = applyAssignment(result.state, { type: 'replace', target: action.target, itemId: action.itemIds[0] });
-    }
+    if (occupiedTarget && action.target) result = applyAssignment(result.state, { type: 'replace', target: action.target, itemId: action.itemIds[0] });
   }
-  return { projectState: result.state, affectedMonths: result.affectedMonths };
+  return changed(runtime, result.state, result.affectedMonths);
 }
 
+type SaveStatus = 'idle' | 'saving' | 'saved' | 'failed' | 'conflict';
 interface ProjectController {
   state: ProjectState | null;
   affectedMonths: MonthNumber[];
-  dispatch: React.Dispatch<Action>;
+  hydrated: boolean;
+  restoreError: string;
+  retryRestore: () => void;
+  saveStatus: SaveStatus;
+  saveError: string;
+  retrySave: () => void;
+  replaceActive: () => Promise<boolean>;
+  dispatch: (action: Action) => void;
 }
 const Context = createContext<ProjectController | null>(null);
 
 export function ProjectProvider({ children }: { children: ReactNode }) {
-  const [runtime, dispatch] = useReducer(reducer, { projectState: null, affectedMonths: [] });
-  return <Context.Provider value={{ state: runtime.projectState, affectedMonths: runtime.affectedMonths, dispatch }}>{children}</Context.Provider>;
-}
+  const [runtime, innerDispatch] = useReducer(reducer, INITIAL);
+  const [restoreAttempt, setRestoreAttempt] = useState(0);
+  const [hydrated, setHydrated] = useState(false);
+  const [restoreError, setRestoreError] = useState('');
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle');
+  const [saveError, setSaveError] = useState('');
+  const expectedRef = useRef<ExpectedRevision | null>(null);
+  const savedChangeRef = useRef(0);
+  const latestRef = useRef<{ state: ProjectState; changeId: number } | null>(null);
+  const saveTaskRef = useRef<Promise<void> | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const replacingRef = useRef(false);
+  const statusRef = useRef<SaveStatus>('idle');
+  const runtimeRef = useRef(runtime);
+  const channelRef = useRef<BroadcastChannel | null>(null);
+  runtimeRef.current = runtime;
+  function status(next: SaveStatus) { statusRef.current = next; setSaveStatus(next); }
 
+  useEffect(() => {
+    let active = true;
+    setHydrated(false);
+    loadProject().then(saved => {
+      if (!active) return;
+      expectedRef.current = saved ? { id: saved.project.id, revision: saved.project.revision } : null;
+      savedChangeRef.current = 0;
+      innerDispatch({ type: 'restore', state: saved });
+      setRestoreError(''); setHydrated(true); status(saved ? 'saved' : 'idle');
+    }).catch(error => { if (active) { setRestoreError(error instanceof Error ? error.message : '无法读取已保存的项目。'); setHydrated(false); } });
+    return () => { active = false; };
+  }, [restoreAttempt]);
+
+  useEffect(() => {
+    if (typeof BroadcastChannel === 'undefined') return;
+    const channel = new BroadcastChannel('calendar-studio-project-v1');
+    channelRef.current = channel;
+    channel.onmessage = event => {
+      const message = event.data as { id: string | null; revision: number } | null;
+      if (!message || !runtimeRef.current.projectState) return;
+      const expected = expectedRef.current;
+      if (!expected || message.id !== expected.id || message.revision > expected.revision) {
+        status('conflict'); setSaveError('此项目已在其他标签页更新。请刷新页面，避免覆盖较新的内容。');
+        if (timerRef.current) clearTimeout(timerRef.current);
+      }
+    };
+    return () => { channel.close(); channelRef.current = null; };
+  }, []);
+
+  const flush = useCallback((): Promise<void> => {
+    if (saveTaskRef.current) return saveTaskRef.current;
+    const task = (async () => {
+      while (!replacingRef.current && statusRef.current !== 'conflict' && latestRef.current && latestRef.current.changeId > savedChangeRef.current) {
+        const snapshot = latestRef.current;
+        try {
+          const saved = await commitProject(snapshot.state, expectedRef.current);
+          expectedRef.current = { id: saved.id, revision: saved.revision };
+          savedChangeRef.current = snapshot.changeId;
+          innerDispatch({ type: 'save-ack', project: saved });
+          channelRef.current?.postMessage({ id: saved.id, revision: saved.revision });
+          setSaveError('');
+        } catch (error) {
+          status(error instanceof StaleProjectError ? 'conflict' : 'failed');
+          setSaveError(error instanceof Error ? error.message : '本地保存失败，请重试。');
+          return;
+        }
+      }
+      if (!replacingRef.current && statusRef.current !== 'conflict') status('saved');
+    })();
+    saveTaskRef.current = task.finally(() => { saveTaskRef.current = null; });
+    return saveTaskRef.current;
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated || !runtime.projectState || runtime.changeId <= savedChangeRef.current || statusRef.current === 'conflict' || replacingRef.current) return;
+    latestRef.current = { state: runtime.projectState, changeId: runtime.changeId };
+    status('saving');
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => { timerRef.current = null; void flush(); }, 350);
+    return () => { if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; } };
+  }, [hydrated, runtime.changeId, flush]);
+
+  const dispatch = useCallback((action: Action) => {
+    if (statusRef.current === 'conflict' || replacingRef.current) return;
+    innerDispatch(action);
+  }, []);
+  const retrySave = useCallback(() => {
+    if (statusRef.current === 'conflict') return;
+    status('saving'); void flush();
+  }, [flush]);
+  const retryRestore = useCallback(() => setRestoreAttempt(value => value + 1), []);
+  const replaceActive = useCallback(async (): Promise<boolean> => {
+    if (replacingRef.current || statusRef.current === 'conflict') return false;
+    replacingRef.current = true;
+    if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
+    if (saveTaskRef.current) await saveTaskRef.current;
+    try {
+      await replaceProject(expectedRef.current);
+      expectedRef.current = null; savedChangeRef.current = 0; latestRef.current = null;
+      innerDispatch({ type: 'clear' });
+      channelRef.current?.postMessage({ id: null, revision: 0 });
+      setSaveError(''); status('idle');
+      return true;
+    } catch (error) {
+      status(error instanceof StaleProjectError ? 'conflict' : 'failed');
+      setSaveError(error instanceof Error ? error.message : '无法新建日历，原项目仍已保留。');
+      return false;
+    } finally { replacingRef.current = false; }
+  }, []);
+  return <Context.Provider value={{ state: runtime.projectState, affectedMonths: runtime.affectedMonths, hydrated, restoreError, retryRestore, saveStatus, saveError, retrySave, replaceActive, dispatch }}>{children}</Context.Provider>;
+}
 export function useProject(): ProjectController {
   const value = useContext(Context);
   if (!value) throw new Error('ProjectProvider missing');
