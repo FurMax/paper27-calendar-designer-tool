@@ -1,7 +1,7 @@
 # Session 07 — Complete implementation consistency audit
 
 **Date:** 2026-09-23
-**Status:** M1–M8 implemented; awaiting Product Owner Implementation Review. This audit checks the original Session 07 request against repository evidence and does not open Session 08 or claim release.
+**Status:** M1–M8 implemented; Product Owner Implementation Review Gate passed on 2026-09-23 after the approved revisions. The table below preserves the pre-revision milestone audit; this record does not open Session 08 or claim release.
 
 | Original requirement | Result | Evidence |
 |---|---|---|
@@ -16,7 +16,7 @@
 | M8 mobile hardening | PASS for implementation; device risks deferred | 390/320px layout, touch emulation, 75.5 MB 12-distinct-JPEG storage/reload, 42.45 MB batch and reload interruption, dev-only Web Share capability probe. Physical device/HTTPS items are explicitly NOT TESTED. `qa/session-07-m8.md`. |
 | UI fidelity / no scope expansion | COVERED within implementation verification | Production follows frozen Direction A structure and Chinese UI. The M8 probe is a QA-only page outside the product build. No Product Scope, IA, flow, screen hierarchy or visual-system change was made. Formal visual/accessibility matrix remains Session 08. |
 | Documentation and architecture consistency | COVERED | `AGENTS.md`, `docs/code-index.md`, `docs/export-pipeline.md`, `docs/testing-strategy.md`, and `plans/implementation-plan.md` reflect actual implementation and deferred risks. ZIP uses pinned `fflate@0.8.2` pass-through; photo decode lives in `import.ts` rather than the proposed separate `decode.ts`. Node's built-in test runner and isolated Chrome CDP browser scripts replace the planning-stage Vitest/Playwright suggestions. No production architecture was copied from prototype/spikes. |
-| Session boundary | COVERED | No production deployment, release sign-off, Session 08 implementation or primary mobile delivery decision. Status is **Session 07 — Awaiting Product Owner Implementation Review**. |
+| Session boundary | COVERED | No production deployment, release sign-off, Session 08 implementation or primary mobile delivery decision. At the original M8 audit, status was awaiting Product Owner Implementation Review; the gate result is recorded in the closeout below. |
 
 ## Remaining Session 08 QA requirements
 
@@ -31,3 +31,6 @@ These are deferred validation and product decisions, not implied passes from Chr
 ## Approved revision addendum — 2026-09-23
 
 The Product Owner subsequently approved and the implementation added the default 1252×1843 print PNG with 100×150 mm trim, approximately 3 mm bleed and 300 PPI metadata, plus optional 1200×1800 digital output. The grouped palette, cropped-photo pixel sampler and 80%/100%/120% type scales are also implemented. The original M1–M8 table above is a historical milestone audit; these are controlled amendments after M8. qa/session-07-approved-revisions.md records new bounded tests and remaining real-device/provider checks. The Product Owner also confirmed iPhone ZIP extraction, though inspection of all twelve PNGs there is unrecorded. Mobile primary multi-file handoff, one-action direct Photos and formal Session 08 release QA remain open.
+## Session 07 implementation review closeout — 2026-09-23
+
+After inspecting the revised effect, the Product Owner confirmed that it looks good and requested continuation. This passes the Session 07 Implementation Review Gate for the implemented product and approved revisions. The M1–M8 and revision evidence remain scoped implementation verification. It does not change the NOT TESTED real-device/provider rows, grant release acceptance, select a mobile primary multi-file handoff, resolve one-action direct iPhone Photos, or start Session 08.

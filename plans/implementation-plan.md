@@ -35,3 +35,6 @@ Milestones are the dependency sequence for the active Session 07; advance only t
 ## Post-M8 Product Owner-approved Session 07 revision
 
 The Product Owner approved an additional print export variant with a 100×150 mm trim inside a 106×156 mm full file, approximately 3 mm bleed, nominal 300 PPI and 1252×1843 PNG dimensions. This is the default for single and twelve-page exports; the original 1200×1800 digital variant remains selectable. The Product Owner also approved the grouped background palette, exact photo color sampling, and 80%/100%/120% typography scales. The implementation and bounded verification are recorded in qa/session-07-approved-revisions.md and the two Session 07 UI/UX change requests. These changes amend the historical M4/M6/M7 baselines above; they do not start Session 08 or close formal device, provider or release QA.
+## Session 07 Implementation Review Gate
+
+**Passed on 2026-09-23.** The Product Owner inspected the approved print, color and typography revision and confirmed that the current effect looks good. M1–M8 and the approved follow-up are complete for Session 07. The remaining real-device, trusted-HTTPS multi-file, printer-provider and formal release checks stay in Session 08; no deployment or mobile handoff decision is made by this gate.
