@@ -1,3 +1,4 @@
+import { newId } from '../domain/id.ts';
 import { useEffect, useState } from 'react';
 import { parseLocation, locationPath, type Location } from './navigation.ts';
 import { Entry } from '../screens/Entry.tsx';
@@ -33,18 +34,18 @@ function AppContent() {
     window.scrollTo(0, 0);
   }
   function startEmpty() {
-    dispatch({ type: 'start-empty', id: crypto.randomUUID() });
+    dispatch({ type: 'start-empty', id: newId() });
     navigate({ screen: 'assign' });
   }
   async function importFiles(files: FileList, target?: MonthNumber) {
     if (files.length === 0) return;
     try {
       const result = await decodePhotoSelection(files);
-      if (result.assets.length === 0) { setNotice('无法读取所选照片，请换一张重试。'); return; }
-      const itemIds = result.assets.map(() => crypto.randomUUID());
+      if (result.assets.length === 0) { const first = result.diagnostics?.[0]; setNotice(first ? `无法读取：${first.fileName}（${first.mime}，${Math.round(first.byteSize / 1024)} KB）。${first.reason}` : '无法读取所选照片，请换一张重试。'); return; }
+      const itemIds = result.assets.map(() => newId());
       if (state) dispatch({ type: 'import', assets: result.assets, itemIds, target });
       else {
-        dispatch({ type: 'start-import', id: crypto.randomUUID(), assets: result.assets, itemIds });
+        dispatch({ type: 'start-import', id: newId(), assets: result.assets, itemIds });
         navigate({ screen: 'assign' });
       }
       setNotice(result.unreadable.length ? `无法读取：${result.unreadable.join('、')}。其他照片已加入。` : '照片已加入当前日历。');

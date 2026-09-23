@@ -1,3 +1,4 @@
+import { newId } from '../domain/id.ts';
 import { useRef, useState } from 'react';
 import { ALL_MONTHS, MONTH_NAMES, type MonthNumber } from '../domain/calendar.ts';
 import { isMonthReady, readyCount, unassignedItems } from '../domain/project.ts';
@@ -43,7 +44,7 @@ export function Assign({ navigate, onImport, origin }: { navigate: (location: Lo
       else commit({ type: 'add', target: month, itemId: selection.itemId }, [month]);
     } else if (mode === 'destination-reuse' && selection.kind === 'month') {
       if (state.project.months[month].photoItemId) setMode('confirm-replace');
-      else commit({ type: 'reuse', source: selection.month, target: month, newItemId: crypto.randomUUID(), createdAt: new Date().toISOString(), replace: false }, [month]);
+      else commit({ type: 'reuse', source: selection.month, target: month, newItemId: newId(), createdAt: new Date().toISOString(), replace: false }, [month]);
     }
   }
   const selectedMonth = selection?.kind === 'month' ? selection.month : undefined;
@@ -78,7 +79,7 @@ export function Assign({ navigate, onImport, origin }: { navigate: (location: Lo
       {mode === 'choose-item' && selectedMonth && <div className="sheet-options">{unassigned.map(item => <button key={item.id} onClick={() => commit({ type: 'add', target: selectedMonth, itemId: item.id }, [selectedMonth])}>{state.assets[item.assetId].fileName}</button>)}</div>}
       {mode.startsWith('destination') && <div className="destination-list">{ALL_MONTHS.map(month => <button key={month} disabled={!allowedDestination(month)} onClick={() => chooseDestination(month)}><span>{MONTH_NAMES[month - 1]}</span><small>{itemForMonth(month) ? '已就绪' : '缺少照片'}</small></button>)}</div>}
       {mode === 'confirm-swap' && selectedMonth && target && <div className="sheet-confirm"><p>交换 {selectedMonth} 月与 {target} 月的照片。两个月的裁切将恢复居中，背景色保留。</p><button className="button button--primary" onClick={() => commit({ type: 'swap', source: selectedMonth, target }, [selectedMonth, target])}>交换照片</button></div>}
-      {mode === 'confirm-replace' && target && <div className="sheet-confirm"><p>{target} 月原有照片会进入未分配照片；新照片裁切恢复居中，背景色保留。</p><button className="button button--primary" onClick={() => { if (selection.kind === 'unassigned') commit({ type: 'replace', target, itemId: selection.itemId }, [target]); else commit({ type: 'reuse', source: selection.month, target, newItemId: crypto.randomUUID(), createdAt: new Date().toISOString(), replace: true }, [target]); }}>替换照片</button></div>}
+      {mode === 'confirm-replace' && target && <div className="sheet-confirm"><p>{target} 月原有照片会进入未分配照片；新照片裁切恢复居中，背景色保留。</p><button className="button button--primary" onClick={() => { if (selection.kind === 'unassigned') commit({ type: 'replace', target, itemId: selection.itemId }, [target]); else commit({ type: 'reuse', source: selection.month, target, newItemId: newId(), createdAt: new Date().toISOString(), replace: true }, [target]); }}>替换照片</button></div>}
       {mode === 'confirm-delete' && selection.kind === 'unassigned' && <div className="sheet-confirm"><p>这张照片会从当前日历项目中移除。设备上的原始照片不会被删除。</p><button className="button danger" onClick={() => commit({ type: 'delete-unassigned', itemId: selection.itemId }, [])}>从项目中删除</button></div>}
       <button className="button button--quiet sheet-cancel" onClick={close}>取消</button>
     </section></div>}

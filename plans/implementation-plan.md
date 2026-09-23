@@ -19,8 +19,8 @@
 |---|---|---|
 | M1 — Shell and calendar engine | **Complete** | `qa/session-07-m1.md`; 13 unit checks, production build and desktop/phone browser smoke passed. |
 | M2 — Project state and assignment | **Complete** | `qa/session-07-m2.md`; command tests and actual S02 browser flow passed. |
-| M3 — Import and crop | **Not Started** | — |
-| M4 — Calendar style and typography | **Not Started** | — |
+| M3 — Import and crop | **Complete** | `qa/session-07-m3.md`: desktop checks passed; first iPhone import failure corrected; Product Owner reported repeat real iPhone smoke had no problems. Device and iOS details were not supplied. |
+| M4 — Calendar style and typography | **In Progress** | Implementation and required real iPhone font smoke pending. |
 | M5 — Local persistence | **Not Started** | — |
 | M6 — Single PNG | **Not Started** | — |
 | M7 — Full set and desktop ZIP | **Not Started** | — |
