@@ -18,7 +18,7 @@
 | Milestone | Status | Evidence |
 |---|---|---|
 | M1 — Shell and calendar engine | **Complete** | `qa/session-07-m1.md`; 13 unit checks, production build and desktop/phone browser smoke passed. |
-| M2 — Project state and assignment | **Not Started** | — |
+| M2 — Project state and assignment | **Complete** | `qa/session-07-m2.md`; command tests and actual S02 browser flow passed. |
 | M3 — Import and crop | **Not Started** | — |
 | M4 — Calendar style and typography | **Not Started** | — |
 | M5 — Local persistence | **Not Started** | — |
