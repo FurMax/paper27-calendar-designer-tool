@@ -199,7 +199,7 @@ V1 output remains one arbitrary solid background color per month. There are no g
 - Desktop preserves 4 × 3 and phone preserves 2 × 6.
 - Cards resemble a coordinated paper Calendar Set, not downloadable file rows.
 - Incomplete state shows named Missing month recovery and keeps Ready-month PNG actions available.
-- Complete state gives the full-set generation action the sole filled export Primary. It means 12 separate monthly PNGs; desktop ZIP is a delivery package, while the preferred mobile handoff awaits trusted-HTTPS real-device validation.
+- Complete state gives the full-set generation action the sole filled export Primary. It means twelve separate monthly PNGs packaged in one downloadable ZIP on desktop and mobile. The mobile user opens/extracts the ZIP in Files/Downloads; production multi-file Share and automatic Photos import are outside V1 by the Session 08 Product Owner decision.
 
 ## 8. Transient Surface Application
 
@@ -291,3 +291,84 @@ This closeout does not begin Technical Validation or Technical Architecture; the
 ## Session 07 approved visual amendment
 
 The Product Owner approved clearer frozen-UI changes on 2026-09-23. Background controls now group a large current-color swatch/HEX, four named Quick Colors and precise system-picker/HEX/RGB inputs. A distinct **从照片取色** action uses the selected photo inside a touch-friendly sheet, leaving the desktop native picker intact. Text-size cards show visibly spaced 80% / 100% / 120% previews. Export controls name the default print and optional digital PNG sizes; the proof depicts the 100 × 150 mm trim and states that print bleed is added outside the preview. These amendments supersede earlier quiet 1200 × 1800-only export metadata, without changing the Direction A typography families, calendar layout, or four core screens.
+
+## Session 08 controlled output refinement
+
+The approved Direction A layout remains. S03/S04 export controls add PNG (default) and JPG choices beside print/digital size. Month Editor shows a compact amber guidance note for a broad pale edge in the visible crop; T05 names affected months with Edit and Continue actions before generation. The note is non-blocking because an intentionally white photo background is valid. Print photo bleed uses genuine source pixels with the minimum extra cover scale; the selected print proof displays this actual crop. This amendment follows the Session 08 JPG and photo-edge change requests; historical PNG-only prototype copy above is not current production copy.
+
+
+## V1 Enhancement visual amendment — awaiting Product Owner review
+
+The current patch uses a cool desk (`#F3F6F4`), near-white primary surface (`#FCFDFB`), graphite ink (`#1D2925`), quiet rule (`#D8E0DD`), Baby Blue primary (`#B9D7F2` with dark `#17324A` text), soft blue selected surface (`#EAF3FA`), and focus blue (`#78A9D4`) with a dark boundary. The Editor workspace alone has a very faint 32px drafting grid; the calendar proof remains dominant and Review remains cleaner. Primary actions use flat Baby Blue; month selection uses soft blue with a restrained border, and navigation uses a thin blue underline. Milk Mint (`#CDE9DD` / `#EFF8F3`) marks photo/smart recommendations and lightweight success feedback only. Instrument Serif forms a text-based Calendar Design Studio wordmark slot with a small descriptor. A minimal `27` favicon is shell-only. Three photo-color swatches and a before/after full-set color sheet are new UI surfaces. Important dates are red-toned date numbers only. Motion is under 200ms and disabled for reduced-motion. This Product Owner color revision supersedes the earlier ink-teal direction as well as the older site-name and cobalt-blue shell references above; the calendar type systems and artwork geometry do not change.
+
+2026-09-24 Background Color correction: the current month's photo-derived swatches are visible in the controls, framed with restrained Milk Mint. Fixed Common Colors remain a separate row; exact pixel picking remains in its dialog. The recommendation swatches never use the Product UI Baby Blue token and never enter export until a user chooses one as the calendar background.
+
+## V1 Experience Polish — 2026-09-24
+
+Calendar artwork remains the strongest visual object. The Editor proofing grid moves from 10% to 8% blue-gray opacity; the control panel keeps its near-white surface and uses title weight, spacing and small dividers for hierarchy. The existing wordmark has slightly calmer spacing and responsive header balance. Photo recommendations use larger swatches with Main/Companion/Accent or labeled tonal-extension names in Chinese, plus a clear selected check. The twelve-color Review confirmation now reads as a compact palette index and one live calendar proof. Review completion, export month progress, and the three-page Entry stack add restrained feedback. Motion is limited to brief proof/chip/confirmation transitions, all disabled by reduced-motion preference. These are product UI changes; calendar backgrounds and exported artwork are governed only by project state.
+
+## V1 Motion / Interaction Polish — 2026-09-24
+
+The Product Owner directed a restrained motion pass without changing the layout or visual system. CSS tokens use 140ms fast, 200ms normal and 1000ms desktop / 900ms touch Entry card durations, with eased transform/opacity entrances and short color/border state changes. After Product Owner feedback that the ≈1s version was too quick and the ≈1.8s version a little slow, the Entry stack appears once back-to-front in about 1.4s desktop / 1.2s touch total with an ease-in-out curve; there is no idle loop. Month proof moves at most 5px and fades briefly; the right heading only fades. Photo recommendations reveal with 60ms spacing. Full-set and export chips track real work. Important Date press scales to 0.96; Review hover lifts 2px only on hover-capable devices. Reduced-motion disables entrances, stagger and transforms so the final state is immediately visible. The crop surface, exported calendar artwork and Baby Blue/Milk Mint roles remain unchanged. No GSAP was required.
+
+## V1 Focused Experience Upgrade — awaiting Product Owner review
+
+This later directed amendment supersedes the CSS-only motion implementation for Entry stack, Editor month switching, and Review whole-set palette. Entry now uses a layered GSAP timeline with slight offsets, rotation and scale; its one-time total remains close to the owner-accepted prior rhythm. A fine-pointer-only response is limited to 4px rear spread and 2px front lift. After the Product Owner reported a double flash in the first GSAP month switch, the Editor now keeps the displayed proof and photo fully visible until the target photo is decoded, then reveals the target proof once over it; the old proof leaves only after that reveal. The title, Ready state and control panel stay fixed. The Product Owner confirmed this correction has no visible flash on the LAN page. Review shows genuine per-month color results, a coordinated 12-color preview and a visible applied-color ribbon with a restrained card wave. User photos, selected calendar colors and exported artwork remain independent of product UI motion. Reduced-motion resolves directly to final positions. Review card hover, Important Date, per-month photo-color chips and real export progress remain CSS. No fourth animated feature is planned unless Product Owner review finds a concrete gap.
+
+
+## V1.1 Part 1 amendment — pending Product Owner review
+
+The earlier four Quick Colors and texture exclusion above describe the frozen V1 baseline. The 2026-09-25 Product Owner direction supersedes those two points for this bounded V1.1 patch: ten named fixed Common Colors sit beside the existing three actual-photo recommendations; six low-opacity textures are selectable per month and render only beneath the calendar text area. The proof/export artwork receives the selected texture, whereas the workspace grid remains UI-only. The phone Background sheet contains the same choices. Fresh Baby Blue remains the action color, Milk Mint identifies photo recommendations, and the neutral desk stays subordinate to the artwork. Calendar typography, English month labels, crop geometry and layout do not change. See design/ui-ux-change-request-v1-1-part-1.md and qa/v1-1-part-1.md.
+## V1.1 Editor desk hierarchy (2026-09-25)
+
+The quick rail uses the existing soft surface, muted borders, Baby Blue selection, and Milk Mint recommendation roles. Ten fixed colors use two rows of five small full-color swatches; name and HEX appear on pointer hover or keyboard focus. Photo suggestion cards preserve names and HEX while using less height. The lower Style, Dates, and Export sections use spacing and type hierarchy instead of nested heavy cards. These are product UI changes only and do not affect calendar art or exports.
+## Current Editor color presentation (2026-09-25)
+
+The ten fixed colors form two rows of five round samples, with a fine selected ring and name + HEX on hover or keyboard focus. The three photo-derived cards retain labels/HEX and use circular samples. Precise color inputs sit under the shortcuts in the desktop rail and phone background sheet. Below, Style and Dates share the first workbench level; Export is the final full-width panel. This supersedes the square-swatch and lower-precision placement documented above.
+## Current compact color and texture visual system (2026-09-25)
+
+Background is a single restrained surface with 43 px row rhythm and small left labels. The 28–32 px recommendation/common circles use a fine two-pixel selected ring and keyboard focus. Common colors stay on one line with local horizontal scrolling; Custom expands only when requested. The previous current-color card and visible recommendation HEX text are removed. Texture uses a text Clear action and five 40 px thumbnails on one line, with selected outline and name tooltip. This supersedes the earlier large card, two-row grid, and always-visible precise-color treatment.
+
+## V1.1 Editor rail refinement — 2026-09-25
+
+Use one right-side settings rail with a 24px section rhythm and thin separators. Compact round background swatches and 40px texture previews retain their earlier styling. Style and Date use rail section titles instead of standalone lower cards. The left artwork retains its 2:3 ratio and fits the desktop viewport while sticky. The product UI palette does not affect artwork color choices.
+
+## V1.1 desktop Editor refinement — 2026-09-25
+
+Within the desktop Editor, retain Baby Blue selection and the existing dark-blue text token for high-contrast white CTA text. Avoid card elevation outside the white proof canvas. Use 24px section rhythm, cool-neutral thin dividers, segmented type controls and radio export rows. Selected UI states use pale blue with blue border; swatches/texture/date cells use a blue ring. The grid is hidden until photo repositioning. Do not propagate these UI colors into calendar artwork or the print renderer.
+
+## V1.1 central Editor workspace surface — 2026-09-25
+
+The earlier desktop note that the grid appears only during photo repositioning is superseded by the Product Owner's new direction. The Editor proof workspace alone uses `#F7F9FC` and one uniform 24px grid in `rgba(108, 132, 164, 0.055)` at rest; its prior drag-only overlay is removed. The calendar proof retains its size and square corners, with a 1px `rgba(80, 105, 140, 0.10)` border and `0 10px 28px rgba(34, 53, 78, 0.08)` shadow. Month navigation, Inspector, Review, calendar state and export artwork remain unchanged. See `design/ui-ux-change-request-v1-1-workspace-grid.md` and `qa/v1-1-workspace-grid.md`.
+
+## V1.1 texture clarity correction — 2026-09-25
+
+The earlier deliberately faint wave, dot and paper tiles became hard to identify after proof/thumbnail downscaling. The current three patterns use larger marks at restrained opacity. Paper now uses a sparser 96px fiber tile with varied directions, while its proof/selector scale matches the native export pattern. These textures still affect only the calendar area below the photo; text, color choice, crop and output geometry do not change. See `design/ui-ux-change-request-v1-1-texture-clarity.md` and `qa/v1-1-texture-clarity.md`.
+
+## V1.1 Editor single-month export entry — 2026-09-25
+
+The Product Owner superseded the Editor-only bottom export card and its radio export rows. The Editor title now pairs a quiet secondary `导出本月⌄` with the stronger `预览与导出` workflow action. Four compact menu rows directly select print/digital PNG/JPG; no palette or full-set action appears in this menu. The menu and its small download status overlay the page without changing the proof, rail or navigation geometry. Review still owns full-set palette and batch delivery. See `ui-ux-change-request-v1-1-month-export-menu.md`.
+
+## V1.1 Retro type and linen-paper amendment (2026-09-25)
+
+The Product Owner adds one bounded English Calendar preset, **复古** (locally bundled Fraunces), and one lower-calendar texture, **亚麻纸**. Current options total four type presets and seven textures. The previously documented three/six counts describe earlier approved stages. The new face does not alter Simplified Chinese product UI typography; the new paper pattern never overlays photos. See `design/ui-ux-change-request-v1-1-retro-linen.md`.
+
+## V1.1 tracing-paper replacement (2026-09-25)
+
+The recently added 亚麻纸 is retired and replaced in place by **硫酸纸**: a visible, smooth translucent-satin wash with a restrained sheet edge in the lower calendar area. The choice count stays seven; prior linen references document the superseded intermediate version. Old linen saves load as 硫酸纸. See `design/ui-ux-change-request-v1-1-tracing-paper.md`.
+
+## Current polka-dot texture, 2026-09-25
+
+Replace the visual treatment and label of existing `dots` with 波点: larger, sparse, staggered circles inspired by the Product Owner reference. Keep marks evenly staggered, fully inside all postcard edges, and subordinate to month/date text. Use soft white polka dots on colored backgrounds, with a restrained dark fallback only on near-white backgrounds where white would disappear. This does not alter calendar text color or add a fixed blue/cream scheme. Keep the existing thumbnail ring and tooltip treatment; do not add a new texture slot. See `design/ui-ux-change-request-v1-1-polka-dots.md`.
+
+## Workspace Header positioning (2026-09-25)
+
+Keep the existing brand and three workflow destinations in one restrained sticky Header on project pages only. Its phone form hides the secondary brand line but retains navigation; do not stack the phone month selector as another permanent top bar. The desktop Editor proof begins below the Header and fits the viewport. Landing remains non-sticky. See `design/ui-ux-change-request-v1-1-sticky-workspace-header.md`.
+
+## Part 2A important-date styling (2026-09-25)
+
+The existing red date-number mark remains the default. The Date settings section now offers one restrained project-wide three-choice selector: 红字, 圈记, 星号. Circle uses a tight thin red-toned outline around normal date ink; the third style now uses a small red-toned asterisk at the date's upper right. Neither mark reaches adjacent date rows, including at the large typography scale. Editor and Review proofs share this presentation with PNG/JPG export. Date cell positions, calendar typography, control layout and visual system remain otherwise unchanged. See `design/ui-ux-change-request-v1-1-part-2a-important-marks.md`.
+
+### Six-row Handwritten Large proof fit (2026-09-25)
+
+January, May and October 2027 need a sixth date row. In the Handwritten preset at Large scale, the Editor/Review proof now keeps the final row inside the calendar background through shrinkable rows, controlled line-height and extra bottom breathing room. Artwork dimensions, Canvas export date coordinates and other typography combinations remain unchanged. See `design/ui-ux-change-request-v1-1-six-row-handwritten-fit.md`.

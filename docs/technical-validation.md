@@ -1,5 +1,8 @@
 # Session 05 — Technical Validation
 
+**Later Session 08 resolution:** This Session 05 record preserves historical spike outcomes. The Product Owner subsequently approved ZIP as the V1 mobile full-set handoff and deferred multi-file Share and one-action direct iPhone Photos beyond V1. The iPhone 13 ZIP was downloaded, extracted and all twelve PNGs opened; iPad Air 5 completed the same core flow in both orientations by Product Owner report. See design/ui-ux-change-request-session-08-mobile-handoff.md and qa/mobile-device-results.md. Historical HTTPS Share and direct-Photos OPEN QUESTION labels below no longer describe V1 release gates.
+
+
 **Status:** **Complete with deferred device validation**, approved by the Product Owner on 2026-09-23. Desktop spikes and one scoped iPhone Safari run are recorded; iPad/Android and macOS Safari evidence remains pending.  
 **Technical Validation Gate:** **Passed for Technical Design** by explicit Product Owner decision on 2026-09-23. This is permission to enter Session 06 later, not release acceptance or permission to relabel deferred checks as PASS. This Session 05 closeout does not start Technical Design.  
 **Boundary:** `spikes/browser-lab/` is disposable experimental code. It is not S01–S04, the frozen UI, or Production Architecture. The Product Owner's Session 05 refinement is recorded in [the UI/UX change request](../design/ui-ux-change-request-session-05.md): the **whole** output is 2:3, the upper Photo Region spans the full width, and full-set output means 12 separate PNGs.

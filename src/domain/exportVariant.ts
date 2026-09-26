@@ -13,5 +13,5 @@ export const PRINT_GEOMETRY = Object.freeze({
 
 export const EXPORT_VARIANTS: Record<ExportVariant, { label: string; detail: string }> = {
   print: { label: '印刷版', detail: '106 × 156 mm（含四边约 3 mm 出血） · 1252 × 1843 px · 300 PPI' },
-  digital: { label: '屏幕版', detail: '1200 × 1800 px PNG' },
+  digital: { label: '屏幕版', detail: '1200 × 1800 px · PNG 或 JPG' },
 };

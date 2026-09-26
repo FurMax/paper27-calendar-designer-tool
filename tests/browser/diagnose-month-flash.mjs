@@ -1,0 +1,12 @@
+const port=process.env.CDP_PORT??'9230';
+const tab=(await(await fetch(`http://127.0.0.1:${port}/json/list`)).json()).find(x=>x.type==='page'&&x.url.startsWith('http://127.0.0.1:5173'));
+const ws=new WebSocket(tab.webSocketDebuggerUrl);await new Promise(r=>ws.addEventListener('open',r,{once:true}));let id=1;const jobs=new Map();ws.addEventListener('message',e=>{const x=JSON.parse(e.data),j=jobs.get(x.id);if(j){jobs.delete(x.id);x.error?j.reject(Error(x.error.message)):j.resolve(x.result)}});const call=(method,params={})=>new Promise((resolve,reject)=>{const next=id++;jobs.set(next,{resolve,reject});ws.send(JSON.stringify({id:next,method,params}))});const ev=async expression=>{const r=await call('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(r.exceptionDetails)throw Error(r.exceptionDetails.text);return r.result.value};
+await call('Emulation.setDeviceMetricsOverride',{width:1440,height:900,deviceScaleFactor:1,mobile:false});
+await call('Page.navigate',{url:'http://127.0.0.1:5173/'});await new Promise(r=>setTimeout(r,500));
+await ev("[...document.querySelectorAll('.entry-page button')].find(b=>b.textContent.includes('继续编辑日历')).click()");await new Promise(r=>setTimeout(r,200));
+await ev("[...document.querySelectorAll('.desktop-nav button')].find(b=>b.textContent.includes('编辑月份')).click()");await new Promise(r=>setTimeout(r,200));
+await ev("document.querySelectorAll('.month-nav button')[0].click()");await new Promise(r=>setTimeout(r,600));
+await ev(`(()=>{window.__frames=[];const start=performance.now();const step=()=>{const get=(selector)=>{const e=document.querySelector(selector);if(!e)return null;const img=e.querySelector('img');return {a:e.querySelector('.calendar-proof')?.getAttribute('aria-label'),o:getComputedStyle(e).opacity,t:getComputedStyle(e).transform,img:!!img,loaded:img?.complete&&img?.naturalWidth>0}};window.__frames.push({ms:Math.round(performance.now()-start),old:get('.month-proof-layer--outgoing'),new:get('.month-proof-layer--current'),h:getComputedStyle(document.querySelector('.properties-panel__head h2')).opacity});if(performance.now()-start<650)requestAnimationFrame(step)};requestAnimationFrame(step);document.querySelectorAll('.month-nav button')[1].click()})()`);
+await new Promise(r=>setTimeout(r,850));
+const frames=await ev('window.__frames');
+console.log(JSON.stringify(frames));ws.close();

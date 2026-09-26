@@ -4,6 +4,8 @@ import { ALL_MONTHS } from '../../src/domain/calendar.ts';
 import { autoInk, canonicalHex, contrastRatio, customContrastWarning, hexToRgb, rgbToHex } from '../../src/domain/color.ts';
 import { createEmptyProject } from '../../src/domain/project.ts';
 import { buildMonthRenderModel } from '../../src/domain/renderModel.ts';
+import { DEFAULT_PHOTO_EFFECT, isPhotoEffect } from '../../src/domain/photoEffect.ts';
+import { validateProjectState, InvalidSavedProjectError } from '../../src/persistence/serialization.ts';
 import { expectedFontFamilies, SCALE_MULTIPLIERS, TYPOGRAPHY_PRESETS } from '../../src/domain/typography.ts';
 
 test('HEX and RGB inputs canonicalize and reject invalid channels', () => {
@@ -39,10 +41,30 @@ test('all twelve render models share the project typography and each month retai
   assert.equal(buildMonthRenderModel(2, state).customContrastWarning, true);
 });
 
-test('three bounded presets have explicit bundled font families and distinct month faces', () => {
-  assert.deepEqual(Object.keys(TYPOGRAPHY_PRESETS), ['classic', 'minimal', 'handwritten']);
+test('four bounded presets have explicit bundled font families and distinct month faces', () => {
+  assert.deepEqual(Object.keys(TYPOGRAPHY_PRESETS), ['classic', 'minimal', 'handwritten', 'retro']);
   assert.deepEqual(Object.keys(SCALE_MULTIPLIERS), ['small', 'standard', 'large']);
   assert.deepEqual(expectedFontFamilies('classic'), ['Instrument Serif', 'Instrument Sans']);
   assert.deepEqual(expectedFontFamilies('minimal'), ['Instrument Sans']);
   assert.deepEqual(expectedFontFamilies('handwritten'), ['Patrick Hand']);
+  assert.deepEqual(expectedFontFamilies('retro'), ['Fraunces']);
+});
+
+
+test('photo effect is per-month, survives restore, and leaves crop and calendar style untouched', () => {
+  const state = createEmptyProject('photo-effects');
+  const january = state.project.months[1];
+  const originalCrop = january.crop;
+  const originalStyle = january.style;
+  assert.deepEqual(buildMonthRenderModel(1, state).photoEffect, DEFAULT_PHOTO_EFFECT);
+  january.photoEffect = { id: 'duotone', duotone: 'wine-pink', swapped: true };
+  const restored = validateProjectState(state);
+  assert.deepEqual(buildMonthRenderModel(1, restored).photoEffect, january.photoEffect);
+  assert.deepEqual(buildMonthRenderModel(2, restored).photoEffect, DEFAULT_PHOTO_EFFECT);
+  assert.equal(restored.project.months[1].crop, originalCrop);
+  assert.deepEqual(restored.project.months[1].style, originalStyle);
+  assert.equal(isPhotoEffect({ id: 'duotone', duotone: 'unknown' }), false);
+  assert.equal(isPhotoEffect({ id: 'duotone', duotone: 'wine-pink', swapped: 'yes' }), false);
+  (state.project.months[2] as { photoEffect?: unknown }).photoEffect = { id: 'unknown', duotone: 'wine-pink' };
+  assert.throws(() => validateProjectState(state), InvalidSavedProjectError);
 });

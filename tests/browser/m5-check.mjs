@@ -24,8 +24,8 @@ const saved = await tab.evaluate(`(async()=>{
   click('.entry-page button','逐月添加照片'); await pause(80);
   click('.desktop-nav button','编辑月份'); await pause(80);
   document.querySelectorAll('.month-nav button')[2].click(); await pause(50);
-  document.querySelector('.quick-colors button[title="#1E3933"]').click();
-  click('.font-options button','手写'); click('.segmented button','大'); click('.segmented button','自定义'); await pause(80);
+  document.querySelector('.quick-colors button:nth-child(4)').click();
+  click('.font-options button','手写'); click('.scale-options button','大'); click('.segmented button','自定义'); await pause(80);
   const canvas=document.createElement('canvas');canvas.width=64;canvas.height=48;const c=canvas.getContext('2d');c.fillStyle='#3457d5';c.fillRect(0,0,64,48);
   const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));
   const file=new File([blob],'m5-fixture.png',{type:'image/png'});
@@ -93,7 +93,7 @@ console.log('replace abort', replacementAbort);
 assert.ok(replacementAbort.name);
 assert.equal(replacementAbort.sameId, true);
 assert.equal(replacementAbort.assets, 1);
-const conflict = await tab.evaluate(`(async()=>{document.querySelector('.quick-colors button[title="#E8EDE9"]').click();await new Promise(r=>setTimeout(r,800));return {dialog:document.querySelector('[role=alertdialog]')?.textContent,stored:(await (await import('/src/persistence/indexedDb.ts')).loadProject()).project.months[3].style.background};})()`);
+const conflict = await tab.evaluate(`(async()=>{document.querySelector('.quick-colors button:nth-child(2)').click();await new Promise(r=>setTimeout(r,800));return {dialog:document.querySelector('[role=alertdialog]')?.textContent,stored:(await (await import('/src/persistence/indexedDb.ts')).loadProject()).project.months[3].style.background};})()`);
 console.log('UI conflict', conflict);
 assert.ok(conflict.dialog?.includes('其他标签页更新'));
 assert.equal(conflict.stored, '#1E3933');
@@ -103,7 +103,7 @@ const failure = await tab.evaluate(`(async()=>{
   const resume=[...document.querySelectorAll('.entry-page button')].find(x=>x.textContent.includes('继续编辑日历'));resume.click();await new Promise(r=>setTimeout(r,80));
   const original=IDBObjectStore.prototype.put;let injected=false;
   IDBObjectStore.prototype.put=function(...args){if(!injected&&this.name==='project'){injected=true;this.transaction.abort();return {};}return original.apply(this,args);};
-  document.querySelector('.quick-colors button[title="#E6DDD1"]').click();await new Promise(r=>setTimeout(r,800));
+  document.querySelector('.quick-colors button:nth-child(3)').click();await new Promise(r=>setTimeout(r,800));
   IDBObjectStore.prototype.put=original;
   const banner=document.querySelector('.feedback--error')?.textContent;
   const before=(await (await import('/src/persistence/indexedDb.ts')).loadProject()).project.months[3].style.background;

@@ -38,7 +38,7 @@ This is an explicit product hypothesis, not yet a claim validated through extern
 
 The primary V1 user is a fandom user who has collected many favorite celebrity photos and wants to turn them into downloadable calendar images. They may have no computer and no visual-design skills.
 
-The essential visual expectation is that the selected photo and the calendar's overall color treatment can feel cohesive. V1 lets the user choose one arbitrary solid background color for each month, starting from white. Calendar text color defaults to Auto, which chooses contrasting black or white; Custom lets the user choose one color for the entire month title, year, weekday, and date system. Low contrast in Custom shows a non-blocking warning. Gradients, textures, background images, and multiple background-color regions are not supported. A photo-derived default color is a conditional P1 enhancement and is not required for V1.
+The essential visual expectation is that the selected photo and the calendar's overall color treatment can feel cohesive. V1 lets the user choose one arbitrary solid background color for each month, starting from white. Calendar text color defaults to Auto, which chooses contrasting black or white; Custom lets the user choose one color for the entire month title, year, weekday, and date system. Low contrast in Custom shows a non-blocking warning. The original V1 baseline excluded gradients, textures, background images, and multiple background-color regions. V1.1 Part 1 adds only six restrained per-month textures to the calendar area beneath the photo; gradients, background images, and freely editable regions remain excluded. The default background remains white. Optional photo-derived recommendations appear in each ready month’s Background Color controls and apply only when chosen.
 
 ## Calendar-System Direction
 
@@ -142,12 +142,21 @@ The printed day cells may be used for handwriting the owner's daily plans. Ordin
 
 ## Confirmed V1 Output
 
-The expected product output is a set of **12 separate downloadable PNG images, one per calendar month**. It is not one image containing the entire year.
+The expected product output is a set of **12 separate downloadable images in the selected PNG or JPG format, one per calendar month**. It is not one image containing the entire year.
 
 The confirmed trimmed V1 composition is a **portrait 2:3, 100 × 150 mm postcard-style format**.
 
-Each V1 month offers a default **1252 × 1843 px, 300 PPI print PNG** representing approximately **106 × 156 mm** with approximately 3 mm bleed around a **100 × 150 mm trim**, plus an optional **1200 × 1800 px digital PNG**. Each month can be downloaded individually. A distinct **Generate Full Set / 生成整套 12 张** action generates January–December as 12 separate PNG images of the selected variant. ZIP packages those files; it is not the output definition. The mobile delivery method remains an **OPEN TECHNICAL QUESTION**: test multi-file Share/Save on real iPhone Safari over trusted HTTPS; retain ZIP or per-month save as fallbacks without automatically starting 12 browser downloads. A cover is not part of V1. Physical printing services, vendor-specific prepress, CMYK and universal printer acceptance remain outside V1. Bookmark-size output is post-V1.
+Each V1 month offers a default **1252 × 1843 px, 300 PPI print image (PNG or JPG)** representing approximately **106 × 156 mm** with approximately 3 mm bleed around a **100 × 150 mm trim**, plus an optional **1200 × 1800 px digital image (PNG or JPG)**. Each month can be downloaded individually. A distinct **Generate Full Set / 生成整套 12 张** action generates January–December as twelve separate images of the selected variant and format. One ZIP packages those files for desktop and mobile delivery; the user opens/extracts it in Files/Downloads on phone. ZIP is not the output definition. The Product Owner selected ZIP as V1 mobile primary handoff and deferred multi-file Share and one-action direct iPhone Photos beyond V1 in Session 08. The flow does not automatically start twelve browser downloads. A cover is outside V1. Physical printing services, vendor-specific prepress, CMYK and universal printer acceptance remain outside V1. Bookmark-size output is post-V1.
 
 ## OPEN QUESTIONS
 
 No Product Discovery question blocks Session 02. Interaction design questions are handed off to IA / UX, and feasibility/compatibility checks are handed off to Technical Validation as recorded in the acceptance criteria.
+
+## Session 08 export format and photo-edge amendment
+
+The Product Owner approved a PNG/JPG choice for both sizes and both export paths. PNG remains the default. The full-set ZIP contains twelve files in the one selected format. Print JPG is RGB with 300 PPI metadata; the stated printer requirements allow RGB, while named-provider acceptance is still unverified. The image renderer must cover fractional crop edges without app-created white fringes. Print photo bleed uses real source pixels, with the minimum additional cover scale reflected in print Preview; the saved crop and digital output remain unchanged. The editor and full-set preflight warn about broad white/light bands already visible within a photo crop and offer zoom/reposition guidance; intentional pale photo backgrounds may be left unchanged.
+
+
+## V1 Enhancement direction
+
+The Product Owner directed a restrained Calendar Design Desk polish patch: the user's twelve calendar pages remain the visual focus, while the workspace, brand typography and interaction accent become more distinctive. Optional photo-based single-month and full-set color suggestions support, but do not replace, manual styling. A tightly scoped 2027 important-date number mark is the only product-scope addition. The patch is awaiting Product Owner experience review and does not advance the release gate.

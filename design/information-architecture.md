@@ -273,3 +273,19 @@ The following remain Technical Validation handoffs, not IA decisions:
 - Supported image decoding and local storage capacity for representative phone photos.
 - Reliable local PNG/ZIP handoff on iPhone/iPad Safari and Android Chrome.
 - The concrete low-resolution warning threshold.
+
+## Session 08 controlled output amendment
+
+The current S03 and S04 export controls offer a transient PNG (default) or JPG choice alongside print/digital size. One-month and full-set actions use the chosen format; the ZIP contains twelve ordered same-format files. The Month Editor shows a non-blocking photo-edge warning by the crop controls. Before full-set rendering, a transient warning lists months with broad pale photo edges and links to edit each month, with an option to continue for intentional pale backgrounds. The approved four-screen information architecture is unchanged. Earlier PNG-only and unresolved mobile-handoff wording above is historical and is superseded by the Session 08 mobile ZIP, JPG and photo-edge change requests.
+
+**Session 08 print-bleed correction:** S03 proof and S04 overview reflect the selected output variant: print displays its slightly tighter genuine-photo cover, digital displays the saved crop. No IA change.
+
+
+## V1 Enhancement placement
+
+The four-screen architecture remains. Editor Background gains three photo-color suggestions inside the existing photo sampler; Editor also gains a small Important Date group. Review gains a full-set color suggestion action and confirmation sheet, plus one-operation Restore Previous Colors. No fifth core screen or event-management area is added. See `ui-ux-change-request-v1-enhancement.md`.
+
+
+## V1.1 Part 1 clarification
+
+S03 still owns all month customization. The optional texture choice sits immediately after the existing per-month solid Background control and affects the lower calendar background only. It adds no screen, route, navigation level or freeform editing mode. Fixed Common Colors are shortcuts within Background; three photo-derived suggestions remain distinct.

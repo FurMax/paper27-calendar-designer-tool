@@ -1,0 +1,47 @@
+import assert from 'node:assert/strict';
+import { writeFile } from 'node:fs/promises';
+const origin='http://127.0.0.1:5173',port=process.env.CDP_PORT??'9230';
+const tabs=await(await fetch(`http://127.0.0.1:${port}/json/list`)).json();
+const tab=tabs.find(item=>item.type==='page'&&item.url.startsWith(origin));assert.ok(tab);
+const ws=new WebSocket(tab.webSocketDebuggerUrl);await new Promise(resolve=>ws.addEventListener('open',resolve,{once:true}));
+let id=1;const pending=new Map();
+ws.addEventListener('message',event=>{const message=JSON.parse(event.data),job=pending.get(message.id);if(!job)return;pending.delete(message.id);message.error?job.reject(Error(message.error.message)):job.resolve(message.result);});
+const call=(method,params={})=>new Promise((resolve,reject)=>{const next=id++;pending.set(next,{resolve,reject});ws.send(JSON.stringify({id:next,method,params}));});
+async function evaluate(expression){const result=await call('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(result.exceptionDetails)throw Error(result.exceptionDetails.exception?.description??result.exceptionDetails.text);return result.result.value;}
+const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function until(expression){for(let n=0;n<100;n++){if(await evaluate(expression))return;await pause(150);}throw Error('timeout '+expression);}
+async function shot(name){const result=await call('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});await writeFile(`qa/experience-polish/after-${name}.png`,Buffer.from(result.data,'base64'));}
+const colors=()=>evaluate('('+(async function(){const {loadProject}=await import('/src/persistence/indexedDb.ts');const state=await loadProject();return Object.values(state.project.months).map(slot=>slot.style.background);}).toString()+')()');
+await call('Emulation.setDeviceMetricsOverride',{width:1440,height:900,deviceScaleFactor:1,mobile:false});
+await call('Page.navigate',{url:origin+'/'});await pause(500);
+assert.equal(await evaluate("document.querySelectorAll('.entry-art__sheet').length"),3);
+await evaluate("[...document.querySelectorAll('.entry-page button')].find(b=>b.textContent.includes('继续编辑日历')).click()");await until("!!document.querySelector('.desktop-nav')");
+await evaluate("[...document.querySelectorAll('.desktop-nav button')].find(b=>b.textContent.includes('预览与导出')).click()");await until("!!document.querySelector('.review-grid')");
+assert.equal(await evaluate("document.querySelectorAll('.review-card').length"),12);
+assert.ok(await evaluate("document.querySelector('.review-completion.is-complete')?.textContent.includes('12 / 12')"));
+const before=await colors();
+await evaluate("[...document.querySelectorAll('.set-color-panel button')].find(b=>b.textContent.includes('推荐配色')).click()");
+await until("document.querySelectorAll('.set-color-row').length===12");
+assert.equal(await evaluate("document.querySelector('.set-color-row.is-current .set-color-row__month')?.textContent"),'1 月');
+assert.ok(await evaluate("document.querySelector('.set-color-preview__copy small')?.textContent.includes('来自本月照片')"));
+await evaluate("document.querySelectorAll('.set-color-row')[4].click()");
+assert.ok(await evaluate("document.querySelector('.set-color-preview .calendar-proof')?.getAttribute('aria-label')?.includes('May')"));
+assert.deepEqual(await colors(),before,'preview mutated saved project');
+await evaluate("document.querySelector('.set-color-sheet .confirm-actions .button--quiet').click()");
+await until("!document.querySelector('.set-color-sheet')");assert.deepEqual(await colors(),before);
+await evaluate("[...document.querySelectorAll('.set-color-panel button')].find(b=>b.textContent.includes('推荐配色')).click()");await until("document.querySelectorAll('.set-color-row').length===12");
+await evaluate("document.querySelector('.set-color-sheet .confirm-actions .button--primary').click()");await until("!document.querySelector('.set-color-sheet')");await pause(600);
+const applied=await colors();assert.notDeepEqual(applied,before);
+await evaluate("[...document.querySelectorAll('.set-color-panel button')].find(b=>b.textContent.includes('撤销本次配色')).click()");await pause(600);assert.deepEqual(await colors(),before);
+await call('Emulation.setDeviceMetricsOverride',{width:320,height:720,deviceScaleFactor:1,mobile:true});await pause(130);
+await evaluate("[...document.querySelectorAll('.set-color-panel button')].find(b=>b.textContent.includes('推荐配色')).click()");await until("document.querySelectorAll('.set-color-row').length===12");
+const mobile=await evaluate("({overflow:document.documentElement.scrollWidth>innerWidth,chipCount:document.querySelectorAll('.set-color-row').length,targetHeight:document.querySelector('.set-color-row').getBoundingClientRect().height})");
+assert.equal(mobile.overflow,false);assert.equal(mobile.chipCount,12);assert.ok(mobile.targetHeight>=44);
+await shot('mobile-palette');
+await evaluate("document.querySelector('.set-color-sheet .sheet-heading button').click()");
+await call('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
+await evaluate("document.querySelector('.brand').click()");await until("!!document.querySelector('.entry-art__sheet')");
+const reduced=await evaluate("getComputedStyle(document.querySelector('.entry-art__sheet')).animationName");assert.equal(reduced,'none');
+await call('Emulation.setEmulatedMedia',{features:[]});
+await call('Emulation.clearDeviceMetricsOverride');ws.close();
+console.log(JSON.stringify({palettePreviewSaved:true,restore:true,mobile,reduced}));

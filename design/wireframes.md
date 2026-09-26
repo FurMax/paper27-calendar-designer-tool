@@ -637,7 +637,7 @@ The explicit zoom control ensures the task does not rely on a multi-touch gestur
 ---------------------------------------------------
 ```
 
-Background retains picker, HEX, RGB, and Quick Colors for any solid color. It does not offer a gradient, texture, background image, or multiple-region control. Text color lives in the separate compact Calendar Text surface below.
+The original V1 Background retains picker, HEX, RGB, and Quick Colors for any solid color. V1.1 Part 1 places ten named common colors and six fixed lower-calendar textures immediately after Background; the phone uses the same Background sheet. It still has no gradient, background image, or freely editable region control. Text color remains in the separate compact Calendar Text surface below.
 
 ### 6.6a Calendar Text — desktop property section / phone sheet
 
@@ -693,7 +693,7 @@ On desktop these controls appear directly as a `日历文字` section in the rig
 
 ## 7. S04 — Review & Export
 
-**Session 05 Product Owner clarification:** the full-set action means generating 12 independent January–December PNGs. ZIP is a desktop delivery package for those files. The phone's primary multi-file handoff remains an OPEN TECHNICAL QUESTION until trusted-HTTPS iPhone/iPad testing; do not imply that its outcome is fixed. The original ZIP labels below document the Session 03 approved mock, superseded for final action semantics by [the Session 05 change request](ui-ux-change-request-session-05.md).
+**Session 05 Product Owner clarification, amended by Session 08:** the full-set action means generating twelve independent January–December PNGs. ZIP packages the files for both desktop and mobile, with opening/extraction in Files/Downloads on phone. The Product Owner selected ZIP as V1 mobile primary handoff in Session 08; original Session 03 labels below are historical.
 
 ### 7.1 Desktop — incomplete project
 
@@ -955,7 +955,7 @@ Failure:
 
 ### 11.4 Full-set generation and delivery — Phone
 
-Use a bottom sheet that may expand to compact full height so progress, recovery, and safe-area padding remain visible above browser chrome. Show the 12 PNG generation stage separately from the actual delivery method. Multi-file Share/Save remains an OPEN TECHNICAL QUESTION until real trusted-HTTPS iPhone/iPad testing; ZIP or per-month saves are fallback candidates. The project underneath stays at S04; closing or completing returns there.
+Use a bottom sheet that may expand to compact full height so progress, recovery, and safe-area padding remain visible above browser chrome. Show twelve-PNG generation separately from the ZIP download action. The mobile user opens/extracts the downloaded ZIP in Files/Downloads. The project underneath stays at S04; closing or completing returns there.
 
 ## 12. Responsive Behavior
 
@@ -1132,7 +1132,39 @@ No Wireframe **OPEN QUESTION** blocks Session 04.
 - Verify supported image decoding and the unreadable-image recovery path for representative mobile photo formats.
 - Verify local-only persistence capacity and non-destructive quota-failure behavior with twelve representative modern phone photos.
 - Verify touch crop/pinch behavior, viewport resizing, safe areas, and changing Safari/Chrome browser chrome against the approved mobile structure.
-- Verify individual PNG and 12-month generation on the formal browser matrix. Desktop ZIP handoff and mobile platform-specific full-set handoff each require interruption/retry checks; real trusted-HTTPS iPhone/iPad multi-file Share/Save remains open.
+- Verify individual PNG and twelve-month generation on the formal browser matrix. Desktop and mobile ZIP download, extraction, twelve-file inspection, interruption and retry require real-browser checks.
 - Define and validate the concrete low-resolution warning threshold.
 
 Session 04 is the next authorized stage, but it must begin in a new Codex session. This Session 03 closeout does not begin high-fidelity design, Technical Architecture, or implementation.
+
+## Session 08 controlled wireframe amendment
+
+S03 and S04 now place a PNG (default) / JPG selector beside the print/digital selector. S03 gives a short pale-photo-edge warning at the proof/crop controls. T05 adds a transient preflight warning with each affected month and edge, an Edit Month route, and Continue for intentional pale source content. The existing progress and download result follow after preflight; no new screen is added. ZIP holds twelve files in the selected format. Earlier PNG-only wireframe labels above remain historical illustrations.
+
+**Session 08 print-bleed correction:** The S03 proof and S04 thumbnails show the actual selected print or digital crop. Print may be slightly tighter so source photo pixels cover bleed; the saved crop remains user-controlled. The earlier reflection description is superseded by the print-photo-bleed change request.
+
+
+## V1 Enhancement structural addendum
+
+Desktop S03 retains proof-centered layout with a quiet grid limited to its surrounding workspace; the right column keeps Photo, Background, Calendar Text, Important Date and Export as simple separated groups. On phone, Important Date uses the existing bottom-sheet pattern. The existing photo-color sheet now shows three recommendations plus exact pixel sampling. S04 adds a small coordinated-color section below the 12-page gallery; its sheet lists old/new swatches for all months with Cancel/Apply. The 12-page gallery remains the dominant Review element.
+## Later approved direction: V1.1 Editor hierarchy (2026-09-25)
+
+This later Product Owner direction supersedes the older Editor control placement only. Desktop Editor shows the dominant proof beside a short rail for month status, crop/photo, current background, photo recommendations, and compact common-color swatches. A second workbench level under both columns contains Style (exact color, texture, typography/ink), Dates (important marks), and Export (variant, format, single file, link to Review whole-set palette). Phone keeps its sticky month selector/dock and quick background sheet; deeper controls appear in stacked sections below the proof. No calendar layout or export artwork change. See `ui-ux-change-request-v1-1-editor-hierarchy.md`.
+## Editor follow-up, 2026-09-25
+
+The current Editor layout supersedes the precise-color and Export placements above: precise HEX/RGB is in the quick rail on desktop and background sheet on phone. The ten fixed and three photo-derived color samples are round. The lower workbench places Style (texture, typography) beside Dates at wide widths; Export occupies its own last full-width section. See `ui-ux-change-request-v1-1-editor-round-colors.md`.
+## Current Editor control density (2026-09-25)
+
+The later Product Owner direction replaces only the Background and Texture presentations above. Background is one compact card with Recommendation, Common and Custom rows; Common scrolls horizontally without wrapping and Custom reveals HEX/RGB on demand. The separate current-color card is gone. Texture is a single strip of Clear plus five small square previews. The proof grid, Style/Dates/Export placement, and phone month navigation remain as documented. See `ui-ux-change-request-v1-1-compact-color-texture.md`.
+
+## V1.1 Editor continuous rail amendment — 2026-09-25
+
+The latest Product Owner direction supersedes the earlier lower Style and Date cards. On desktop the 2:3 calendar proof is a sticky left column, fitted within the viewport; the right column is one continuous rail: Photo → Background → Text Color → Style (texture, font, scale) → Date. Export remains a separate full-width final section immediately after the columns. Below 1024px, proof and rail stack in the same order and the proof does not stick.
+
+## V1.1 desktop Month Editor refinement — 2026-09-25
+
+The approved follow-up UI direction preserves the sticky proof and normal page scroll. At desktop widths ≥1024px, the month navigator is 56px; a white, shadowed proof canvas and 320px unboxed settings rail share the first row. The proof note sits below the canvas. The rail keeps Photo/Background/Text Color/Style/Date in order with thin dividers and a visual four-step label sequence. Export remains the final full-width flow section with centered 1120px content and a 360px whole-set palette column. The phone flow and sheets retain their existing arrangement.
+
+### V1.1 current-month export entry amendment — 2026-09-25
+
+The Product Owner superseded the later Editor Export workbench placement. Desktop Editor keeps the proof and continuous right rail, but removes the bottom `04 · FINISH` section. A compact `导出本月⌄` dropdown sits immediately left of the title-row `预览与导出` action. Its four choices directly prepare the current month's print/digital PNG/JPG without changing month or saved style; Review remains the only full-set palette and batch-export surface. On narrow screens, the same title actions may wrap while the menu overlays rather than reflows the month navigator or proof. See `ui-ux-change-request-v1-1-month-export-menu.md`.

@@ -1,5 +1,8 @@
 # Session 05 — iPhone / iPad Safari real-device worksheet
 
+**Later Session 08 resolution:** This worksheet preserves Session 05 observations. The Product Owner later approved ZIP as V1 mobile primary delivery, reported iPhone 13 and iPad Air 5 full-set ZIP extraction and twelve-PNG inspection, and deferred multi-file Share and one-action direct Photos beyond V1. See mobile-device-results.md and design/ui-ux-change-request-session-08-mobile-handoff.md. Historical HTTPS and Photos gate labels below are not current V1 release gates.
+
+
 **Session 05 status: Complete with deferred device validation. Technical Validation Gate: Passed for Technical Design by explicit Product Owner decision on 2026-09-23.** This worksheet remains open for later QA: **REAL HTTPS DEVICE TEST REQUIRED** for full-set Share/Save; iPad and detailed iPhone re-test pending. The one-action direct Save to Photos request remains unvalidated. These items do **not** block Session 06, but gate approval does not convert them to PASS or establish release acceptance. The Product Owner reported one real iPhone Safari run on 2026-09-23; outcomes below are scoped to that report, and model, OS version, file sizes and exact logs were not supplied. This isolated spike is not Production Architecture.
 
 ### Product Owner screenshot observation — 2026-09-23

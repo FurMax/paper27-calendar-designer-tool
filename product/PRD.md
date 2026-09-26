@@ -47,12 +47,14 @@ The complete V1 first-use task is:
 7. Work through January to December one monthly card at a time, optionally adjusting crop, position, background color, and unified text color; one selected Calendar Font preset applies across the set.
 8. Add missing photos or replace an assigned photo through the individual month picker when needed.
 9. Review the set of 12 monthly cards.
-10. Download any complete month as a PNG or generate the full set of 12 monthly PNGs after all months have photos; desktop ZIP packages the set, and mobile handoff awaits validation.
+10. Download any complete month as PNG or JPG or generate the full set of 12 monthly images in the chosen format after all months have photos. Desktop and mobile receive one ZIP containing twelve separate files of the chosen format; on mobile the user opens or extracts it in Files/Downloads.
 11. Preserve the project locally for later editing.
 
 This flow was confirmed by the product owner during Product Discovery.
 
 **Session 05 export-handoff feasibility escalation (2026-09-23):** The Product Owner subsequently required an iPhone action that saves a generated PNG directly into Photos without a second manual step. The isolated Safari test generated an openable PNG and at least one actual download to iCloud Drive → Downloads; the specific download entrance is not identified. Neither ordinary file download nor opening and then manually saving demonstrates direct Photos import. The existing V1 browser-only constraint and the requested direct-Photos outcome now have an **OPEN QUESTION** about technical compatibility. No alternate mobile handoff or platform change is approved by this note. See `docs/technical-validation.md` and `qa/ios-technical-validation.md` before Technical Design.
+
+**Session 08 resolution (2026-09-23):** After a real iPhone ZIP download to iCloud Drive / Downloads and inspection of all twelve extracted PNGs, the Product Owner selected ZIP as the V1 mobile primary handoff and explicitly removed multi-file Share and one-action direct Photos from V1 acceptance. The Session 05 request remains historical context; it is not a V1 release gate.
 
 ### Completion Rules — Confirmed
 
@@ -60,7 +62,7 @@ This flow was confirmed by the product owner during Product Discovery.
 - Month Assignment and monthly editing show which months already have an assigned photo.
 - A month becomes eligible for individual PNG download once it has one assigned photo.
 - The default centered crop and white background are valid; manual crop or color adjustment is not required for completion.
-- Full-set generation of 12 monthly PNGs is available only after all 12 months have assigned photos.
+- Full-set generation of 12 monthly images in the chosen format is available only after all 12 months have assigned photos.
 
 ## 4. Editing Model
 
@@ -112,7 +114,7 @@ V1 does not need a broad “Apply Style to All” action because the selected Ca
 - The text-color mode and Custom value belong to the month and survive photo replacement and reassignment.
 - The exact color-analysis approach and any library choice are outside Product Discovery.
 
-Gradients, textures, background images, and multiple background-color regions are not supported in V1. The exact color-picker interaction is an IA/UI decision.
+The original V1 baseline excluded gradients, textures, background images, and multiple background-color regions. V1.1 Part 1 explicitly adds six fixed low-opacity textures to the lower calendar background only; gradients, image-based backgrounds and freely editable regions remain excluded. The exact color-picker interaction is an IA/UI decision.
 
 If automatic suggestion is included, replacing the photo should recompute the color only while the month is still using an automatic value. A user's manual color choice must not be silently overwritten.
 
@@ -232,18 +234,18 @@ No technical implementation decisions are made in this document during Product D
 
 ## 7. Export and Output
 
-The requested final artifact is a set of 12 separate downloadable monthly PNG images, with one image/card for each month. The default print variant is **1252 × 1843 px at 300 PPI** (approximately **106 × 156 mm**, including approximately 3 mm bleed on every edge around a **100 × 150 mm trim**). The optional digital variant remains **1200 × 1800 px**. The year is not condensed into one image. Bookmark output is post-V1.
+The requested final artifact is a set of 12 separate downloadable monthly PNG or JPG images, with one image/card for each month. The default print variant is **1252 × 1843 px at 300 PPI** (approximately **106 × 156 mm**, including approximately 3 mm bleed on every edge around a **100 × 150 mm trim**). The optional digital variant remains **1200 × 1800 px**. The year is not condensed into one image. Bookmark output is post-V1.
 
 V1 ends at image download/save. It supplies a bleed PNG and PPI metadata, but does not operate a printing service, place print orders, convert to CMYK/PDF, or guarantee acceptance by every print vendor.
 
 ### Confirmed Output and Download Behavior
 
 - Any month can be downloaded individually as a PNG.
-- A distinct full-set action generates January–December as **12 independent monthly PNGs**. ZIP is a delivery package, not the output definition.
-- After the set is complete, desktop may deliver the 12 monthly PNG files together in one ZIP; this sequential render → ZIP path passed a desktop spike.
+- A distinct full-set action generates January–December as **12 independent monthly images in the selected format**. ZIP is a delivery package, not the output definition.
+- After the set is complete, desktop and mobile deliver the 12 selected-format monthly image files together in one ZIP. The Product Owner confirmed the iPhone 13 Safari 16.2 LAN download, extraction and opening of all twelve PNGs in Session 08; formal support-matrix QA remains open.
 - ZIP entries use unambiguous `01` through `12` ordering in their filenames.
 - V1 does not trigger 12 separate browser downloads as its batch behavior.
-- **OPEN TECHNICAL QUESTION — mobile handoff:** a reliable full-set delivery path must be validated on real iPhone/iPad Safari over trusted HTTPS. Multi-file Web Share/Save is a candidate only if actual `canShare({files})`, Share Sheet and Save to Files/Photos behavior succeed; ZIP and individually saved PNGs remain fallbacks. Do not assume desktop ZIP is the phone's primary experience or promise a Photos destination before testing.
+- **Session 08 approved mobile handoff:** ZIP download is the V1 primary full-set handoff on phone. The user obtains the twelve independent selected-format images by opening/extracting the ZIP in Files/Downloads. V1 does not offer multi-file Web Share as a production feature or promise direct import into iPhone Photos. One-action direct Photos is deferred beyond V1 by explicit Product Owner decision on 2026-09-23. Actual ZIP handoff still requires QA across the formal device/browser matrix.
 
 A cover is explicitly outside V1.
 
@@ -283,7 +285,7 @@ A cover is explicitly outside V1.
 ### Post-V1
 
 - Different weekday alignments and leap years when 2028/2029 are added
-- Photos with no clear dominant color when conditional photo-derived color is added
+- Photos with no clear dominant color when showing per-month photo-derived recommendations
 - Multiple P1 fandom events on the same date; one red number may represent multiple reasons
 - P1 important-date red interacting with later holiday or weekend treatments
 - P1 events after a later year-changing action
@@ -347,3 +349,56 @@ No Product Discovery question blocks Session 02.
 - IA / UX must define the concrete Month Assignment, Unassigned Photos, swap/reassignment, explicit-delete, incomplete-month, and individual-picker interactions without expanding them into media management.
 - Technical Validation must verify browser photo-picker multi-selection/order, local persistence capacity, supported image decoding, and mobile PNG/ZIP reliability.
 - Technical Architecture must honor the recorded future template-extensibility constraint without adding a V1 template selector.
+
+## Session 08 approved output amendments
+
+The Product Owner approved an export-format choice: PNG remains the default and JPG is available for both single-month and full-set output, in print or digital size. A ZIP contains exactly twelve independently named files of the selected format. Print JPG records 300 PPI in JFIF metadata; both formats are browser-rendered RGB. The Product Owner's print requirements allow RGB, but named-provider submission and physical proof remain release QA. The supplied January and May print JPGs exposed visible light photo borders. The renderer fills fractional digital crop edges with photo pixels; print output uses genuine source-photo pixels across the full bleed with a small automatic cover adjustment shown in print Preview. Month Editor and full-set export warn when the visible crop has a broad light/white edge and guide zoom or reposition; users may continue when the light edge is intentional. See the two Session 08 change requests for the bounded correction.
+
+**Session 08 genuine-photo print bleed correction:** The Product Owner identified mirrored content in new February/March JPGs. Print output now covers the bleed with actual source-photo pixels by a small automatic extra cover scale; print Preview and the photo sampler show the actual crop. The saved crop and digital output remain unchanged. See design/ui-ux-change-request-session-08-print-photo-bleed.md.
+
+
+## V1 Enhancement / Polish Patch
+
+A user can see three suggestions in each month’s Background Color controls, extracted from that month’s visible photo crop (with labeled tonal extensions if the photo has too few distinct colors), and optionally apply one to that month, or preview a coordinated set of month-specific suggestions for all twelve photos before applying them. The batch action records the immediately previous backgrounds for a single restore, including after browser reload; a later manual background edit ends that restore opportunity. Existing color controls remain.
+
+A user may mark or unmark individual dates in the current 2027 month. Marked dates render as contrasting red-toned numbers in the interactive proof and exported PNG/JPG, including full-set ZIPs. No event metadata or reminders are stored. The product shell gains a quiet desk surface, Baby Blue action states and Milk Mint recommendation support, a typography wordmark slot and favicon; none enter the calendar artwork. This is a controlled V1 scope addition awaiting Product Owner review, not a release decision.
+
+## V1 Experience Polish — Product Owner direction, 2026-09-24
+
+The current four-screen workflow and export choices remain. Each month’s Background Color control presents three photo-derived choices with semantic labels; a visible selection updates that month’s proof and Auto text contrast. Review shows a twelve-color overview and a selectable month proof before the user confirms one batch change; a single restore remains available. Review signals a complete twelve-month set and shows month-by-month export progress. The Entry illustration shows three example calendar pages without using or exporting customer photos. These presentation changes do not change the saved calendar model, add an export format, or waive release QA. Product Owner hands-on acceptance is pending.
+
+**Whole-set color refinement, 2026-09-24:** The batch action selects a mildly contrasting companion/accent from each month's existing cropped-photo recommendations, using a labeled tonal extension only when needed. A raw swatch that is too dark or intense is softened for use as a calendar background. The preview names the source swatch and any softening; only extraction failure uses fixed backup colors. Explicit apply and one-step restore are unchanged.
+
+## V1 Motion / Interaction Polish — Product Owner direction, 2026-09-24
+
+The existing four-screen tool gains only short functional feedback: one Entry calendar-stack entrance, interruptible month-switch proof/heading feedback, staggered photo-color chips, real per-month full-set analysis and export progress, a small Important Date press response, and restrained Review/button/selection states. CSS handles all motion; no GSAP or new runtime dependency is added. Reduced-motion shows final positions immediately. The UI-only change does not modify calendar artwork, crop, saved data, or PNG/JPG/ZIP output. Product Owner device review remains pending; no release or deployment decision follows from this patch.
+
+**Entry motion timing correction, 2026-09-24:** The Product Owner found the first slowed calendar-stack entrance too fast and the second a little slow. The one-time Entry presentation now runs about 1.4 seconds overall on desktop and about 1.2 seconds on touch devices, with small ≤12px transforms and no idle loop. Quick feedback on editing, selection and real progress retains its short timing so operations stay responsive. This does not add data or export behavior. The Product Owner reviewed the current site and accepted this Entry timing on 2026-09-24.
+
+## V1 Focused Experience Upgrade — Product Owner direction, 2026-09-24
+
+The Product Owner directed a bounded interaction upgrade that supersedes the prior CSS-only implementation for three interactions: Entry calendar stack, Editor month switching, and Review whole-set color recommendation. Production `gsap` and `@gsap/react` may coordinate those local layers, result sequences and apply feedback. The approved IA, screen structure, project model, photo algorithm, crop, and PNG/JPG/ZIP output remain. Landing text/CTA, ordinary hover/focus, Important Date and real export progress retain their existing direct behavior. Reduced-motion shows final states immediately, and no analysis/export step waits for animation. The current implementation awaits Product Owner experience review; this does not approve release or deployment.
+
+### V1.1 Editor current-month export entry — 2026-09-25
+
+The Product Owner replaced the oversized Editor bottom export section with a compact title-row menu. Its four direct current-month actions preserve print/digital PNG/JPG output and do not change calendar editing state. Review continues to own twelve-month palette review and batch export. Automatic browser download is attempted after generation; a small manual download fallback remains for browsers that require renewed user activation. This is UI/interaction scope only, not a new output format or release approval.
+
+### V1.1 type and paper refinement (2026-09-25)
+
+A later Product Owner request adds a fourth curated English Calendar font preset (复古) and a seventh lower-calendar paper texture (亚麻纸). The older approximate two-to-three font and six-texture statements above record earlier stage scope; the current approved option counts are four and seven. Product UI language, photo area, export geometry, and existing editing flow remain unchanged.
+
+### Paper choice correction (2026-09-25)
+
+The seventh fixed texture is now stylized 硫酸纸 instead of 亚麻纸. It is a smooth satin/translucent visual treatment on the lower calendar area, with no photo overlay or additional editing controls. Old saved 亚麻纸 choices migrate on load.
+
+### Current dot texture amendment (2026-09-25)
+
+The existing `dots` texture is displayed as **波点** instead of 细点阵. It uses sparse staggered circles in the calendar region only; a saved `dots` choice needs no migration. This changes neither photo output nor the number of texture choices. See `design/ui-ux-change-request-v1-1-polka-dots.md`.
+
+## Current workspace navigation amendment (2026-09-25)
+
+The existing three-stage project Header remains visible while Assign, Editor or Review scrolls. Landing remains non-sticky. Phone month selection is no longer an additional sticky top bar; the compact project Header retains the current-stage menu and brand return. Calendar artwork and workflow routes are unchanged. See `design/ui-ux-change-request-v1-1-sticky-workspace-header.md`.
+
+## V1.1 Part 2A important-date presentation (2026-09-25)
+
+The earlier red-only Important Date statements describe the V1 baseline. The current bounded amendment adds a project-wide choice among red text, thin circle and small dot, without changing the saved day-number arrays or adding event details. Old projects remain red by default. See `design/ui-ux-change-request-v1-1-part-2a-important-marks.md`.

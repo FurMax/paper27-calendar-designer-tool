@@ -9,7 +9,7 @@ const call=(method,params={})=>new Promise((resolve,reject)=>{const key=id++;job
 async function evaluate(expression){const result=await call('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(result.exceptionDetails)throw Error(result.exceptionDetails.exception?.description??result.exceptionDetails.text);return result.result.value;}
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const downloadDir=path.join(process.env.TEMP??'.','calendar-studio-m7-downloads');await mkdir(downloadDir,{recursive:true});
-const zipName='Calendar-Design-Studio-2027.zip';await unlink(path.join(downloadDir,zipName)).catch(error=>{if(error.code!=='ENOENT')throw error;});
+const zipName='Calendar-Design-Studio-2027-Print-106x156mm.zip';await unlink(path.join(downloadDir,zipName)).catch(error=>{if(error.code!=='ENOENT')throw error;});
 await call('Page.setDownloadBehavior',{behavior:'allow',downloadPath:downloadDir});
 await call('Storage.clearDataForOrigin',{origin:'http://127.0.0.1:5173',storageTypes:'indexeddb'});
 await call('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
@@ -26,7 +26,7 @@ const ready=await evaluate(`({enabled:!document.querySelector('.page-actions but
 const cancelled=await evaluate(`(async()=>{const pause=ms=>new Promise(r=>setTimeout(r,ms));const original=HTMLCanvasElement.prototype.toBlob;HTMLCanvasElement.prototype.toBlob=function(callback,...args){setTimeout(()=>original.call(this,callback,...args),50);};document.querySelector('.page-actions button').click();await pause(130);const progress=document.querySelector('.export-sheet')?.textContent;[...document.querySelectorAll('.export-sheet button')].find(x=>x.textContent.includes('取消生成')).click();await pause(400);HTMLCanvasElement.prototype.toBlob=original;return {progress,closed:!document.querySelector('.export-sheet')};})()`);
 console.log('cancelled',cancelled);assert.ok(cancelled.progress.includes('正在生成'));assert.equal(cancelled.closed,true);
 const failed=await evaluate(`(async()=>{const pause=ms=>new Promise(r=>setTimeout(r,ms));const original=document.fonts.load.bind(document.fonts);document.fonts.load=async()=>[];document.querySelector('.page-actions button').click();await pause(250);const error=document.querySelector('.export-sheet')?.textContent;document.fonts.load=original;[...document.querySelectorAll('.export-sheet button')].find(x=>x.textContent.includes('重试')).click();for(let i=0;i<40&&!document.querySelector('.export-sheet')?.textContent.includes('下载 ZIP');i++)await pause(200);return {error,ready:document.querySelector('.export-sheet')?.textContent};})()`);
-console.log('failure/retry',failed.error,failed.ready?.slice(0,130));assert.ok(failed.error.includes('1 月 PNG 生成失败'));assert.ok(failed.ready.includes('12 张独立 PNG 已准备好'));
+console.log('failure/retry',failed.error,failed.ready?.slice(0,130));assert.ok(failed.error.includes('1 月 PNG 生成失败'));assert.ok(failed.ready.includes('12 张印刷版 PNG 已准备好'));
 await evaluate(`(()=>{[...document.querySelectorAll('.export-sheet button')].find(x=>x.textContent.includes('下载 ZIP')).click();return true;})()`);
 let downloaded=false;for(let attempt=0;attempt<30;attempt++){if((await readdir(downloadDir)).includes(zipName)){downloaded=true;break;}await pause(200);}assert.equal(downloaded,true);
 console.log('download',path.join(downloadDir,zipName));

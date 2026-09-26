@@ -73,7 +73,7 @@ flowchart TD
 15. The user enters Review & Export.
 16. The screen shows 12 previews marked Ready and no missing months.
 17. The user may open a month for further editing or return to Assign Photos.
-18. The user starts full-set export: generate 12 separate January–December PNGs, then use the supported delivery method. Desktop ZIP is a validated candidate; mobile handoff remains open.
+18. The user starts full-set export: generate twelve separate January–December PNGs, then download one ZIP package on desktop or mobile. On phone, the user opens/extracts the ZIP in Files/Downloads.
 19. A transient export progress/result surface appears without discarding or locking the project.
 20. On success, the browser’s supported download/save handoff is presented and the project remains editable.
 
@@ -276,7 +276,7 @@ flowchart TD
 2. The user selects **Generate Full Set / 生成整套 12 张** (or equivalent localized action).
 3. A transient export progress/result surface shows batch progress in terms of the 12 independent PNGs being prepared.
 4. The user can remain on the progress state; the underlying project is not changed.
-5. On desktop, a validated candidate packages the 12 PNGs in `01`–`12` order into one downloadable ZIP. On mobile, the handoff remains an **OPEN TECHNICAL QUESTION** pending real HTTPS device testing of multi-file Share/Save; ZIP or individual saves are fallback candidates. No automatic sequence of 12 browser downloads.
+5. On desktop and mobile, the twelve PNGs are packaged in one downloadable ZIP in 01–12 order. On mobile the user finds the ZIP in Files/Downloads, opens or extracts it, and can then open each PNG. No automatic sequence of twelve browser downloads.
 6. The user returns to Review & Export and may continue editing or retry a download.
 
 ### Incomplete project
@@ -328,7 +328,7 @@ flowchart TD
 9. Background and Calendar text controls open in compact sheets or panels that respect Safari safe areas and browser chrome; the font preset is reachable on phone without reducing the preview to a thumbnail.
 10. Autosave preserves completed changes when Safari is interrupted or backgrounded, subject to the documented local-storage limitation.
 11. Review & Export displays a single-column or compact two-column month overview, depending on available width.
-12. The user downloads a ready month or, when complete, generates the 12 monthly PNGs and uses the validated Safari handoff. Multi-file Share/Save versus ZIP or individual-save fallback remains open until trusted-HTTPS testing.
+12. The user downloads a ready month or, when complete, generates the twelve monthly PNGs, downloads the ZIP in Safari, then opens or extracts it in Files/Downloads. Direct import into Photos and multi-file Share are outside V1.
 13. Export progress and failure recovery remain visible without requiring a desktop.
 
 If iOS multi-selection is unavailable or interrupted, the same full flow remains possible by adding one photo per month.
@@ -361,3 +361,14 @@ If iOS multi-selection is unavailable or interrupted, the same full flow remains
 ## 18. Remaining Handoffs
 
 No unresolved UX question blocks these flows. Technical Validation still needs to verify picker behavior, image decoding, local capacity, and mobile download handoff. Session 03 must translate these flows into wireframes without changing their semantics or expanding V1 scope.
+
+## Session 08 controlled export-flow amendment
+
+In S03 or S04 the user chooses PNG (default) or JPG after choosing print/digital size. Editing crop immediately updates any broad-white-edge guidance; zooming or repositioning can clear it. Starting full-set generation first checks all twelve visible crops. When a month has a broad pale edge, the transient result names that month and edge, offers a direct Edit Month action, and allows the user to continue if the pale edge is intentional. A format change invalidates prepared output. The full-set ZIP holds twelve independent files of the one selected format and is opened/extracted in Files/Downloads on mobile. This supersedes historical PNG-only and undecided mobile-handoff wording above.
+
+**Session 08 print-bleed correction:** In S03 and S04, switching print/digital changes the displayed photo crop to match the selected output. Print uses genuine source pixels through bleed with minimum extra cover; the user can reposition the saved crop if important photo content approaches a print edge.
+
+
+## V1 Enhancement flows
+
+Current month: open From Photo Colors, inspect three suggestions or sample an exact pixel, select a suggestion, and see Preview/Auto ink update. Full set: from Review, analyze twelve assigned photos, inspect each old/new swatch and the actual change count, confirm, optionally restore prior colors once. Important Date: in Editor choose or remove day numbers; saved Preview and output use the same marked dates. These actions do not change assignment, crop or export navigation.

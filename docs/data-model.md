@@ -6,7 +6,7 @@
 
 ```ts
 type MonthNumber = 1|2|3|4|5|6|7|8|9|10|11|12;
-type TypographyPresetId = 'classic'|'minimal'|'handwritten'; // UI concepts; final fonts pending
+type TypographyPresetId = 'classic'|'minimal'|'handwritten'|'retro'; // current V1.1 option set
 type TextScale = 'small'|'standard'|'large';
 type HexColor = `#${string}`; // validate/canonicalize to #RRGGBB at command boundary
 
@@ -117,3 +117,25 @@ This is atomic at the IndexedDB transaction boundary, not a promise against brow
 ## Session 07 approved export/color UI state
 
 No persisted schema migration is needed for the approved print and color-sampling work. The selected export variant is transient screen state: print defaults to a 1252×1843 PNG with a 1181×1772 trim area and nominal 300 PPI metadata; digital retains the 1200×1800 baseline. Both variants consume the same saved project snapshot and crop. The photo sampler is also transient: sample coordinates and provisional HEX stay in UI state until confirmation invokes the existing per-month background-color command. The persisted typography scale identifiers remain Small, Standard and Large; their rendering multipliers are now 0.80, 1 and 1.20.
+
+## Session 08 export-only amendment
+
+PNG/JPG choice, edge-risk scan results and prepared export files are transient UI/runtime data. No project schema migration is needed. Both formats read the same saved photo/crop/typography snapshot; print density metadata is written to the output file only.
+
+**Session 08 print-bleed correction:** The additional print cover factor is derived at render time from the persisted crop and print geometry. It is never saved, so digital output and existing project data remain unchanged.
+
+
+## V1 Enhancement state addendum
+
+`MonthState.importantDays?: number[]` stores sorted unique valid date numbers for that 2027 month. An absent field in an older schema-1 project means no marked dates; validation rejects duplicates and out-of-range dates. `CalendarProject.colorBatchUndo?: Partial<Record<MonthNumber, HexColor>>` stores only backgrounds changed by the latest coordinated-color batch, so Restore Previous Colors survives reload without a generic history system. Manual per-month background editing clears that one restore record. Both optional fields are structured-clone-safe and use the existing atomic IndexedDB project transaction; no database or schema-version migration is required. Photo palette samples and the confirmation sheet remain transient.
+
+
+## V1.1 Part 1 optional month texture
+
+CalendarStyle gains an optional texture ID: none, lines, grid, waves, dots, paper or vellum. A missing value in an older schema-version-1 saved project means none. Validation rejects unknown IDs; a Set Texture action updates only the selected month's existing style and follows the existing autosave, revision and stale-tab behavior. Background remains an arbitrary solid HEX value and Auto/Custom ink remains unchanged. No new asset table, freeform texture payload or schema-version migration is introduced.
+
+**2026-09-25 compatibility:** `linen` was briefly saved by the preceding V1.1 patch. Validation accepts that retired value and returns an otherwise identical project with the month texture normalized to `vellum`; active selection and newly saved projects use `vellum` only.
+
+### Part 2A important-mark style, 2026-09-25
+
+`CalendarProject.importantMarkStyle` is one enum value (`red | circle | dot`) for all twelve months. New projects store `red`; legacy schema-version-1 projects with no field normalize to `red` during restore. Existing `MonthState.importantDays` arrays remain the only marked-date data; changing style does not rewrite them. Validation rejects unknown style IDs. The value is structured-cloned and committed in the existing IndexedDB project record; no database or schema-version bump is needed.

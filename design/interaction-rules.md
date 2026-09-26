@@ -240,7 +240,7 @@ The editor displays and edits one month. It does not become a multi-page free ca
 - Month title, year, weekday labels, and date numbers always share one computed Calendar text color; weekday/weekend color does not diverge in V1.
 - A curated Calendar typography preset and Small/Standard/Large scale preset are selected at project level and apply to all four text roles across 12 months. A preset may define fixed role-specific fonts, weights, and spacing internally; neither selection changes the Simplified Chinese Product UI font.
 - No font upload, large library, free px slider, weight/spacing editor, or separately selectable font/color per text role appears.
-- Gradients, textures, background images, and multiple background regions do not appear.
+- The original V1 baseline excludes gradients, textures, background images, and multiple regions. V1.1 Part 1 adds six named low-opacity textures to the lower calendar background only; no freeform texture placement or photo overlay appears.
 
 ### IR-29 — Touch gesture separation
 
@@ -297,7 +297,7 @@ Review & Export is available for incomplete and complete projects. It always sho
 
 - Available only when all 12 months are ready.
 - Generates 12 independent January–December PNGs. ZIP is a delivery package containing those files, not the output definition.
-- Desktop sequential render → ZIP is a validated candidate. The mobile primary handoff is an **OPEN TECHNICAL QUESTION** pending real iPhone/iPad Safari HTTPS multi-file Share/Save tests. ZIP and per-month save are fallback candidates.
+- Desktop and mobile use sequential render → one downloadable ZIP as the V1 full-set handoff. On mobile, the user opens/extracts the ZIP in Files/Downloads to access all twelve independent PNGs; no direct-Photos or production multi-file Share action is promised.
 - Never automatically trigger 12 independent browser downloads.
 - Files are ordered and named unambiguously from `01` through `12` in any batch package.
 - An incomplete state explains which months are missing and provides direct recovery paths.
@@ -427,3 +427,43 @@ The Session 02 gate has passed. Session 03 begins only in the separately authori
 The desktop system color picker remains available. A separate **从照片取色** action opens a photo sampling sheet/dialog inside S03; touch drag or click selects a pixel in the current crop, previews its HEX value, and only **使用此颜色** changes the current month's background. Cancel leaves the prior color intact. This nested S03 control does not add a new core screen or a new numbered cross-screen transient surface.
 
 Small / Standard / Large are 80% / 100% / 120%. Single and full-set export each offer default print and optional digital variants. The trim preview remains 2:3; the print file adds approximately 3 mm bleed outside a 100 × 150 mm trim and carries 300 PPI metadata. The selected variant applies to all files in that export action.
+
+## Session 08 controlled export interactions
+
+PNG remains the default export format; JPG can be selected for one-month and full-set output in print or digital size. A format or project-content change invalidates a previously prepared file. The editor analyzes the current visible photo crop after import/crop changes and warns about a broad light edge with zoom/reposition guidance. Before full-set rendering, T05 lists affected months and lets the user edit one or continue with an intentional pale background. The warning does not change saved crop or block export. ZIP is the V1 mobile delivery method for twelve same-format images. Earlier PNG-only/mobile-handoff descriptions are historical.
+
+**Session 08 print-bleed correction:** Selecting print displays the actual slightly tighter source-photo crop needed to cover bleed. Switching to digital restores the saved crop visually; neither switch writes an automatic zoom to the project. The full-set edge warning evaluates the selected output variant.
+
+
+## V1 Enhancement rules
+
+Photo recommendations never auto-apply. Selecting a swatch applies only that month's background and recalculates Auto ink; failed extraction leaves the current color untouched and offers safe choices. Full-set suggestions require all twelve ready photos, show each month before/after, and apply only after confirmation. Restore reverts that batch's changed backgrounds once; a later manual background choice clears the restore record. Important Date toggles a valid day number, has no event text, and persists per month. Reduced-motion removes decorative entrance/hover movement while preserving feedback and operation speed.
+
+2026-09-24 per-month photo color rule: Background Color displays three optional swatches extracted from the current month's visible photo crop. Selection applies one color to that month only; passive analysis never alters the saved background. Fixed Common Colors remain distinct. Fewer than three distinct photo colors may create explicitly labeled tonal extensions; a decode/analysis failure uses clearly labeled fixed backups. The phone sheet follows the same rule.
+
+2026-09-24 experience polish: Selecting a per-month recommendation changes only the active month. The Review twelve-color strip switches a proposal-only month proof; it never saves until Apply. Cancel preserves every background; Apply retains the existing one-step Restore. Export progress marks completed months in order, while the text status remains the screen-reader announcement. Important Date blue hover/focus is ordinary interaction feedback; only the red marked state changes preview and export.
+
+2026-09-24 whole-set refinement: For each ready month, choose a mildly contrasting companion/accent from the same photo recommendation set shown in the month Editor. Prefer actual photo swatches; if the photo offers only one color, use a labeled tonal extension. Soften a raw swatch only when too dark/intense for the calendar background, and identify its source in the confirmation proof. Fixed backup colors are for extraction failure only. Preview is read-only until explicit Apply; one-operation Restore remains.
+
+2026-09-24 motion polish: All animation is optional presentation feedback. Rapid month changes resolve to the latest selected month; progress visuals follow actual analysis/render completion without added waiting. Important Date pressed/marked meaning, keyboard focus, batch confirmation and one-step restore are unchanged. Reduced-motion removes movement and stagger while retaining readable selected, loading, error and success states. Mobile suppresses hover-only lifts and never delays touch input.
+## V1.1 Editor interaction placement (2026-09-25)
+
+The ten fixed colors remain immediate current-month background shortcuts, now in a 2 × 5 swatch shelf. Pointer hover and keyboard focus expose name + HEX; accessible names and pressed states persist without visible labels. Photo-derived main, matching, and accent colors remain direct-apply controls. Exact HEX/RGB, texture, typography, important-date marking, and export retain their behavior in sections below the proof. The whole-set palette still previews and applies on Review; the Editor's lower Export section provides its entry. The important-date hover style is unchanged.
+## Editor color and export refinement (2026-09-25)
+
+Round common-color swatches and round photo recommendation samples keep the same direct-apply behavior, accessible names, names/HEX and pressed state. Precise HEX/RGB/current-month picker now stays with the quick color controls (desktop rail, phone background sheet). Export variant, format, current-month generation and Review palette entry remain in the last standalone section. No export algorithm, date-hover, or crop behavior changes.
+## Background and texture control refinement (2026-09-25)
+
+Photo-derived and fixed colors remain direct-apply buttons with pressed state, accessible name and hover/focus name/HEX. Common colors scroll in one row. The existing precise photo pixel picker remains a small action beside recommendations. Custom toggles the existing HEX/RGB/native color inputs, closed initially; input values still follow the current month background. Texture Clear writes `none` and the five preview buttons write the same texture IDs as before. Texture names are available through hover tooltip and accessible names. Export, crop and date-hover interactions are unchanged.
+
+## V1.1 Editor placement amendment — 2026-09-25
+
+Repositioning Text Color, typography, texture and Important Date does not change their behavior. A custom text color retains its HEX input and the existing non-blocking contrast warning; changing the adjacent background updates that warning immediately. Desktop proof remains sticky while the long rail scrolls. At widths below 1024px the proof is static and the rail follows it.
+
+## V1.1 desktop Editor scroll and grid clarification — 2026-09-25
+
+The right rail still scrolls with the page; the left proof remains sticky. The Product Owner chose this current behavior over introducing nested inspector scroll. The subtle workspace grid appears through CSS only while the editable crop surface is active and fades away after release; pointer, pinch, crop and export behavior are unchanged.
+
+## V1.1 Editor current-month export menu amendment — 2026-09-25
+
+The Editor title-row utility control `导出本月⌄` offers print PNG, print JPG, digital PNG and digital JPG for the currently selected month. Selecting an item closes the overlay, snapshots current state, renders the one file and attempts browser download; it does not navigate, switch month or edit project state. The menu closes on outside pointer, repeat click, Escape and selection. A small anchored status offers manual download if the asynchronous automatic handoff did not start, plus failure retry. The old bottom Export section and duplicate Review palette link are removed from Editor. Review retains its own full-set export interaction. See `ui-ux-change-request-v1-1-month-export-menu.md`.

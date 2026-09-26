@@ -1,6 +1,18 @@
 import type { HexColor } from './project.ts';
 
-export const QUICK_COLORS: readonly HexColor[] = ['#FFFFFF', '#E8EDE9', '#E6DDD1', '#1E3933'];
+export const COMMON_COLORS = [
+  { label: '奶油白', color: '#F7F4EE' },
+  { label: '浅雾灰', color: '#E6EBE8' },
+  { label: '暖米色', color: '#E9E1D3' },
+  { label: '薄荷奶绿', color: '#CFE8D6' },
+  { label: '鼠尾草绿', color: '#BFD1C3' },
+  { label: 'Baby Blue', color: '#B7D7F2' },
+  { label: '雾霾蓝', color: '#95A8C7' },
+  { label: '淡柠檬黄', color: '#F3EEA4' },
+  { label: '软桃粉', color: '#F4C7C3' },
+  { label: '浅丁香紫', color: '#D9C7EB' },
+] as const satisfies readonly { label: string; color: HexColor }[];
+
 export const DARK_INK: HexColor = '#18201D';
 export const LIGHT_INK: HexColor = '#FFFFFF';
 // Technical candidate for the M4 warning; final threshold remains open for device QA.

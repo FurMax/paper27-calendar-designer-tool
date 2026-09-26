@@ -1,9 +1,16 @@
 import { Zip, ZipPassThrough } from 'fflate';
-import type { RenderedMonthPng } from './canvasRenderer.ts';
+import { EXPORT_FORMATS, type ExportFormat } from '../domain/exportFormat.ts';
+import type { RenderedMonthFile, RenderedMonthPng } from './canvasRenderer.ts';
 
-/** PNG bytes are already compressed; ZIP stores each independent PNG unchanged. */
-export async function packagePngZip(files: RenderedMonthPng[]): Promise<Blob> {
-  if (files.length !== 12 || files.some((file, i) => file.month !== i + 1 || !file.fileName.startsWith(`${String(i + 1).padStart(2, '0')}-`))) throw new Error('ZIP 需要按 1–12 月排序的 12 张 PNG。');
+/** Encoded image bytes are already compressed; ZIP stores each independent file unchanged. */
+export async function packageImageZip(files: RenderedMonthFile[], format: ExportFormat): Promise<Blob> {
+  const spec = EXPORT_FORMATS[format];
+  if (files.length !== 12 || files.some((file, i) =>
+    file.month !== i + 1 ||
+    !file.fileName.startsWith(String(i + 1).padStart(2, '0') + '-') ||
+    !file.fileName.endsWith('.' + spec.extension) ||
+    file.blob.type !== spec.mime
+  )) throw new Error('ZIP 需要按 1–12 月排序的 12 张 ' + spec.label + '。');
   return new Promise<Blob>((resolve, reject) => {
     const parts: BlobPart[] = [];
     const archive = new Zip((error, chunk, final) => {
@@ -24,3 +31,5 @@ export async function packagePngZip(files: RenderedMonthPng[]): Promise<Blob> {
     })().catch(reject);
   });
 }
+
+export function packagePngZip(files: RenderedMonthPng[]): Promise<Blob> { return packageImageZip(files, 'png'); }

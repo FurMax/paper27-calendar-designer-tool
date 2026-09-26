@@ -1,18 +1,24 @@
 import { ALL_MONTHS, CALENDAR_YEAR, type MonthNumber } from './calendar.ts';
+import type { TextureId } from './texture.ts';
+import type { PhotoEffect } from './photoEffect.ts';
 
 export type HexColor = `#${string}`;
-export type TypographyPresetId = 'classic' | 'minimal' | 'handwritten';
+export type TypographyPresetId = 'classic' | 'minimal' | 'handwritten' | 'retro';
 export type TextScale = 'small' | 'standard' | 'large';
+export type ImportantMarkStyle = 'red' | 'circle' | 'dot';
 export interface CropState { zoom: number; offsetX: number; offsetY: number }
 export interface CalendarStyle {
   background: HexColor;
+  texture?: TextureId;
   text: { mode: 'auto' } | { mode: 'custom'; color: HexColor };
 }
 export interface MonthState {
   month: MonthNumber;
   photoItemId: string | null;
   crop: CropState | null;
+  photoEffect?: PhotoEffect;
   style: CalendarStyle;
+  importantDays?: number[];
 }
 export interface ProjectPhotoItem { id: string; assetId: string; createdAt: string }
 export interface PhotoAsset {
@@ -32,8 +38,10 @@ export interface CalendarProject {
   updatedAt: string;
   year: typeof CALENDAR_YEAR;
   typography: { presetId: TypographyPresetId; scale: TextScale };
+  importantMarkStyle: ImportantMarkStyle;
   months: Record<MonthNumber, MonthState>;
   photoItems: Record<string, ProjectPhotoItem>;
+  colorBatchUndo?: Partial<Record<MonthNumber, HexColor>>;
   lastLocation: { screen: 'assign' | 'editor' | 'review'; month?: MonthNumber };
 }
 export interface ProjectState { project: CalendarProject; assets: Record<string, PhotoAsset> }
@@ -46,7 +54,7 @@ export function createEmptyProject(id: string): ProjectState {
   }])) as unknown as Record<MonthNumber, MonthState>;
   return {
     project: { schemaVersion: 1, id, revision: 0, updatedAt: '', year: CALENDAR_YEAR,
-      typography: { presetId: 'classic', scale: 'standard' }, months, photoItems: {}, lastLocation: { screen: 'assign' } },
+      typography: { presetId: 'classic', scale: 'standard' }, importantMarkStyle: 'red', months, photoItems: {}, lastLocation: { screen: 'assign' } },
     assets: {},
   };
 }

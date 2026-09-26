@@ -268,7 +268,7 @@ Show the complete January–December set, reveal missing work, and provide singl
 - Missing Photo or Ready state for each month.
 - Ready count and missing-month names.
 - Full-set availability and reason when unavailable.
-- Product output is 12 separate monthly PNG files. Full-set generation prepares those files; ZIP is a delivery package. The mobile handoff is an OPEN TECHNICAL QUESTION pending HTTPS device validation.
+- Product output is twelve separate monthly PNG files. Full-set generation prepares those files; one ZIP packages them for download on desktop and mobile. The user opens/extracts it in Files/Downloads on phone. Multi-file Share and one-action direct Photos are outside V1 by the Session 08 Product Owner decision.
 
 Edited metadata is not a completion tier. If a later wireframe surfaces it lightly, Ready remains the only completed user-facing state.
 
@@ -581,3 +581,40 @@ Session 03 may use an inline state, dialog, bottom sheet, overlay, or focused st
 S03 Background contains the existing system picker, named Quick Colors, HEX/RGB and an explicit **从照片取色** action. This action opens a nested photo sampling sheet/dialog with a touch target, live HEX/swatch, Cancel and **使用此颜色**; it does not change crop gestures. It remains part of the S03 editing controls, so the four-screen / five-numbered-transient IA count remains intact.
 
 S03 typography displays 80% / 100% / 120% scale cards. S03 single export and S04 full-set export display default print and optional digital variant choices. Print copy names the 100 × 150 mm trim, approximately 3 mm bleed per edge, 106 × 156 mm file, 1252 × 1843 px and 300 PPI. T05 remains transient.
+
+## Session 08 controlled export-surface amendment
+
+S03 and S04 each expose a PNG (default) / JPG export-format selector beside print/digital size. S03 shows a non-blocking visible-photo-edge warning near crop controls. T05 checks all twelve crops before rendering and, if a broad pale edge is found, names the months and edges with Edit Month and Continue actions. Existing S01–S04/T01–T05 structure is unchanged. Earlier PNG-only mock copy is historical.
+
+**Session 08 print-bleed correction:** S03 proof and S04 thumbnails render the selected print/digital photo crop. Print can show a slightly tighter crop to cover output bleed with genuine photo pixels. No new screen is added.
+
+
+## V1 Enhancement inventory addendum
+
+S03 Month Editor: quiet desk background around proof, three-color recommendations in T photo-sampling sheet, and a minimal Important Date group (phone sheet). S04 Review: completed-set summary, coordinated color preview/confirmation sheet and Restore Previous Colors action. Global shell: typographic wordmark slot, minimal `27` favicon, Baby Blue action/selection states with Milk Mint recommendation states. No new core screen.
+
+2026-09-24 per-month recommendation correction: S03 Background Color now shows three photo-derived swatches inline for the currently visible photo crop on desktop and in the phone sheet. Fixed Common Colors are labeled separately. The exact pixel picker remains a nested S03 dialog. A change of photo, month, crop, or print/digital preview recomputes the swatches; selecting a swatch changes only that month.
+
+2026-09-24 experience polish: S01 Entry retains its actions and gains a decorative three-page calendar stack. S03 Month Editor retains its structure with a quieter desk and clearer Background Color recommendation cards. S04 Review retains its twelve-card gallery and export actions; the existing color-confirmation dialog gains a twelve-color overview and one selected-month proof. The existing export dialog gains visible 1–12 completion markers. No core screen or numbered transient surface is added.
+
+
+## V1.1 Part 1 S03 inventory amendment
+
+Desktop S03 Properties presents Background (ten fixed Common Colors, three current-crop photo suggestions, arbitrary color inputs), then Texture (none, fine horizontal lines, light grid, wave grid, fine dots, paper grain), then existing Calendar Text, Important Date and Export. The phone's existing Background sheet includes the texture choices after the color inputs. The texture selection is per-month and immediately visible in the proof; it never overlays the photo. The four-screen / five-transient-surface count is unchanged.
+## V1.1 Editor hierarchy follow-up (2026-09-25)
+
+S03 Month Editor remains the same screen. Its first level is proof + lightweight quick rail; its lower level is three named workbench sections: Style, Dates, Export. The quick rail contains month status, photo actions, current color, photo-derived suggestions, and ten compact fixed swatches. Exact color, texture, calendar text, important dates, and single-month export move below. The lower Export section routes to the existing whole-set palette in S04 Review. Mobile stacks the lower sections and retains the quick background sheet. No new screen or transient surface is added.
+## S03 current placement refinement (2026-09-25)
+
+Precise current-month background color returns to the desktop quick rail and the phone background sheet. The ten common swatches and three photo-recommendation samples are circular. Below the proof, Style now contains texture/calendar text, Dates contains important marks, and a separate full-width Export section is last. The existing S04 Review whole-set palette remains linked from Export. This supersedes the exact-color-in-Style placement in the V1.1 hierarchy note above.
+## S03 compact controls, 2026-09-25
+
+The Background section in the S03 quick rail is now a single approximately 141 px collapsed card with Recommendation, Common and Custom rows. Three recommendation circles, ten horizontally scrolling fixed circles, and an expandable precise-color form retain the existing current-month actions. The separate current-color card is removed. The Style texture block is one row: Clear plus five square previews. This supersedes the earlier 2 × 5 common swatch and six-card texture presentation; no new screen or sheet is added.
+
+## V1.1 Month Editor placement amendment — 2026-09-25
+
+The Month Editor retains the same controls and states. Its desktop control placement is now Photo → Background → Text Color → Style → Date in one right rail beside a sticky proof; Export is a separate final section. At widths below 1024px the rail follows the proof. This supersedes descriptions that place Style, Date or Text Color in lower cards.
+
+## V1.1 desktop Editor visual refinement — 2026-09-25
+
+The Month Editor's control set and transient surfaces are unchanged. Desktop presentation now uses segmented font/size choices, wrapped quick colors, five texture tiles with Clear in the field header, compact export radio rows, neutral Ready status, and a white focus canvas with its bleed note below. These are visual/control-layout changes only; mobile remains as before.

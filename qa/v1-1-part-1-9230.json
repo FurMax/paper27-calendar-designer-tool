@@ -1,0 +1,220 @@
+{
+  "port": "9230",
+  "assetBytes": 15393,
+  "hierarchy": {
+    "railItems": [
+      "照片",
+      "背景色",
+      "文字颜色 · 当前月份",
+      "样式设置",
+      "日期设置"
+    ],
+    "rightOfProof": true,
+    "proofSticky": true,
+    "proofMaxHeight": true,
+    "railHasNoBottomGap": true,
+    "exportAfterRail": true,
+    "commonNoWrap": true,
+    "commonScroll": true,
+    "compactHeight": 141,
+    "swatches": 10,
+    "visibleLabels": 0,
+    "tooltip": "奶油白 · #F7F4EE",
+    "roundSwatch": true,
+    "roundPhoto": true,
+    "precisionInRail": false,
+    "customToggle": true,
+    "currentCard": false,
+    "textColorInRail": true,
+    "styleInRail": true,
+    "datesInRail": true,
+    "exportInRail": false,
+    "exportBelow": true,
+    "paletteEntryBelow": true,
+    "oldLowerCards": false
+  },
+  "keyboardTooltip": {
+    "focused": true,
+    "focusVisible": true,
+    "content": "\"奶油白 · #F7F4EE\""
+  },
+  "textureLayout": {
+    "noWrap": true,
+    "height": 50,
+    "thumbWidth": 40,
+    "thumbHeight": 40,
+    "tooltip": "\"细横线\"",
+    "hiddenLabel": true
+  },
+  "mobileRound": true,
+  "mobileNarrow": {
+    "overflow": false,
+    "noWrap": true
+  },
+  "colors": [
+    {
+      "name": "奶油白",
+      "color": "#F7F4EE"
+    },
+    {
+      "name": "浅雾灰",
+      "color": "#E6EBE8"
+    },
+    {
+      "name": "暖米色",
+      "color": "#E9E1D3"
+    },
+    {
+      "name": "薄荷奶绿",
+      "color": "#CFE8D6"
+    },
+    {
+      "name": "鼠尾草绿",
+      "color": "#BFD1C3"
+    },
+    {
+      "name": "Baby Blue",
+      "color": "#B7D7F2"
+    },
+    {
+      "name": "雾霾蓝",
+      "color": "#95A8C7"
+    },
+    {
+      "name": "淡柠檬黄",
+      "color": "#F3EEA4"
+    },
+    {
+      "name": "软桃粉",
+      "color": "#F4C7C3"
+    },
+    {
+      "name": "浅丁香紫",
+      "color": "#D9C7EB"
+    }
+  ],
+  "common": {
+    "color": "#B7D7F2",
+    "ink": "#18201D",
+    "pressed": "true"
+  },
+  "suggestions": [
+    {
+      "label": "主色",
+      "hex": "#D2A7AB"
+    },
+    {
+      "label": "搭配色",
+      "hex": "#718B90"
+    },
+    {
+      "label": "点缀色",
+      "hex": "#E6BC7D"
+    }
+  ],
+  "options": [
+    "清除",
+    "细横线",
+    "浅网格",
+    "波浪格",
+    "细点阵",
+    "纸张肌理"
+  ],
+  "baseline": {
+    "type": "image/png",
+    "size": 80394,
+    "width": 1200,
+    "height": 1800,
+    "photoHash": 2464090509,
+    "calendarHash": 1962658757,
+    "bottomBleedHash": null,
+    "photoTopHash": 1868624621
+  },
+  "textureResults": {
+    "细横线": {
+      "preview": "lines",
+      "calendarHash": 2158810373
+    },
+    "浅网格": {
+      "preview": "grid",
+      "calendarHash": 3226183773
+    },
+    "波浪格": {
+      "preview": "waves",
+      "calendarHash": 900600525
+    },
+    "细点阵": {
+      "preview": "dots",
+      "calendarHash": 846575813
+    },
+    "纸张肌理": {
+      "preview": "paper",
+      "calendarHash": 1607995661
+    }
+  },
+  "printPng": {
+    "type": "image/png",
+    "size": 220542,
+    "width": 1252,
+    "height": 1843,
+    "photoHash": 2274007661,
+    "calendarHash": 1168769690,
+    "bottomBleedHash": 1506093204,
+    "photoTopHash": 663813581
+  },
+  "printJpg": {
+    "type": "image/jpeg",
+    "size": 110420,
+    "width": 1252,
+    "height": 1843,
+    "photoHash": 1027745981,
+    "calendarHash": 3147597442,
+    "bottomBleedHash": 1379038697,
+    "photoTopHash": 587337629
+  },
+  "digitalJpg": {
+    "type": "image/jpeg",
+    "size": 117160,
+    "width": 1200,
+    "height": 1800,
+    "photoHash": 3946587285,
+    "calendarHash": 849622931,
+    "bottomBleedHash": null,
+    "photoTopHash": 4068086485
+  },
+  "restored": {
+    "texture": "paper",
+    "color": "#B7D7F2",
+    "selected": "纸张肌理"
+  },
+  "mobile": {
+    "colors": 10,
+    "textures": 6,
+    "precisionInSheet": false,
+    "customToggle": true,
+    "selected": "纸张肌理",
+    "overflow": false
+  },
+  "review": {
+    "completion": "12 / 12整套月历已就绪",
+    "firstTexture": "paper"
+  },
+  "fullSet": {
+    "size": 1460187,
+    "names": [
+      "01-January-2027-Print-106x156mm.png",
+      "02-February-2027-Print-106x156mm.png",
+      "03-March-2027-Print-106x156mm.png",
+      "04-April-2027-Print-106x156mm.png",
+      "05-May-2027-Print-106x156mm.png",
+      "06-June-2027-Print-106x156mm.png",
+      "07-July-2027-Print-106x156mm.png",
+      "08-August-2027-Print-106x156mm.png",
+      "09-September-2027-Print-106x156mm.png",
+      "10-October-2027-Print-106x156mm.png",
+      "11-November-2027-Print-106x156mm.png",
+      "12-December-2027-Print-106x156mm.png"
+    ]
+  },
+  "errors": []
+}

@@ -1,10 +1,14 @@
 import { createContext, useCallback, useContext, useEffect, useReducer, useRef, useState, type ReactNode } from 'react';
 import { addImportedAssets, applyAssignment, type AssignmentCommand, type CommandResult } from '../domain/assignment.ts';
-import { createEmptyProject, type CalendarProject, type CropState, type HexColor, type PhotoAsset, type ProjectState, type TextScale, type TypographyPresetId } from '../domain/project.ts';
+import { createEmptyProject, type CalendarProject, type CropState, type HexColor, type PhotoAsset, type ProjectState, type TextScale, type TypographyPresetId, type ImportantMarkStyle } from '../domain/project.ts';
 import type { Location } from './navigation.ts';
 import type { MonthNumber } from '../domain/calendar.ts';
 import { updateMonthCrop } from '../domain/crop.ts';
 import { canonicalHex } from '../domain/color.ts';
+import { isTextureId, type TextureId } from '../domain/texture.ts';
+import { isImportantMarkStyle, toggleImportantDay } from '../domain/importantDates.ts';
+import { isPhotoEffect, type PhotoEffect } from '../domain/photoEffect.ts';
+import { applyColorBatch, restoreColorBatch } from '../domain/batchColors.ts';
 import { commitProject, loadProject, replaceProject, StaleProjectError, type ExpectedRevision } from '../persistence/indexedDb.ts';
 
 type Action =
@@ -14,7 +18,13 @@ type Action =
   | { type: 'command'; command: AssignmentCommand }
   | { type: 'location'; location: Location }
   | { type: 'set-crop'; month: MonthNumber; crop: CropState }
+  | { type: 'set-photo-effect'; month: MonthNumber; effect: PhotoEffect }
   | { type: 'set-background'; month: MonthNumber; color: HexColor }
+  | { type: 'set-texture'; month: MonthNumber; texture: TextureId }
+  | { type: 'apply-color-batch'; colors: Partial<Record<MonthNumber, HexColor>> }
+  | { type: 'restore-color-batch' }
+  | { type: 'toggle-important-day'; month: MonthNumber; day: number }
+  | { type: 'set-important-mark-style'; style: ImportantMarkStyle }
   | { type: 'set-ink'; month: MonthNumber; mode: 'auto' | 'custom'; color?: HexColor }
   | { type: 'set-typography'; presetId?: TypographyPresetId; scale?: TextScale };
 type InternalAction = Action | { type: 'restore'; state: ProjectState | null } | { type: 'clear' } | { type: 'save-ack'; project: CalendarProject };
@@ -36,14 +46,45 @@ function reducer(runtime: RuntimeState, action: InternalAction): RuntimeState {
     return changed(runtime, result.state, result.affectedMonths);
   }
   if (!runtime.projectState) return runtime;
+  if (action.type === 'apply-color-batch' || action.type === 'restore-color-batch') {
+    const current = runtime.projectState.project;
+    const project = action.type === 'apply-color-batch' ? applyColorBatch(current, action.colors) : restoreColorBatch(current);
+    return project === current ? runtime : changed(runtime, { ...runtime.projectState, project });
+  }
+  if (action.type === 'set-important-mark-style') {
+    if (!isImportantMarkStyle(action.style) || runtime.projectState.project.importantMarkStyle === action.style) return runtime;
+    return changed(runtime, { ...runtime.projectState, project: { ...runtime.projectState.project, importantMarkStyle: action.style } });
+  }
+  if (action.type === 'toggle-important-day') {
+    const current = runtime.projectState.project;
+    const slot = current.months[action.month];
+    const next = toggleImportantDay(slot, action.day);
+    if (next === slot) return runtime;
+    return changed(runtime, { ...runtime.projectState, project: { ...current, months: { ...current.months, [action.month]: next } } });
+  }
+  if (action.type === 'set-texture') {
+    if (!isTextureId(action.texture)) return runtime;
+    const current = runtime.projectState.project;
+    const slot = current.months[action.month];
+    if ((slot.style.texture ?? 'none') === action.texture) return runtime;
+    const style = { ...slot.style, texture: action.texture };
+    return changed(runtime, { ...runtime.projectState, project: { ...current, months: { ...current.months, [action.month]: { ...slot, style } } } });
+  }
   if (action.type === 'set-crop') return changed(runtime, updateMonthCrop(runtime.projectState, action.month, action.crop));
+  if (action.type === 'set-photo-effect') {
+    if (!isPhotoEffect(action.effect)) return runtime;
+    const project = runtime.projectState.project;
+    const slot = project.months[action.month];
+    if (slot.photoEffect?.id === action.effect.id && slot.photoEffect.duotone === action.effect.duotone && !!slot.photoEffect.swapped === !!action.effect.swapped) return runtime;
+    return changed(runtime, { ...runtime.projectState, project: { ...project, months: { ...project.months, [action.month]: { ...slot, photoEffect: action.effect } } } });
+  }
   if (action.type === 'set-background' || action.type === 'set-ink') {
     const color = action.type === 'set-background' ? canonicalHex(action.color) : action.mode === 'custom' ? canonicalHex(action.color ?? '') : null;
     if ((action.type === 'set-background' || action.mode === 'custom') && !color) return runtime;
     const slot = runtime.projectState.project.months[action.month];
     const style = action.type === 'set-background' ? { ...slot.style, background: color! } :
       { ...slot.style, text: action.mode === 'auto' ? { mode: 'auto' as const } : { mode: 'custom' as const, color: color! } };
-    return changed(runtime, { ...runtime.projectState, project: { ...runtime.projectState.project, months: { ...runtime.projectState.project.months, [action.month]: { ...slot, style } } } });
+    return changed(runtime, { ...runtime.projectState, project: { ...runtime.projectState.project, months: { ...runtime.projectState.project.months, [action.month]: { ...slot, style } }, ...(action.type === 'set-background' ? { colorBatchUndo: undefined } : {}) } });
   }
   if (action.type === 'set-typography') return changed(runtime, { ...runtime.projectState, project: { ...runtime.projectState.project, typography: { ...runtime.projectState.project.typography, ...(action.presetId ? { presetId: action.presetId } : {}), ...(action.scale ? { scale: action.scale } : {}) } } });
   if (action.type === 'location') {

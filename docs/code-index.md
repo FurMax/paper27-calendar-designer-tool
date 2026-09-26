@@ -53,3 +53,100 @@ Post-M8 Product Owner review: `src/screens/Editor.tsx` and `src/components/Style
 - src/domain/photoSampling.ts maps a point in the cropped Preview to the decoded source pixel. src/components/PhotoColorPicker.tsx provides a touch/click sampler with provisional swatch/HEX and explicit confirm/cancel. src/components/StyleControls.tsx groups the current background color, named Quick Colors, native picker and exact HEX/RGB; per-month text Auto/Custom remains.
 - src/domain/typography.ts now resolves Small/Standard/Large as 0.80/1/1.20. The persisted scale values and project schema did not change.
 - tests/unit/print-and-sampling.test.ts and tests/browser/session07-print-color.mjs provide scoped checks; qa/session07-photo-sample-mobile.png and qa/session07-type-scale-mobile.png are Chrome mobile-viewport evidence. qa/session-07-approved-revisions.md records limits and remaining Session 08 gates.
+
+## Session 08 integration and QA additions
+
+- `src/app/dialogFocus.ts` is a small app-wide dialog keyboard-focus adapter. It moves focus into transient dialogs, contains Tab navigation and restores the triggering control when the dialog closes. `src/app/App.tsx` installs it once; `tests/browser/session08-dialog-focus.mjs` is its browser regression.
+- `tests/browser/session08-integration.mjs` runs the current production first-time/returning flow in isolated Windows Chrome and Edge profiles, checks actual IndexedDB state, all twelve Preview date grids, twelve digital PNG date-position pixels and the browser-downloaded default print ZIP's twelve PNG entries.
+- `tests/browser/session08-assignment-ui.mjs` runs S02 Move/Swap/Remove/Replace/Reuse/Delete through production buttons and checks each committed IndexedDB state.
+- `tests/browser/session08-color-output.mjs` checks actual PNG background and unified title/year/weekday/date ink pixels for nine Auto/Custom cases.
+- `tests/browser/session08-photo-output.mjs` checks five actual PNG photo-ratio edge cases and oriented EXIF JPEG decode in Chrome.
+- `tests/browser/session08-typography.mjs` renders 3 presets × 3 scales × 12 months as actual digital PNGs and checks face load status and visible title ink in Chrome.
+- Historical `tests/browser/m5-check.mjs` and `m7-check.mjs` now use current approved control selectors and print-default wording/filename. Their persistence and cancel/failure/retry assertions pass again.
+- `qa/integration-results.md`, `cross-browser-results.md`, `mobile-device-results.md`, `export-results.md`, and `release-checklist.md` record current evidence, limits, severity and remaining release gates. `design/ui-ux-change-request-session-08-contrast.md` records the unresolved Auto ink threshold/visual decision without changing production color behavior.
+- `qa/session08-device-probe.html` is a QA-only picker/decode/metadata page served by the local dev server. It is outside the production build and does not upload or persist selected files.
+
+The Product Owner's iPhone 13 Safari 16.2 LAN report adds a scoped browser-ZIP handoff PASS: the 24.2 MB ZIP appeared in iCloud Drive / Downloads, was extracted, and each of twelve PNGs opened. The QA-only picker probe decoded one 5,733,218-byte PNG through the img fallback after createImageBitmap failed. It does not establish native HEIC, twelve-source-photo capacity, HTTPS Share or direct Photos. See qa/mobile-device-results.md.
+
+The Product Owner approved ZIP as the V1 mobile primary handoff and deferred multi-file Share and one-action direct Photos beyond V1. Production already has ZIP/individual PNG download and no Share button; the QA-only Share probe remains a historical experiment. The Review ZIP note now names opening/extraction. The Product Owner reports that iPad Air 5 also completed the core workflow in both orientations, with version, file size and destination unreported.
+
+qa/printer-preflight-sample-2027-01.png is a synthetic January print PNG extracted from the validated Session 08 Chrome ZIP, held for comparison with the Product Owner's pending printer requirements; it is not provider approval.
+
+Session 08 has not nominated a Release Candidate or entered deployment. The Windows browser results are headless; the Product Owner's iPhone/iPad reports are scoped. Native picker, current-stable Safari, Android, real-original-photo and printer-provider gates remain open.
+
+## Session 08 export format and photo-edge correction
+
+- `src/domain/exportFormat.ts`, `src/components/ExportFormatPicker.tsx`, `src/export/jpegMetadata.ts`, `src/export/canvasRenderer.ts`, `src/export/zip.ts`, `src/export/exportController.ts` and S03/S04 now support transient PNG/JPG choice, single output and twelve-file same-format ZIP. PNG stays default; print JPG writes 300 dpi JFIF density.
+- `src/export/photoEdgeRisk.ts` scans the visible crop for broad pale edges. S03 warns beside crop controls; S04 checks every month before generation with Edit and Continue options. The Canvas renderer overscans beneath the exact digital crop; src/domain/printPhotoCrop.ts supplies the shared minimum-cover print transform for genuine source-photo bleed and print Preview.
+- `tests/unit/jpeg-export.test.ts`, `tests/browser/session08-jpg-export.mjs`, and `tests/browser/session08-photo-edge.mjs` cover metadata, ZIP, narrow format UI, warnings and edge pixels in isolated Windows Chrome/Edge. The supplied January/May print JPGs are historical failure evidence; their original source Blobs/crop state were not supplied.
+
+The selected variant also reaches `PhotoColorPicker.tsx`, so sampled pixels match the print or digital photo shown in S03. `sourcePixelAt` accepts the shared rectangle coordinates. The Session 07 print/color browser regression passed after this wiring.
+
+
+## V1 Enhancement code map
+
+- `src/domain/photoPalette.ts` and `src/features/photos/recommendColors.ts`: representative photo-color extraction, labeled tonal extensions when needed, and in-browser cropped-image sampling. `src/screens/Editor.tsx` analyzes only the active month and passes its three swatches to `src/components/StyleControls.tsx` for desktop and phone.
+- `src/domain/batchColors.ts` with `src/app/ProjectContext.tsx`: one-action coordinated color apply/restore persisted in the existing project.
+- `src/domain/importantDates.ts`, `src/components/ImportantDateControls.tsx`, `src/domain/renderModel.ts`, `src/components/CalendarProof.tsx`, `src/export/canvasRenderer.ts`: date-number validation/control and proof/export parity.
+- `src/app/App.tsx`, `src/styles/app.css`, `public/favicon.svg`: brand slot, desk/Baby Blue/Milk Mint hierarchy and reduced-motion shell.
+- `tests/unit/enhancement.test.ts` and `tests/browser/enhancement-patch.mjs`: focused patch verification.
+
+## V1 Experience Polish code map
+
+- `src/screens/Review.tsx`: twelve-color proposal strip, selected-month proof, 12/12 completion and month-by-month export status; `src/screens/Entry.tsx`: decorative three-page calendar stack.
+- `src/domain/photoPalette.ts` and `src/components/StyleControls.tsx`: semantic photo-color labels and larger selectable swatches.
+- `src/styles/app.css`: quieter workspace, brand/control hierarchy, palette/Review/Entry presentation and reduced-motion overrides. Export canvas never reads these styles.
+
+- `src/domain/photoPalette.ts` `coordinatedSetColorChoice`: chooses a gently contrasting existing monthly photo swatch, softens unsuitable tones, and returns source metadata. `src/screens/Review.tsx` discloses that source in the read-only twelve-month confirmation preview.
+
+## V1 Motion Polish code map
+
+- `src/styles/app.css`: motion tokens, CSS-only entrances/state transitions, touch suppression and reduced-motion final states. `src/screens/Editor.tsx` keys only the month heading so its opacity cue restarts on month change without remounting the controls.
+- `tests/browser/motion-polish.mjs`: focused Chrome/Edge behavior, CSS timing, mobile, reduced-motion and runtime-error checks. `tests/browser/experience-export-progress.mjs` verifies actual export steps.
+
+## V1 Focused Experience Upgrade, 2026-09-24
+
+- `src/screens/Entry.tsx`: scoped GSAP paper-stack timeline and context-safe fine-pointer response; CSS retains final static positions.
+- `src/screens/Editor.tsx`: retained displayed proof/photo plus a target proof revealed only after photo decode; scoped, cancellable GSAP switch timeline with a reduced-motion final state.
+- `src/screens/Review.tsx`: genuine per-month palette readiness, preview entrance, applied-color ribbon and Review-card wave; stored colors update without waiting for motion.
+- `src/styles/app.css`: layout and retained CSS states; old stack/month/ready keyframes removed.
+- `tests/browser/focused-experience.mjs`: cross-browser animation, frame-by-frame month opacity and image-readiness, rapid-switch, palette, reduced-motion and mobile layer checks. `tests/browser/diagnose-month-flash.mjs` records a detailed month-switch frame trace; `tests/browser/motion-polish.mjs` forwards to the current regression entry point.
+
+
+## V1 pre-release QA, 2026-09-24/25
+
+- tests/browser/pre-release-preview.mjs is the production-preview CDP harness. It exercises the public UI and real downloaded files in isolated Chrome/Edge profiles against dist/ at loopback port 4173.
+- qa/v1-pre-release-plan.md defines run scope and evidence rules. qa/v1-pre-release-results.md is the twelve-part report and short Product Owner iPhone handoff. qa/v1-pre-release-9230.json and qa/v1-pre-release-9231.json hold machine-readable browser results; qa/v1-pre-release-*.png are reviewed visual captures.
+- qa/release-checklist.md and qa/cross-browser-results.md distinguish this Windows production-preview pass from still-open formal Safari, macOS, Android, printer and product-decision gates.
+
+
+## V1.1 Part 1 code map
+
+- src/domain/color.ts defines ten named Common Colors; src/components/StyleControls.tsx renders them separately from the three current-photo suggestions.
+- src/domain/texture.ts defines the six bounded IDs and cached deterministic tiles; src/components/TextureControls.tsx provides desktop/phone previews and selection. src/domain/project.ts, src/app/ProjectContext.tsx and src/persistence/serialization.ts persist and validate the optional per-month ID.
+- src/domain/renderModel.ts, src/components/CalendarProof.tsx and src/export/canvasRenderer.ts share the chosen texture across proof, digital and print output without touching the photo/crop path.
+- tests/unit/texture.test.ts and tests/browser/v1-1-part-1.mjs provide focused model and production-preview pixel/ZIP checks. qa/v1-1-part-1.md and qa/v1-1-full-workflow-9230.json / qa/v1-1-full-workflow-9231.json record evidence and review limits.
+
+## V1.1 Editor current-month export entry — 2026-09-25
+
+`src/screens/Editor.tsx` now owns a four-choice title-row export menu and compact transient handoff status. It still calls `renderMonthImage` from `src/export/canvasRenderer.ts` for actual print/digital PNG/JPG bytes. `src/components/ExportVariantPicker.tsx` and `ExportFormatPicker.tsx` remain shared Review controls; only their Editor instances were removed. `src/styles/app.css` owns the overlay and responsive placement. `tests/browser/month-export-menu.mjs` and `qa/v1-1-month-export-menu.md` record focused QA.
+
+### 2026-09-25 retro type and paper addition
+
+`src/domain/typography.ts` defines four project-wide presets, including locally bundled Fraunces in `src/assets/fonts/` with its OFL license. `src/domain/texture.ts` defines seven bounded textures and shares the linen tile between CSS proof and canvas export. The Editor current-month export chevron is styled in `src/styles/app.css`; its handler remains in `src/screens/Editor.tsx`.
+
+### 2026-09-25 tracing-paper replacement
+
+`src/domain/texture.ts` now generates the seventh `vellum` tile and draws its sheet edge; `src/components/TextureControls.tsx` exposes 硫酸纸, while `src/styles/app.css` mirrors the edge in proof. `src/persistence/serialization.ts` normalizes retired saved `linen` values to `vellum`. `tests/browser/tracing-paper.mjs` and `tests/unit/texture.test.ts` cover output and migration.
+
+### Polka-dot visual revision (2026-09-25)
+
+`src/domain/texture.ts` preserves `dots` while changing its label to 波点 and generating a 288px sparse staggered tile; `src/components/TextureControls.tsx` scales the same image for a 40px thumbnail. `tests/browser/polka-dots.mjs` checks Chrome/Edge print pixels, photo invariance and mobile overflow. Visual sample and results: `qa/v1-1-polka-dots-print.png`, `qa/v1-1-polka-dots.md`.
+
+### Workspace Header (2026-09-25)
+
+`src/app/App.tsx` scopes the `site-header--workspace` class to Assign, Editor and Review. `src/styles/app.css` owns the sticky positioning, compact phone treatment, non-sticky phone month selector, modal layering, and Editor proof offset/short-viewport fit. The navigation actions and routes are unchanged. Focused browser coverage: `tests/browser/sticky-workspace-header.mjs`; results: `qa/v1-1-sticky-workspace-header.md`.
+
+### Part 2A important marks (2026-09-25)
+
+`src/domain/project.ts` stores the project-wide `importantMarkStyle`; `src/domain/importantDates.ts` defines and validates its three choices. `src/app/ProjectContext.tsx` updates only that field; `src/persistence/serialization.ts` defaults legacy saves to red and rejects invalid choices. `src/domain/renderModel.ts` sends the style to `src/components/CalendarProof.tsx` and `src/export/canvasRenderer.ts`; `src/components/ImportantDateControls.tsx` and `src/screens/Editor.tsx` expose the compact selector. `tests/unit/enhancement.test.ts` and `tests/browser/important-mark-style.mjs` cover state, proof, PNG/JPG, Review, reload and 320px phone UI. See `qa/v1-1-part-2a-important-marks.md`.

@@ -8,12 +8,14 @@ import { Review } from '../screens/Review.tsx';
 import { ProjectProvider, useProject } from './ProjectContext.tsx';
 import { decodePhotoSelection } from '../features/photos/import.ts';
 import type { MonthNumber } from '../domain/calendar.ts';
+import { installDialogFocus } from './dialogFocus.ts';
 
 export function App() {
   return <ProjectProvider><AppContent /></ProjectProvider>;
 }
 
 function AppContent() {
+  useEffect(installDialogFocus, []);
   const { state, dispatch, hydrated, restoreError, retryRestore, saveStatus, saveError, retrySave, replaceActive } = useProject();
   const [location, setLocation] = useState<Location>(() => parseLocation(window.location.pathname));
   const [assignOrigin, setAssignOrigin] = useState<Location | null>(null);
@@ -27,6 +29,14 @@ function AppContent() {
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
   useEffect(() => { if (hydrated) { window.history.replaceState(null, '', '/'); setLocation({ screen: 'entry' }); } }, [hydrated]);
+  useEffect(() => {
+    if (!confirmNew || replacing) return;
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { event.preventDefault(); setConfirmNew(false); }
+    };
+    document.addEventListener('keydown', onEscape);
+    return () => document.removeEventListener('keydown', onEscape);
+  }, [confirmNew, replacing]);
   function navigate(next: Location) {
     if (next.screen === 'assign' && location.screen !== 'assign' && location.screen !== 'entry') setAssignOrigin(location);
     const path = locationPath(next);
@@ -44,7 +54,7 @@ function AppContent() {
     if (files.length === 0) return;
     try {
       const result = await decodePhotoSelection(files);
-      if (result.assets.length === 0) { const first = result.diagnostics?.[0]; setNotice(first ? `无法读取：${first.fileName}（${first.mime}，${Math.round(first.byteSize / 1024)} KB）。${first.reason}` : '无法读取所选照片，请换一张重试。'); return; }
+      if (result.assets.length === 0) { const first = result.diagnostics?.[0]; setNotice(first ? `这张照片暂时无法读取，请换一张再试：${first.fileName}` : '这张照片暂时无法读取，请换一张再试。'); return; }
       const itemIds = result.assets.map(() => newId());
       if (state) dispatch({ type: 'import', assets: result.assets, itemIds, target });
       else {
@@ -60,12 +70,12 @@ function AppContent() {
     setReplacing(false);
     if (replaced) { setConfirmNew(false); navigate({ screen: 'entry' }); }
   }
-  if (restoreError) return <main className="page recovery-page"><h1>无法读取已保存的日历</h1><p>{restoreError}</p><p>原项目不会被自动替换。请重试读取。</p><button className="button button--primary" onClick={retryRestore}>重试读取</button></main>;
+  if (restoreError) return <main className="page recovery-page"><h1>无法读取已保存的日历</h1><p>当前浏览器暂时无法打开这个项目。原项目没有被替换，请重试读取。</p><details className="error-detail"><summary>查看错误详情</summary><p>{restoreError}</p></details><button className="button button--primary" onClick={retryRestore}>重试读取</button></main>;
   if (!hydrated) return <main className="page recovery-page"><p>正在读取当前浏览器中的日历…</p></main>;
   const resumeLocation: Location | undefined = !state ? undefined : state.project.lastLocation.screen === 'editor' ? { screen: 'editor', month: state.project.lastLocation.month ?? 1 } : state.project.lastLocation.screen === 'assign' ? { screen: 'assign' } : { screen: 'review' };
   const projectScreen = location.screen !== 'entry';
   return <div className="app-shell">
-    <header className="site-header"><div className="site-header__inner"><button className="brand" onClick={() => navigate({ screen: 'entry' })}>2027 Calendar Designer <span>2027 年日历</span></button>{projectScreen && <><nav className="desktop-nav" aria-label="项目导航"><button className={location.screen === 'assign' ? 'active' : ''} onClick={() => navigate({ screen: 'assign' })}>分配照片</button><button className={location.screen === 'editor' ? 'active' : ''} onClick={() => navigate({ screen: 'editor', month: location.screen === 'editor' ? location.month : 1 })}>编辑月份</button><button className={location.screen === 'review' ? 'active' : ''} onClick={() => navigate({ screen: 'review' })}>预览与导出</button></nav><div className="mobile-menu"><button aria-expanded={menuOpen} aria-controls="mobile-nav" onClick={() => setMenuOpen(!menuOpen)}>菜单 · {location.screen === 'assign' ? '分配照片' : location.screen === 'editor' ? '编辑月份' : '预览与导出'}</button>{menuOpen && <nav id="mobile-nav" aria-label="项目导航"><button onClick={() => navigate({ screen: 'assign' })}>分配照片</button><button onClick={() => navigate({ screen: 'editor', month: location.screen === 'editor' ? location.month : 1 })}>编辑月份</button><button onClick={() => navigate({ screen: 'review' })}>预览与导出</button></nav>}</div></>}</div></header>
+    <header className={projectScreen ? "site-header site-header--workspace" : "site-header"}><div className="site-header__inner"><button className="brand" onClick={() => navigate({ screen: 'entry' })} aria-label="Calendar Design Studio 首页"><span className="brand__wordmark">Calendar <em>Design Studio</em></span><span className="brand__descriptor">2027 · 月历设计工作台</span></button>{projectScreen && <><nav className="desktop-nav" aria-label="项目导航"><button className={location.screen === 'assign' ? 'active' : ''} onClick={() => navigate({ screen: 'assign' })}>分配照片</button><button className={location.screen === 'editor' ? 'active' : ''} onClick={() => navigate({ screen: 'editor', month: location.screen === 'editor' ? location.month : 1 })}>编辑月份</button><button className={location.screen === 'review' ? 'active' : ''} onClick={() => navigate({ screen: 'review' })}>预览与导出</button></nav><div className="mobile-menu"><button aria-expanded={menuOpen} aria-controls="mobile-nav" onClick={() => setMenuOpen(!menuOpen)}>菜单 · {location.screen === 'assign' ? '分配照片' : location.screen === 'editor' ? '编辑月份' : '预览与导出'}</button>{menuOpen && <nav id="mobile-nav" aria-label="项目导航"><button onClick={() => navigate({ screen: 'assign' })}>分配照片</button><button onClick={() => navigate({ screen: 'editor', month: location.screen === 'editor' ? location.month : 1 })}>编辑月份</button><button onClick={() => navigate({ screen: 'review' })}>预览与导出</button></nav>}</div></>}</div></header>
     {saveStatus === 'failed' && <div className="feedback feedback--error" role="alert"><strong>本地保存失败。</strong> {saveError} 当前修改仍在页面中；上次成功保存的版本没有被替换。<button className="button" onClick={retrySave}>重试保存</button></div>}
     {notice && <div className="feedback" role="status">{notice}<button onClick={() => setNotice('')} aria-label="关闭提示">×</button></div>}
     {location.screen === 'entry' && <Entry navigate={navigate} onStartEmpty={startEmpty} onImport={importFiles} hasProject={!!state} resumeLocation={resumeLocation} onStartNew={() => setConfirmNew(true)} />}

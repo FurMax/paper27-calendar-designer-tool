@@ -1,0 +1,326 @@
+{
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+  "origin": "http://127.0.0.1:4173",
+  "build": "production assets",
+  "checks": {
+    "partial": {
+      "ready": 2,
+      "missingExport": {
+        "disabled": true,
+        "missing": true
+      },
+      "pickerCancel": true,
+      "unreadablePreserved": true
+    },
+    "replacement": {
+      "replaced": true,
+      "unassigned": 1
+    },
+    "desktopCrop": {
+      "dragged": {
+        "x": 0,
+        "y": -1,
+        "covered": "true"
+      },
+      "zoomed": true,
+      "reset": true,
+      "covered": "true"
+    },
+    "editor": {
+      "suggestions": [
+        {
+          "label": "主色",
+          "color": "#9822D3"
+        },
+        {
+          "label": "搭配色",
+          "color": "#4BD262"
+        },
+        {
+          "label": "点缀色",
+          "color": "#96612C"
+        }
+      ],
+      "recommended": {
+        "color": "#9822D3",
+        "preview": "#9822D3"
+      },
+      "autoInk": "#FFFFFF",
+      "fonts": [
+        {
+          "selected": "经典January",
+          "family": "\"Instrument Serif\", Georgia, serif"
+        },
+        {
+          "selected": "简约January",
+          "family": "\"Instrument Sans\", Georgia, serif"
+        },
+        {
+          "selected": "手写January",
+          "family": "\"Patrick Hand\", Georgia, serif"
+        }
+      ],
+      "scales": [
+        {
+          "selected": "小",
+          "scale": "0.8"
+        },
+        {
+          "selected": "标准",
+          "scale": "1"
+        },
+        {
+          "selected": "大",
+          "scale": "1.2"
+        }
+      ],
+      "importantDays": [
+        21
+      ]
+    },
+    "returning": {
+      "restored": true,
+      "location": {
+        "screen": "editor",
+        "month": 1
+      },
+      "assets": 3
+    },
+    "startNew": {
+      "cancellationPreserved": true,
+      "confirmationCleared": true,
+      "ready": 12,
+      "assignmentOrder": [
+        "full-01.png",
+        "full-02.png",
+        "full-03.png",
+        "full-04.png",
+        "full-05.png",
+        "full-06.png",
+        "full-07.png",
+        "full-08.png",
+        "full-09.png",
+        "full-10.png",
+        "full-11.png",
+        "full-12.png"
+      ]
+    },
+    "calendarPreview": {
+      "months": 12,
+      "dateCells": 504,
+      "sundayFirst": true,
+      "longMonthsFit": true,
+      "printCropCovered": true
+    },
+    "palette": {
+      "rows": 12,
+      "distinct": 12,
+      "unchangedBeforeApply": true,
+      "appliedAfterRepeat": true,
+      "restoredAfterReload": true
+    },
+    "cancel": {
+      "closed": true,
+      "savedProjectPreserved": true
+    },
+    "printPng": {
+      "zipBytes": 1381787,
+      "progress": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "files": [
+        {
+          "month": 1,
+          "bytes": 117423,
+          "importantPixels": 72
+        },
+        {
+          "month": 2,
+          "bytes": 111782,
+          "importantPixels": 0
+        },
+        {
+          "month": 3,
+          "bytes": 113495,
+          "importantPixels": 0
+        },
+        {
+          "month": 4,
+          "bytes": 111287,
+          "importantPixels": 0
+        },
+        {
+          "month": 5,
+          "bytes": 111447,
+          "importantPixels": 0
+        },
+        {
+          "month": 6,
+          "bytes": 110362,
+          "importantPixels": 0
+        },
+        {
+          "month": 7,
+          "bytes": 112236,
+          "importantPixels": 0
+        },
+        {
+          "month": 8,
+          "bytes": 116908,
+          "importantPixels": 0
+        },
+        {
+          "month": 9,
+          "bytes": 119577,
+          "importantPixels": 0
+        },
+        {
+          "month": 10,
+          "bytes": 117541,
+          "importantPixels": 0
+        },
+        {
+          "month": 11,
+          "bytes": 117951,
+          "importantPixels": 0
+        },
+        {
+          "month": 12,
+          "bytes": 119832,
+          "importantPixels": 0
+        }
+      ]
+    },
+    "digitalPng": {
+      "zipBytes": 964753,
+      "files": 12,
+      "dateCells": 504,
+      "fullBleed": true
+    },
+    "printJpg": {
+      "zipBytes": 862454,
+      "files": 12,
+      "dpi": 300,
+      "photoEdges": [
+        [
+          44,
+          150,
+          60
+        ],
+        [
+          75,
+          98,
+          210
+        ],
+        [
+          212,
+          93,
+          35
+        ]
+      ]
+    },
+    "single": {
+      "printPng": "01-January-2027-Print-106x156mm.png",
+      "digitalJpg": "01-January-2027.jpg",
+      "importantDateInPng": true
+    },
+    "saveFailure": {
+      "priorRevision": 6,
+      "failedRevision": 6,
+      "retryRevision": 7,
+      "priorDataPreserved": true
+    },
+    "exportFailure": {
+      "errorShown": true,
+      "savedProjectPreserved": true,
+      "retryFiles": 12,
+      "variant": "digital JPG"
+    },
+    "longTypography": {
+      "combinations": 9,
+      "months": [
+        9,
+        11,
+        12
+      ],
+      "allFit": true
+    },
+    "gsap": {
+      "frameCount": 24,
+      "minCoverage": 1,
+      "latestMonth": 4,
+      "repeatedPhotoColorFinal": "#2C4A96",
+      "landingFinal": true
+    },
+    "mobile": {
+      "singleFinger": {
+        "y": -1,
+        "covered": "true"
+      },
+      "pinch": {
+        "zoom": 2.533333333333333,
+        "covered": "true"
+      },
+      "reset": true,
+      "layouts": [
+        {
+          "requested": "390x844",
+          "width": 390,
+          "documentWidth": 390,
+          "dock": "sticky",
+          "cropHit": true
+        },
+        {
+          "requested": "844x390",
+          "width": 844,
+          "documentWidth": 844,
+          "dock": "static",
+          "cropHit": true
+        },
+        {
+          "requested": "320x700",
+          "width": 320,
+          "documentWidth": 320,
+          "dock": "sticky",
+          "cropHit": true
+        },
+        {
+          "requested": "1440x900",
+          "width": 1440,
+          "documentWidth": 1425,
+          "dock": "static",
+          "cropHit": true
+        },
+        {
+          "requested": "1000x800",
+          "width": 1000,
+          "documentWidth": 985,
+          "dock": "static",
+          "cropHit": true
+        }
+      ]
+    },
+    "reducedMotion": {
+      "landingFinal": true,
+      "monthFinal": true,
+      "paletteFinal": true,
+      "exportStatus": "正在检查 12 个月的照片边缘…"
+    },
+    "twoTab": {
+      "olderRevision": 14,
+      "newerRevision": 15,
+      "staleTabBlocked": true
+    },
+    "performance": {
+      "type": "reload",
+      "domContentLoadedMs": 29,
+      "loadMs": 29,
+      "heapBytes": 8267420,
+      "resourceCount": 6
+    }
+  },
+  "errors": []
+}

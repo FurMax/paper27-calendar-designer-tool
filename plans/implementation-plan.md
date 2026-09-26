@@ -1,5 +1,8 @@
 # Session 06 — Implementation Plan
 
+**Later Session 08 decision (supersedes mobile handoff OPEN QUESTION in this historical Session 07 plan):** The Product Owner approved one ZIP containing twelve independent PNGs as V1 mobile primary delivery and deferred multi-file Share and one-action direct iPhone Photos beyond V1. See design/ui-ux-change-request-session-08-mobile-handoff.md and qa/mobile-device-results.md. The original M1–M8 gate outcomes below remain historical.
+
+
 **Status:** Approved for execution — Product Owner Technical Gate passed on 2026-09-23 after adding the M3/M4 smoke-test requirements and correcting the M8 boundary. **No implementation begins in Session 06.** These eight milestones belong to Session 07 — Implementation, which starts only in a new Codex session. They follow the [architecture](../docs/architecture.md), [data model](../docs/data-model.md), [export pipeline](../docs/export-pipeline.md), and [testing strategy](../docs/testing-strategy.md). File paths are proposed in the [code index](../docs/code-index.md).
 
 | Milestone | Goal | Main files/modules | Verification | Done criteria |

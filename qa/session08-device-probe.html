@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Session 08 设备照片信息测试</title>
+  <style>
+    body { font: 16px/1.5 system-ui, sans-serif; max-width: 48rem; margin: auto; padding: 1rem; overflow-wrap: anywhere; }
+    button, input { font: inherit; min-height: 44px; }
+    pre { white-space: pre-wrap; background: #f2f4f2; padding: 1rem; border-radius: .5rem; }
+  </style>
+</head>
+<body>
+  <h1>设备照片信息测试</h1>
+  <p>只在本机浏览器内读取所选文件的名称、类型、大小和解码尺寸；不会上传或保存照片。请在正式日历流程完成后使用此辅助页。</p>
+  <label>选择一张 HEIC/HEIF 或多张手机原图 <input id="files" type="file" accept="image/*" multiple /></label>
+  <button id="refresh" type="button">更新环境信息</button>
+  <pre id="result" aria-live="polite"></pre>
+  <script type="module">
+    const input = document.querySelector('#files');
+    const result = document.querySelector('#result');
+    async function environment() {
+      let storage = null;
+      try { storage = await navigator.storage?.estimate?.() ?? null; } catch (error) { storage = { error: String(error) }; }
+      return { userAgent: navigator.userAgent, secureContext: isSecureContext,
+        shareAPI: typeof navigator.share === 'function', canShareAPI: typeof navigator.canShare === 'function',
+        storage };
+    }
+    async function decode(file) {
+      let bitmap = null;
+      try {
+        bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
+        return { success: true, width: bitmap.width, height: bitmap.height, decoder: 'createImageBitmap' };
+      } catch (bitmapError) {
+        const url = URL.createObjectURL(file);
+        try {
+          const image = new Image(); image.src = url; await image.decode();
+          return { success: true, width: image.naturalWidth, height: image.naturalHeight, decoder: 'img', bitmapError: String(bitmapError) };
+        } catch (imageError) { return { success: false, bitmapError: String(bitmapError), imageError: String(imageError) }; }
+        finally { URL.revokeObjectURL(url); }
+      } finally { bitmap?.close(); }
+    }
+    async function update() {
+      const files = [...input.files];
+      result.textContent = '正在读取所选文件…';
+      const records = [];
+      for (const file of files) records.push({ name: file.name, mime: file.type || '(empty)', bytes: file.size, lastModified: file.lastModified,
+        decode: await decode(file) });
+      result.textContent = JSON.stringify({ environment: await environment(), count: records.length,
+        totalBytes: records.reduce((sum, file) => sum + file.bytes, 0), files: records }, null, 2);
+    }
+    input.addEventListener('change', update);
+    document.querySelector('#refresh').addEventListener('click', update);
+    update();
+  </script>
+</body>
+</html>

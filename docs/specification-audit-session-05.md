@@ -1,5 +1,8 @@
 # Session 05 — Source-of-truth specification audit
 
+**Later Session 08 resolution:** The Session 05 mobile handoff question was explicitly resolved for V1: one ZIP packages twelve independent PNGs on desktop and mobile; multi-file Share and one-action direct iPhone Photos are deferred beyond V1. See design/ui-ux-change-request-session-08-mobile-handoff.md. The audit rows below describe their Session 05 state.
+
+
 **Date:** 2026-09-23  
 **Scope:** Product Owner's real iPhone Safari refinement. This audit preceded the disposable spike changes. [The Product Owner-directed UI/UX change request](../design/ui-ux-change-request-session-05.md) records the post-freeze clarification. No Production Architecture or S01–S04 implementation was begun.
 

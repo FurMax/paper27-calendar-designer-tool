@@ -27,7 +27,7 @@ const result = await evaluate(`(async () => {
   clickText('.entry-page button', '逐月添加照片'); await pause(100);
   clickText('.desktop-nav button', '编辑月份'); await pause(100);
   const proof = () => document.querySelector('.editor-page .calendar-proof');
-  if (document.title !== '2027 Calendar Designer' || !document.querySelector('.brand').textContent.includes('2027 Calendar Designer')) throw Error('site name mismatch');
+  if (document.title !== 'Calendar Design Studio · 2027' || !document.querySelector('.brand').textContent.includes('Calendar Design Studio · 2027')) throw Error('site name mismatch');
   if (!document.querySelector('.properties-panel__head').textContent.includes('月份预览') || proof().querySelector('.calendar-proof__title strong').textContent !== 'January') throw Error('UI/output language mismatch');
   const styles = [];
   for (const [name, family] of [['经典','Instrument Serif'],['简约','Instrument Sans'],['手写','Patrick Hand']]) {

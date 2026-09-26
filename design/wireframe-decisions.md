@@ -33,7 +33,7 @@ No conflict was found that requires reopening the approved IA/UX gate.
 | WD-15 | Save feedback | Healthy autosave is quiet. Save failure is a persistent banner; a newer-tab conflict is blocking because stale writes must stop. |
 | WD-16 | Edited metadata | Do not show an Edited badge in the recommended V1 wireframe. Only **Missing Photo** and **Ready** are user-facing month states. |
 
-**Session 05 Product Owner clarification (supersedes the export wording of WD-14, without changing T05's transient surface):** the full-set Primary means generating 12 independent monthly PNGs. Desktop ZIP packages those files; the phone handoff remains open until trusted-HTTPS device validation. The upper Photo Region covers the whole proof width without gutters. See [UI / UX change request](ui-ux-change-request-session-05.md). Existing Session 03 mock/prototype ZIP copy is historical, not the final output definition.
+**Session 05 Product Owner clarification, amended by Session 08:** the full-set Primary means generating twelve independent monthly PNGs. ZIP packages the files for desktop and mobile; the Product Owner approved this as V1 mobile primary handoff after real iPhone extraction/inspection. The upper Photo Region covers the whole proof width without gutters. The original Session 03 mock/prototype ZIP copy is historical; the output definition remains twelve PNGs. See the Session 05 and Session 08 mobile-handoff change requests.
 
 ## 3. Assign Photos — Mobile Alternatives
 
@@ -300,3 +300,19 @@ Product UI copy is Simplified Chinese; the Calendar Proof and exported pages rem
 The recommended structures are documented in `design/wireframes.md`. After the approved minor revision removing duplicate mobile month-navigation controls, Session 03 is **Approved / Complete** and the Wireframe Gate **Passed** with Product Owner approval on 2026-09-23.
 
 No Wireframe **OPEN QUESTION** blocks Session 04. Session 04 is authorized as the next stage but must begin in a new Codex session; this closeout does not begin it.
+
+## Session 08 controlled wireframe decision
+
+The Product Owner approved PNG/JPG format choice and a photo-edge correction. S03/S04 add a format selector without changing the four-screen flow; T05 uses its existing transient surface for month-specific white/light-edge preflight and optional continue. See the Session 08 JPG and photo-edge change requests. Historical PNG-only labels above are superseded.
+
+**Session 08 print-bleed correction:** The print proof uses a shared minimum-cover transform with export to fill bleed from genuine source pixels. Digital keeps the saved crop. This supersedes reflected bleed and does not add a new surface.
+
+
+## V1 Enhancement decision
+
+Preserve four core screens and the existing phone month navigation. Add photo color recommendations inside the current sampler, one Review color confirmation surface, and a small Important Date control rather than any event editor. The Editor desk texture is shell-only; Review stays visually quieter. Product Owner review of the resulting visual/interaction patch is pending.
+
+
+## V1.1 Part 1 controlled screen amendment
+
+S03 keeps the approved proof-centered desktop layout, right Properties column, phone sticky month navigation and phone bottom-sheet pattern. Immediately after the Background section, desktop adds a small two-column texture choice group; on phone, the existing Background sheet extends to include it. The Background section shows ten named fixed common colors while the three current-photo recommendations remain a separate group. No new screen, gallery, navigation tier or decoration canvas is introduced. Texture affects only the lower calendar background in Preview/export; it is distinct from the Editor workspace grid, which remains product UI only.

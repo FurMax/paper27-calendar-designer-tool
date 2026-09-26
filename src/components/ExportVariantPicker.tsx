@@ -9,6 +9,6 @@ export function ExportVariantPicker({ value, onChange, disabled = false, name }:
       <input type="radio" name={name} value={variant} checked={value === variant} onChange={() => onChange(variant)} />
       <span><strong>{EXPORT_VARIANTS[variant].label}</strong><small>{EXPORT_VARIANTS[variant].detail}</small></span>
     </label>)}
-    {value === 'print' && <p>预览显示裁切后的 100 × 150 mm 画面；导出文件四边另含约 3 mm 出血。印厂要求可能不同，交付前请核对规格。</p>}
+    {value === 'print' && <p>印刷版预览显示实际 100 × 150 mm 裁切；照片可能为覆盖出血而略微放大。导出文件四边另含约 3 mm 出血；交付前请核对印厂规格。</p>}
   </fieldset>;
 }

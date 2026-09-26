@@ -44,3 +44,7 @@ The full change would require coordinated updates to `product/`, approved design
 The Product Owner chose a 100 × 150 mm trimmed result with 3 mm bleed on all sides, giving a 106 × 156 mm full file. At 300 PPI, integer rounding produces 1252 × 1843 px, trim (35,35,1181,1772), and bleed edges 35/36/35/36 px. Those edges are approximately 2.96/3.05 mm, so the interface says “约 3 mm”. The print PNG carries 300 PPI physical-resolution metadata. The existing 1200 × 1800 digital PNG remains available; the print option is the user-facing default for single and full-set export. The ZIP contains twelve PNGs of the selected variant.
 
 The preview shows the trimmed composition and a note that print export extends beyond it. The implementation fills photo bleed with actual source pixels where available and extends edge pixels where the crop has no extra source; the calendar background continues through its bleed. No trim/crop marks are burned into the PNG. Printer-specific CMYK/profile/PDF and safe-area requirements remain OPEN QUESTION until a print provider and physical/preflight sample are selected; universal vendor compatibility is not claimed.
+
+## Session 08 superseding fill method
+
+The Session 07 edge extension described above is historical. The Product Owner later rejected the visible reflected-photo result; current print output covers bleed with genuine source-photo pixels and shows the tighter crop in print Preview. See design/ui-ux-change-request-session-08-print-photo-bleed.md.
